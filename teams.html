@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FFFFL Teams</title>
+
+  <style>
+    :root {
+      --green-dark: #03180f;
+      --green: #0d3d25;
+      --green-light: #1d6a3d;
+      --orange: #e86614;
+      --cream: #fff0cf;
+      --gold: #d4b45a;
+      --white: #ffffff;
+      --black: #050706;
+      --panel: rgba(5, 31, 20, 0.96);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(29,106,61,.16), transparent 32%),
+        linear-gradient(180deg, #07150f 0%, #020806 100%);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(2, 18, 11, 0.96);
+      border-bottom: 1px solid rgba(232, 102, 20, 0.35);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-wrap {
+      max-width: 1250px;
+      margin: 0 auto;
+      min-height: 74px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+    }
+
+    .brand img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+    }
+
+    .brand-text span:first-child {
+      display: block;
+      font-size: 1.05rem;
+    }
+
+    .brand-text span:last-child {
+      display: block;
+      color: var(--orange);
+      font-size: .8rem;
+      margin-top: 4px;
+      letter-spacing: 1.2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      font-size: .87rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      transition: .2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--orange);
+    }
+
+    .page-hero {
+      padding: 65px 20px 42px;
+      text-align: center;
+      border-bottom: 1px solid rgba(212,180,90,.25);
+      background:
+        linear-gradient(rgba(0,8,5,.38), rgba(0,8,5,.78)),
+        radial-gradient(circle at 50% 0%, rgba(232,102,20,.13), transparent 35%);
+    }
+
+    .page-hero .eyebrow {
+      color: var(--orange);
+      text-transform: uppercase;
+      font-size: .9rem;
+      letter-spacing: 3px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.4rem);
+      line-height: .95;
+      text-transform: uppercase;
+      font-weight: 1000;
+      color: var(--white);
+      letter-spacing: -1px;
+    }
+
+    .page-hero p {
+      max-width: 760px;
+      margin: 18px auto 0;
+      color: #e8d8b7;
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    .teams-shell {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 34px 20px 60px;
+    }
+
+    .teams-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .team-card {
+      background:
+        linear-gradient(180deg, rgba(9,57,35,.97), rgba(3,24,15,.97));
+      border: 1px solid rgba(212,180,90,.5);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,.22);
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--orange);
+    }
+
+    .team-logo-wrap {
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background:
+        radial-gradient(circle, rgba(255,255,255,.05), transparent 52%),
+        linear-gradient(135deg, rgba(255,255,255,.02), rgba(0,0,0,.18));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .team-logo-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.28));
+    }
+
+    .team-info {
+      padding: 20px 20px 22px;
+      text-align: center;
+    }
+
+    .team-info h2 {
+      font-size: 1.35rem;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .owner {
+      color: var(--orange);
+      font-weight: 900;
+      font-size: .9rem;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      margin-bottom: 14px;
+    }
+
+    .team-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .meta-box {
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 7px;
+      padding: 10px 6px;
+    }
+
+    .meta-box strong {
+      display: block;
+      color: var(--orange);
+      font-size: 1.1rem;
+      margin-bottom: 3px;
+    }
+
+    .meta-box span {
+      display: block;
+      color: #d8c6a5;
+      font-size: .68rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .coming-soon {
+      margin-top: 18px;
+      font-size: .78rem;
+      color: #a99573;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .site-footer {
+      border-top: 1px solid rgba(232,102,20,.25);
+      background: #02100a;
+      margin-top: 10px;
+    }
+
+    .footer-inner {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 28px 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-brand img {
+      width: 70px;
+    }
+
+    .footer-brand p {
+      color: #d7c5a4;
+      font-size: .88rem;
+      line-height: 1.5;
+    }
+
+    .footer-note {
+      color: #a99573;
+      font-size: .8rem;
+    }
+
+    @media (max-width: 1000px) {
+      .nav-wrap {
+        flex-direction: column;
+        padding-top: 12px;
+        padding-bottom: 14px;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .teams-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .brand-text {
+        display: none;
+      }
+
+      nav {
+        gap: 10px 14px;
+      }
+
+      nav a {
+        font-size: .72rem;
+      }
+
+      .teams-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-logo-wrap {
+        height: 225px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+
+      <a class="brand" href="index.html">
+        <img src="FFFFL Logo.png" alt="FFFFL Logo">
+
+        <div class="brand-text">
+          <span>Florida's Finest</span>
+          <span>Fantasy Football League</span>
+        </div>
+      </a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#standings">Standings</a>
+        <a class="active" href="teams.html">Teams</a>
+        <a href="index.html#schedule">Schedule</a>
+        <a href="index.html#record-book">Record Book</a>
+        <a href="index.html#history">History</a>
+        <a href="index.html#mike-hunt">Mike Hunt</a>
+        <a href="index.html#contenders">Contenders</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <section class="page-hero">
+    <div class="eyebrow">The Franchises of Florida's Finest</div>
+
+    <h1>FFFFL Teams</h1>
+
+    <p>
+      Twelve franchises. Twelve owners. One championship.
+      The teams below make up Florida's Finest Fantasy Football League.
+    </p>
+  </section>
+
+
+  <main class="teams-shell">
+
+    <div class="teams-grid">
+
+
+      <article class="team-card">
+        <div class="team-logo-wrap">
+          <img src="team-logos/knightmare.png" alt="Knightmare">
+        </div>
+
+        <div class="team-info">
+          <h2>Knightmare</h2>
+          <div class="owner">Jared</div>
+
+          <div class="team-meta">
+            <div class="meta-box">
+              <strong>2</strong>
+              <span>Titles</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>10</strong>
+              <span>Playoffs</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>2012</strong>
+              <span>Member Since</span>
+            </div>
+          </div>
+
+          <div class="coming-soon">Full team profile coming soon</div>
+        </div>
+      </article>
+
+
+      <article class="team-card">
+        <div class="team-logo-wrap">
+          <img src="team-logos/brady-gaga.png" alt="Brady Gaga">
+        </div>
+
+        <div class="team-info">
+          <h2>Brady Gaga</h2>
+          <div class="owner">Jonah</div>
+
+          <div class="team-meta">
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Titles</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Playoffs</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Member Since</span>
+            </div>
+          </div>
+
+          <div class="coming-soon">Full team profile coming soon</div>
+        </div>
+      </article>
+
+
+      <article class="team-card">
+        <div class="team-logo-wrap">
+          <img src="team-logos/go-luck-yourself.png" alt="Go Luck Yourself">
+        </div>
+
+        <div class="team-info">
+          <h2>Go Luck Yourself</h2>
+          <div class="owner">Zack</div>
+
+          <div class="team-meta">
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Titles</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Playoffs</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Member Since</span>
+            </div>
+          </div>
+
+          <div class="coming-soon">Full team profile coming soon</div>
+        </div>
+      </article>
+
+
+      <article class="team-card">
+        <div class="team-logo-wrap">
+          <img src="team-logos/caucasians.png" alt="Caucasians">
+        </div>
+
+        <div class="team-info">
+          <h2>Caucasians</h2>
+          <div class="owner">Josh</div>
+
+          <div class="team-meta">
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Titles</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Playoffs</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Member Since</span>
+            </div>
+          </div>
+
+          <div class="coming-soon">Full team profile coming soon</div>
+        </div>
+      </article>
+
+
+      <article class="team-card">
+        <div class="team-logo-wrap">
+          <img src="team-logos/show-me-your-tds.png" alt="Show Me Your TDs">
+        </div>
+
+        <div class="team-info">
+          <h2>Show Me Your TDs</h2>
+          <div class="owner">Tim</div>
+
+          <div class="team-meta">
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Titles</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Playoffs</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Member Since</span>
+            </div>
+          </div>
+
+          <div class="coming-soon">Full team profile coming soon</div>
+        </div>
+      </article>
+
+
+      <article class="team-card">
+        <div class="team-logo-wrap">
+          <img src="team-logos/diggs-island.png" alt="Diggs Island">
+        </div>
+
+        <div class="team-info">
+          <h2>Diggs Island</h2>
+          <div class="owner">Jordan</div>
+
+          <div class="team-meta">
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Titles</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Playoffs</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Member Since</span>
+            </div>
+          </div>
+
+          <div class="coming-soon">Full team profile coming soon</div>
+        </div>
+      </article>
+
+
+      <article class="team-card">
+        <div class="team-logo-wrap">
+          <img src="team-logos/bacc-field.png" alt="Bacc Field">
+        </div>
+
+        <div class="team-info">
+          <h2>Bacc Field</h2>
+          <div class="owner">Kevin</div>
+
+          <div class="team-meta">
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Titles</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Playoffs</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Member Since</span>
+            </div>
+          </div>
+
+          <div class="coming-soon">Full team profile coming soon</div>
+        </div>
+      </article>
+
+
+      <article class="team-card">
+        <div class="team-logo-wrap">
+          <img src="team-logos/just-bobby.png" alt="Just Bobby">
+        </div>
+
+        <div class="team-info">
+          <h2>Just Bobby</h2>
+          <div class="owner">Jerry</div>
+
+          <div class="team-meta">
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Titles</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Playoffs</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Member Since</span>
+            </div>
+          </div>
+
+          <div class="coming-soon">Full team profile coming soon</div>
+        </div>
+      </article>
+
+
+      <article class="team-card">
+        <div class="team-logo-wrap">
+          <img src="team-logos/dyl-pickle-six.png" alt="Dyl Pickle Six">
+        </div>
+
+        <div class="team-info">
+          <h2>Dyl Pickle Six</h2>
+          <div class="owner">Dylan</div>
+
+          <div class="team-meta">
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Titles</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Playoffs</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Member Since</span>
+            </div>
+          </div>
+
+          <div class="coming-soon">Full team profile coming soon</div>
+        </div>
+      </article>
+
+
+      <article class="team-card">
+        <div class="team-logo-wrap">
+          <img src="team-logos/njigbas-in-paris.png" alt="Njigbas in Paris">
+        </div>
+
+        <div class="team-info">
+          <h2>Njigbas in Paris</h2>
+          <div class="owner">Austin</div>
+
+          <div class="team-meta">
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Titles</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Playoffs</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Member Since</span>
+            </div>
+          </div>
+
+          <div class="coming-soon">Full team profile coming soon</div>
+        </div>
+      </article>
+
+
+      <article class="team-card">
+        <div class="team-logo-wrap">
+          <img src="team-logos/prison-jeff.png" alt="Prison Jeff">
+        </div>
+
+        <div class="team-info">
+          <h2>Prison Jeff</h2>
+          <div class="owner">Jeff</div>
+
+          <div class="team-meta">
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Titles</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Playoffs</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Member Since</span>
+            </div>
+          </div>
+
+          <div class="coming-soon">Full team profile coming soon</div>
+        </div>
+      </article>
+
+
+      <article class="team-card">
+        <div class="team-logo-wrap">
+          <img src="team-logos/tommy-gunz.png" alt="Tommy Gunz">
+        </div>
+
+        <div class="team-info">
+          <h2>Tommy Gunz</h2>
+          <div class="owner">Thomas</div>
+
+          <div class="team-meta">
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Titles</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Playoffs</span>
+            </div>
+
+            <div class="meta-box">
+              <strong>—</strong>
+              <span>Member Since</span>
+            </div>
+          </div>
+
+          <div class="coming-soon">Full team profile coming soon</div>
+        </div>
+      </article>
+
+
+    </div>
+
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <img src="FFFFL Logo.png" alt="FFFFL Logo">
+
+        <p>
+          <strong>Florida's Finest Fantasy Football League</strong><br>
+          Established 2012.
+        </p>
+      </div>
+
+      <div class="footer-note">
+        © 2012–2026 Florida's Finest Fantasy Football League
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
