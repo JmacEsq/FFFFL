@@ -1,11 +1,960 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>FFFFL</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Florida's Finest Fantasy Football League</title>
+
+  <style>
+    :root {
+      --green-dark: #03180f;
+      --green: #0d3d25;
+      --green-light: #1d6a3d;
+      --orange: #e86614;
+      --orange-dark: #b94508;
+      --cream: #fff0cf;
+      --white: #ffffff;
+      --gold: #d4b45a;
+      --black: #050706;
+      --panel: rgba(5, 31, 20, 0.94);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(29,106,61,.18), transparent 35%),
+        linear-gradient(180deg, #07150f 0%, #020806 100%);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(2, 18, 11, 0.96);
+      border-bottom: 1px solid rgba(232, 102, 20, 0.35);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-wrap {
+      max-width: 1250px;
+      margin: 0 auto;
+      min-height: 74px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: .5px;
+    }
+
+    .brand img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      line-height: 1.05;
+    }
+
+    .brand-text span:first-child {
+      display: block;
+      color: var(--cream);
+      font-size: 1.05rem;
+    }
+
+    .brand-text span:last-child {
+      display: block;
+      color: var(--orange);
+      font-size: .8rem;
+      margin-top: 4px;
+      letter-spacing: 1.2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      font-size: .87rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      color: #f7e7c5;
+      transition: .2s ease;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+    }
+
+    .hero {
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(212, 180, 90, .25);
+      background:
+        linear-gradient(rgba(0, 8, 5, 0.48), rgba(0, 8, 5, 0.86)),
+        radial-gradient(circle at 75% 30%, rgba(232,102,20,.13), transparent 28%),
+        linear-gradient(130deg, #05110c, #0d2518 50%, #07120d);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,.012) 0,
+          rgba(255,255,255,.012) 2px,
+          transparent 2px,
+          transparent 40px
+        );
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 55px 20px;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      align-items: center;
+      gap: 55px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-logo img {
+      width: 100%;
+      max-width: 340px;
+      filter: drop-shadow(0 18px 30px rgba(0,0,0,.5));
+    }
+
+    .hero-copy .eyebrow {
+      color: var(--orange);
+      text-transform: uppercase;
+      font-size: .95rem;
+      letter-spacing: 3px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(3.1rem, 7vw, 6.2rem);
+      line-height: .9;
+      text-transform: uppercase;
+      font-weight: 1000;
+      letter-spacing: -2px;
+      color: var(--white);
+      text-shadow: 0 5px 20px rgba(0,0,0,.45);
+    }
+
+    .hero-copy h1 span {
+      color: var(--orange);
+      display: block;
+      font-size: .54em;
+      letter-spacing: 2px;
+      margin-top: 14px;
+    }
+
+    .established {
+      display: inline-block;
+      margin-top: 24px;
+      padding-top: 13px;
+      border-top: 2px solid var(--orange);
+      color: var(--cream);
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+
+    .tagline {
+      margin-top: 25px;
+      color: #f4d999;
+      font-size: 1.3rem;
+      font-style: italic;
+    }
+
+    .tagline strong {
+      color: var(--orange);
+      display: block;
+      font-style: normal;
+      text-transform: uppercase;
+      font-size: .92rem;
+      letter-spacing: 2px;
+      margin-top: 7px;
+    }
+
+    .main-shell {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 30px 20px 55px;
+    }
+
+    .section-title {
+      text-transform: uppercase;
+      font-size: 1.45rem;
+      font-weight: 900;
+      letter-spacing: .7px;
+      margin-bottom: 16px;
+      color: var(--cream);
+    }
+
+    .top-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr .95fr;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(8,56,34,.96), rgba(3,25,15,.96));
+      border: 1px solid rgba(212,180,90,.55);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+
+    .card-header {
+      padding: 17px 18px;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(212,180,90,.25);
+      background: rgba(0,0,0,.14);
+    }
+
+    .standings-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .standings-table th {
+      background: var(--orange);
+      color: #111;
+      padding: 10px 7px;
+      text-transform: uppercase;
+      font-size: .77rem;
+    }
+
+    .standings-table td {
+      padding: 10px 7px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-size: .88rem;
+    }
+
+    .standings-table td:first-child {
+      width: 35px;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .team-name {
+      font-weight: 800;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .card-footer {
+      text-align: center;
+      padding: 15px;
+    }
+
+    .button {
+      display: inline-block;
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: .7px;
+      transition: .2s ease;
+    }
+
+    .button:hover {
+      background: var(--orange);
+      color: #111;
+    }
+
+    .matchup {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .week-label {
+      color: var(--orange);
+      font-size: 1.35rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .matchup-team {
+      font-size: 1.55rem;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin: 14px 0;
+    }
+
+    .vs {
+      margin: 15px auto;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--orange);
+      border-radius: 50%;
+      color: var(--orange);
+      font-weight: 900;
+    }
+
+    .match-detail {
+      margin-top: 25px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: #f2dfbc;
+      line-height: 1.8;
+      font-size: .93rem;
+    }
+
+    .champion {
+      padding: 23px;
+      text-align: center;
+    }
+
+    .champion-badge {
+      width: 118px;
+      height: 118px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 3.2rem;
+      background: rgba(212,180,90,.09);
+    }
+
+    .champion h3 {
+      color: var(--cream);
+      font-size: 1.55rem;
+      text-transform: uppercase;
+    }
+
+    .champion p {
+      color: var(--orange);
+      font-weight: 900;
+      margin: 7px 0 20px;
+    }
+
+    .stats {
+      margin-top: 20px;
+      padding: 20px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .stat-row:last-child {
+      border-bottom: 0;
+    }
+
+    .stat-row strong {
+      color: var(--orange);
+      font-size: 1.35rem;
+    }
+
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .feature-body,
+    .news-body,
+    .contenders-body {
+      padding: 20px;
+    }
+
+    .feature-image {
+      min-height: 220px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle, rgba(232,102,20,.2), transparent 35%),
+        linear-gradient(135deg, #123c28, #07130d);
+      border: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 18px;
+      font-size: 3.7rem;
+    }
+
+    .feature-body h3,
+    .contenders-body h3 {
+      color: var(--orange);
+      text-transform: uppercase;
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-body p,
+    .contenders-body p {
+      color: #f0dfbf;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .news-item {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .news-item:last-child {
+      border-bottom: 0;
+    }
+
+    .news-date {
+      color: var(--orange);
+      font-size: .75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .news-title {
+      font-weight: 800;
+      color: var(--cream);
+    }
+
+    .contenders-logo {
+      height: 210px;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(232,102,20,.18), transparent),
+        #092c1c;
+      border: 1px solid rgba(255,255,255,.08);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .contenders-logo span:first-child {
+      display: block;
+      font-size: .85rem;
+      text-transform: uppercase;
+      color: var(--cream);
+      letter-spacing: 2px;
+    }
+
+    .contenders-logo span:nth-child(2) {
+      display: block;
+      font-size: 2.3rem;
+      text-transform: uppercase;
+      font-weight: 1000;
+      color: var(--white);
+      line-height: 1;
+      margin: 9px 0;
+    }
+
+    .contenders-logo span:last-child {
+      display: block;
+      color: var(--orange);
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .site-footer {
+      margin-top: 30px;
+      border-top: 1px solid rgba(232,102,20,.25);
+      background: #02100a;
+    }
+
+    .footer-inner {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 30px;
+    }
+
+    .footer-brand {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .footer-brand img {
+      width: 85px;
+    }
+
+    .footer-brand p {
+      line-height: 1.6;
+      color: #ead9b8;
+      font-size: .9rem;
+    }
+
+    .footer-heading {
+      text-transform: uppercase;
+      color: var(--cream);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .footer-note {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 16px 20px;
+      text-align: center;
+      font-size: .8rem;
+      color: #bea985;
+    }
+
+    @media (max-width: 1000px) {
+      .nav-wrap {
+        flex-direction: column;
+        padding-top: 12px;
+        padding-bottom: 14px;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .hero-inner {
+        grid-template-columns: 270px 1fr;
+      }
+
+      .top-grid,
+      .bottom-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .top-grid .card:first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      nav {
+        gap: 12px 16px;
+      }
+
+      nav a {
+        font-size: .72rem;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 25px;
+      }
+
+      .hero-logo img {
+        max-width: 240px;
+      }
+
+      .hero-copy h1 {
+        font-size: 3.3rem;
+      }
+
+      .hero-copy h1 span {
+        font-size: .45em;
+      }
+
+      .top-grid,
+      .bottom-grid,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .top-grid .card:first-child {
+        grid-column: auto;
+      }
+
+      .standings-table td,
+      .standings-table th {
+        font-size: .7rem;
+        padding: 8px 4px;
+      }
+
+      .brand-text {
+        display: none;
+      }
+
+      .footer-brand {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Florida's Finest Fantasy Football League</h1>
-  <h2>The Official Home of the FFFFL</h2>
-  <p>Website coming soon.</p>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+
+      <a class="brand" href="#">
+        <img src="FFFFL Logo.png" alt="FFFFL Logo">
+        <div class="brand-text">
+          <span>Florida's Finest</span>
+          <span>Fantasy Football League</span>
+        </div>
+      </a>
+
+      <nav>
+        <a href="#">Home</a>
+        <a href="#standings">Standings</a>
+        <a href="#teams">Teams</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#record-book">Record Book</a>
+        <a href="#history">History</a>
+        <a href="#mike-hunt">Mike Hunt</a>
+        <a href="#contenders">Contenders</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <section class="hero">
+    <div class="hero-inner">
+
+      <div class="hero-logo">
+        <img src="FFFFL Logo.png" alt="Florida's Finest Fantasy Football League Logo">
+      </div>
+
+      <div class="hero-copy">
+        <div class="eyebrow">The Official Home of the FFFFL</div>
+
+        <h1>
+          Florida's Finest
+          <span>Fantasy Football League</span>
+        </h1>
+
+        <div class="established">EST. 2012</div>
+
+        <p class="tagline">
+          Where legends are made.
+          <strong>Bragging rights are earned.</strong>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <main class="main-shell">
+
+    <div class="top-grid">
+
+      <section class="card" id="standings">
+        <div class="card-header">2026 Season Standings</div>
+
+        <table class="standings-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Team</th>
+              <th>W</th>
+              <th>L</th>
+              <th>PF</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr><td>1</td><td class="team-name">Caucasians</td><td class="center">0</td><td class="center">0</td><td class="center">0.0</td></tr>
+            <tr><td>2</td><td class="team-name">Just Bobby</td><td class="center">0</td><td class="center">0</td><td class="center">0.0</td></tr>
+            <tr><td>3</td><td class="team-name">Njigbas in Paris</td><td class="center">0</td><td class="center">0</td><td class="center">0.0</td></tr>
+            <tr><td>4</td><td class="team-name">Brady Gaga</td><td class="center">0</td><td class="center">0</td><td class="center">0.0</td></tr>
+            <tr><td>5</td><td class="team-name">Knightmare</td><td class="center">0</td><td class="center">0</td><td class="center">0.0</td></tr>
+            <tr><td>6</td><td class="team-name">Prison Jeff</td><td class="center">0</td><td class="center">0</td><td class="center">0.0</td></tr>
+            <tr><td>7</td><td class="team-name">Go Luck Yourself</td><td class="center">0</td><td class="center">0</td><td class="center">0.0</td></tr>
+            <tr><td>8</td><td class="team-name">Dyl Pickle Six</td><td class="center">0</td><td class="center">0</td><td class="center">0.0</td></tr>
+            <tr><td>9</td><td class="team-name">Diggs Island</td><td class="center">0</td><td class="center">0</td><td class="center">0.0</td></tr>
+            <tr><td>10</td><td class="team-name">Bacc Field</td><td class="center">0</td><td class="center">0</td><td class="center">0.0</td></tr>
+            <tr><td>11</td><td class="team-name">Show Me Your TDs</td><td class="center">0</td><td class="center">0</td><td class="center">0.0</td></tr>
+            <tr><td>12</td><td class="team-name">Tommy Gunz</td><td class="center">0</td><td class="center">0</td><td class="center">0.0</td></tr>
+          </tbody>
+        </table>
+
+        <div class="card-footer">
+          <a class="button" href="#standings">Full Standings</a>
+        </div>
+      </section>
+
+
+      <section class="card" id="schedule">
+        <div class="card-header">Game of the Week</div>
+
+        <div class="matchup">
+          <div class="week-label">Week 1</div>
+
+          <div class="matchup-team">Caucasians</div>
+
+          <div class="vs">VS</div>
+
+          <div class="matchup-team">Tommy Gunz</div>
+
+          <div class="match-detail">
+            2026 FFFFL Regular Season<br>
+            Week 1 Spotlight Matchup
+          </div>
+
+          <div style="margin-top:25px;">
+            <a class="button" href="#schedule">View Schedule</a>
+          </div>
+        </div>
+      </section>
+
+
+      <div>
+        <section class="card">
+          <div class="card-header">Reigning Champion</div>
+
+          <div class="champion">
+            <div class="champion-badge">🏆</div>
+            <h3>Caucasians</h3>
+            <p>2025 FFFFL Champion</p>
+
+            <a class="button" href="#history">View Champions</a>
+          </div>
+        </section>
+
+        <section class="card stats">
+          <div class="card-header" style="margin:-20px -20px 10px;">League at a Glance</div>
+
+          <div class="stat-row">
+            <span>Teams</span>
+            <strong>12</strong>
+          </div>
+
+          <div class="stat-row">
+            <span>Regular Season Weeks</span>
+            <strong>14</strong>
+          </div>
+
+          <div class="stat-row">
+            <span>Playoff Teams</span>
+            <strong>6</strong>
+          </div>
+
+          <div class="stat-row">
+            <span>Founded</span>
+            <strong>2012</strong>
+          </div>
+        </section>
+      </div>
+
+    </div>
+
+
+    <div class="bottom-grid">
+
+      <section class="card" id="mike-hunt">
+        <div class="card-header">Latest Mike Hunt</div>
+
+        <div class="feature-body">
+
+          <div class="feature-image">
+            🎙️
+          </div>
+
+          <h3>Mike Drop: Draft Recap</h3>
+
+          <p>
+            Mike Hunt breaks down the 2026 FFFFL Draft, hands out grades,
+            highlights the biggest steals and exposes the reaches.
+          </p>
+
+          <a class="button" href="#">Watch Now</a>
+
+        </div>
+      </section>
+
+
+      <section class="card">
+        <div class="card-header">League News</div>
+
+        <div class="news-body">
+
+          <div class="news-item">
+            <div class="news-date">August 2026</div>
+            <div class="news-title">2026 Draft Grades Released</div>
+          </div>
+
+          <div class="news-item">
+            <div class="news-date">August 2026</div>
+            <div class="news-title">FFFFL Season Preparation Begins</div>
+          </div>
+
+          <div class="news-item">
+            <div class="news-date">July 2026</div>
+            <div class="news-title">Contenders League Established</div>
+          </div>
+
+          <div class="news-item">
+            <div class="news-date">July 2026</div>
+            <div class="news-title">2026 Draft Weekend Completed</div>
+          </div>
+
+        </div>
+      </section>
+
+
+      <section class="card" id="contenders">
+        <div class="card-header">Florida's Finest Contenders League</div>
+
+        <div class="contenders-body">
+
+          <div class="contenders-logo">
+            <div>
+              <span>Florida's Finest</span>
+              <span>Contenders</span>
+              <span>Established 2026</span>
+            </div>
+          </div>
+
+          <h3>Develop. Compete. Earn Your Spot.</h3>
+
+          <p>
+            The official subsidiary league of the FFFFL. The Contenders League
+            serves as the proving ground for future FFFFL owners.
+          </p>
+
+          <a class="button" href="#">Visit Contenders League</a>
+
+        </div>
+      </section>
+
+    </div>
+
+
+    <section id="teams" style="margin-top:50px;">
+      <div class="section-title">FFFFL Teams</div>
+
+      <div class="card" style="padding:25px; line-height:1.8;">
+        Team pages are coming next. Each team will eventually have its own
+        logo, owner profile, championships, playoff appearances, all-time
+        record, rivalry information and historical results.
+      </div>
+    </section>
+
+
+    <section id="record-book" style="margin-top:35px;">
+      <div class="section-title">FFFFL Record Book</div>
+
+      <div class="card" style="padding:25px; line-height:1.8;">
+        The official FFFFL record book will include all-time wins,
+        championships, playoff records, single-season records and league
+        milestones.
+      </div>
+    </section>
+
+
+    <section id="history" style="margin-top:35px;">
+      <div class="section-title">League History</div>
+
+      <div class="card" style="padding:25px; line-height:1.8;">
+        Florida's Finest Fantasy Football League was established in 2012.
+        This section will become the permanent archive of champions, past
+        seasons, draft history and major moments in FFFFL history.
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <img src="FFFFL Logo.png" alt="FFFFL Logo">
+
+        <p>
+          <strong>Florida's Finest Fantasy Football League</strong><br>
+          Established 2012.<br>
+          The official home of the FFFFL.
+        </p>
+      </div>
+
+
+      <div>
+        <div class="footer-heading">League</div>
+        <p>12 Teams</p>
+        <p>14-Week Regular Season</p>
+        <p>6-Team Playoff</p>
+      </div>
+
+
+      <div>
+        <div class="footer-heading">Commissioner</div>
+        <p>Jared McElwee</p>
+        <p style="color:var(--orange); margin-top:7px;">Florida's Finest FFFL</p>
+      </div>
+
+    </div>
+
+    <div class="footer-note">
+      © 2012–2026 Florida's Finest Fantasy Football League
+    </div>
+
+  </footer>
+
 </body>
 </html>
