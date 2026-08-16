@@ -11,6 +11,8 @@
       background: #03180f;
       color: #fff0cf;
       padding: 30px;
+      max-width: 1200px;
+      margin: auto;
     }
 
     h1 {
@@ -22,24 +24,50 @@
       padding: 15px;
       background: #0d3d25;
       border-radius: 8px;
+      border: 1px solid #d4b45a;
     }
 
     .team {
-      margin: 15px 0;
-      padding: 15px;
+      margin: 18px 0;
+      padding: 20px;
       background: #0d3d25;
       border: 1px solid #d4b45a;
       border-radius: 8px;
     }
 
     .team h2 {
-      margin-bottom: 8px;
+      margin: 0 0 8px;
       color: #e86614;
     }
 
-    .players {
-      font-size: .9rem;
-      line-height: 1.5;
+    .record {
+      margin-bottom: 15px;
+    }
+
+    .roster-title {
+      margin-top: 15px;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .player {
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .position {
+      color: #e86614;
+      font-weight: bold;
+      display: inline-block;
+      width: 42px;
+    }
+
+    .starter {
+      color: #d4b45a;
+      font-size: .75rem;
+      font-weight: bold;
+      margin-left: 8px;
     }
   </style>
 </head>
@@ -58,24 +86,30 @@
     const LEAGUE_ID = "1312020664282025984";
 
     async function loadSleeperData() {
+
       const status = document.getElementById("status");
       const teamsContainer = document.getElementById("teams");
 
       try {
 
-        const [leagueResponse, usersResponse, rostersResponse] =
-          await Promise.all([
-            fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}`),
-            fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}/users`),
-            fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}/rosters`)
-          ]);
+        status.innerHTML = "Loading FFFL league data...";
+
+        const [
+          leagueResponse,
+          usersResponse,
+          rostersResponse
+        ] = await Promise.all([
+          fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}`),
+          fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}/users`),
+          fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}/rosters`)
+        ]);
 
         if (
           !leagueResponse.ok ||
           !usersResponse.ok ||
           !rostersResponse.ok
         ) {
-          throw new Error("Sleeper returned an error.");
+          throw new Error("Sleeper returned an error while loading league data.");
         }
 
         const league = await leagueResponse.json();
@@ -83,15 +117,29 @@
         const rosters = await rostersResponse.json();
 
         status.innerHTML =
-          `<strong>Connected successfully.</strong><br>
-          League: ${league.name}<br>
-          Rosters found: ${rosters.length}`;
+          `League data loaded.<br>
+          Loading NFL player names...`;
+
+        const playersResponse =
+          await fetch("https://api.sleeper.app/v1/players/nfl");
+
+        if (!playersResponse.ok) {
+          throw new Error("Could not load Sleeper player database.");
+        }
+
+        const players = await playersResponse.json();
 
         const usersById = {};
 
         users.forEach(user => {
           usersById[user.user_id] = user;
         });
+
+        status.innerHTML =
+          `<strong>Connected successfully.</strong><br>
+          League: ${league.name}<br>
+          Rosters found: ${rosters.length}<br>
+          Player database loaded successfully.`;
 
         rosters.forEach(roster => {
 
@@ -114,37 +162,93 @@
           const ties =
             roster.settings?.ties ?? 0;
 
-          const playerIds =
+          const rosterPlayers =
             roster.players || [];
+
+          const starters =
+            roster.starters || [];
 
           const teamDiv =
             document.createElement("div");
 
           teamDiv.className = "team";
 
+          let playerHTML = "";
+
+          rosterPlayers.forEach(playerId => {
+
+            const player = players[playerId];
+
+            if (!player) {
+              playerHTML += `
+                <div class="player">
+                  Unknown Player (${playerId})
+                </div>
+              `;
+              return;
+            }
+
+            const fullName =
+              player.full_name ||
+              `${player.first_name || ""} ${player.last_name || ""}`.trim() ||
+              "Unknown Player";
+
+            const position =
+              player.position || "—";
+
+            const nflTeam =
+              player.team || "FA";
+
+            const isStarter =
+              starters.includes(playerId);
+
+            playerHTML += `
+              <div class="player">
+
+                <span class="position">
+                  ${position}
+                </span>
+
+                ${fullName}
+
+                <span style="color:#aaa;">
+                  • ${nflTeam}
+                </span>
+
+                ${
+                  isStarter
+                    ? `<span class="starter">STARTER</span>`
+                    : ""
+                }
+
+              </div>
+            `;
+          });
+
           teamDiv.innerHTML = `
+
             <h2>${teamName}</h2>
 
-            <strong>Owner:</strong>
-            ${ownerName}
-
-            <br>
-
-            <strong>2026 Record:</strong>
-            ${wins}-${losses}${ties ? `-${ties}` : ""}
-
-            <br>
-
-            <strong>Roster ID:</strong>
-            ${roster.roster_id}
-
-            <div class="players">
-              <strong>Player IDs:</strong><br>
-              ${playerIds.join(", ") || "No players found"}
+            <div>
+              <strong>Owner:</strong>
+              ${ownerName}
             </div>
+
+            <div class="record">
+              <strong>2026 Record:</strong>
+              ${wins}-${losses}${ties ? `-${ties}` : ""}
+            </div>
+
+            <div class="roster-title">
+              Current Roster
+            </div>
+
+            ${playerHTML}
+
           `;
 
           teamsContainer.appendChild(teamDiv);
+
         });
 
       } catch (error) {
@@ -154,7 +258,9 @@
         status.innerHTML =
           `<strong>Connection failed.</strong><br>
           ${error.message}`;
+
       }
+
     }
 
     loadSleeperData();
