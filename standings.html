@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>2026 Standings | FFFFL</title>
+
+<style>
+:root {
+  --dark: #03180f;
+  --dark2: #061f14;
+  --green: #0d3d25;
+  --orange: #e86614;
+  --cream: #fff0cf;
+  --gold: #d4b45a;
+  --muted: #a99573;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(30,100,60,.12), transparent 35%),
+    linear-gradient(180deg,#06150f,#020806);
+  color: var(--cream);
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* HEADER */
+
+.site-header {
+  background: rgba(2,18,11,.98);
+  border-bottom: 1px solid rgba(232,102,20,.35);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-wrap {
+  max-width: 1250px;
+  margin: auto;
+  min-height: 74px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 900;
+}
+
+.brand img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
+
+.brand-text span:first-child {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.brand-text span:last-child {
+  display: block;
+  color: var(--orange);
+  font-size: .8rem;
+  margin-top: 4px;
+  letter-spacing: 1.2px;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  font-size: .87rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--orange);
+}
+
+/* HERO */
+
+.hero {
+  text-align: center;
+  padding: 65px 20px 55px;
+  border-bottom: 1px solid rgba(212,180,90,.25);
+}
+
+.eyebrow {
+  color: var(--orange);
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: .85rem;
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  color: white;
+  font-size: clamp(3rem,7vw,5.7rem);
+  line-height: .95;
+  text-transform: uppercase;
+  font-weight: 1000;
+}
+
+.hero p {
+  margin: 18px auto 0;
+  max-width: 650px;
+  color: #d9c8a8;
+  line-height: 1.6;
+}
+
+/* PAGE */
+
+.page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 35px 20px 70px;
+}
+
+.standings-card {
+  border: 1px solid rgba(212,180,90,.5);
+  border-radius: 10px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
+}
+
+.card-title {
+  padding: 18px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.loading {
+  padding: 35px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* TABLE */
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: var(--orange);
+  color: #111;
+}
+
+th {
+  padding: 12px 10px;
+  text-align: center;
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+th.team-heading {
+  text-align: left;
+}
+
+td {
+  padding: 13px 10px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  text-align: center;
+}
+
+tbody tr:hover {
+  background: rgba(255,255,255,.035);
+}
+
+.rank {
+  width: 60px;
+  color: var(--orange);
+  font-weight: 900;
+  font-size: 1.05rem;
+}
+
+.team-cell {
+  text-align: left;
+}
+
+.team-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.team-info img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.team-name {
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+}
+
+.owner {
+  color: var(--orange);
+  font-size: .72rem;
+  font-weight: 800;
+  margin-top: 3px;
+  text-transform: uppercase;
+}
+
+.number {
+  font-weight: 900;
+}
+
+.win-pct {
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.note {
+  margin-top: 17px;
+  text-align: center;
+  color: var(--muted);
+  font-size: .76rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+footer {
+  border-top: 1px solid rgba(232,102,20,.25);
+  background: #02100a;
+  text-align: center;
+  color: var(--muted);
+  padding: 22px;
+  font-size: .8rem;
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+  .nav-wrap {
+    flex-direction: column;
+    padding: 12px 20px;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  .team-info img {
+    width: 40px;
+    height: 40px;
+  }
+
+  td,
+  th {
+    padding: 10px 7px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="nav-wrap">
+
+<a class="brand" href="index.html">
+
+<img src="FFFFL Logo.png" alt="FFFFL Logo">
+
+<div class="brand-text">
+<span>Florida's Finest</span>
+<span>Fantasy Football League</span>
+</div>
+
+</a>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="teams.html">Teams</a>
+<a href="standings.html" class="active">Standings</a>
+<a href="index.html#schedule">Schedule</a>
+<a href="index.html#record-book">Record Book</a>
+<a href="index.html#history">History</a>
+<a href="index.html#mike-hunt">Mike Hunt</a>
+<a href="index.html#contenders">Contenders</a>
+</nav>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="eyebrow">
+2026 FFFFL Season
+</div>
+
+<h1>
+League Standings
+</h1>
+
+<p>
+Live regular-season standings for Florida's Finest Fantasy Football League.
+Records update automatically from Sleeper throughout the 2026 season.
+</p>
+
+</section>
+
+
+<main class="page">
+
+<section class="standings-card">
+
+<div class="card-title">
+2026 FFFFL Standings
+</div>
+
+<div id="loading" class="loading">
+Loading live standings from Sleeper...
+</div>
+
+<div class="table-wrap">
+
+<table id="standingsTable" style="display:none;">
+
+<thead>
+
+<tr>
+<th>#</th>
+<th class="team-heading">Team</th>
+<th>W</th>
+<th>L</th>
+<th>T</th>
+<th>PCT</th>
+</tr>
+
+</thead>
+
+<tbody id="standingsBody"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<div class="note">
+2026 standings and records are updated live through Sleeper.
+Historical franchise records are maintained separately and are current
+through the completion of the 2025 FFFFL season.
+</div>
+
+</main>
+
+
+<footer>
+© 2012–2026 Florida's Finest Fantasy Football League
+</footer>
+
+
+<script>
+
+const LEAGUE_ID = "1312020664282025984";
+
+
+/*
+This map lets us control the official FFFFL names,
+owners, logos and future profile links ourselves.
+
+Sleeper remains responsible for the live record.
+*/
+
+const TEAM_DATA = {
+
+  "JMacEsq": {
+    name: "Knightmare",
+    owner: "Jared",
+    logo: "team-logos/knightmare.png",
+    page: "knightmare.html"
+  },
+
+  "zmurli13": {
+    name: "Go Luck Yourself",
+    owner: "Zack",
+    logo: "team-logos/go-luck-yourself.png"
+  }
+
+};
+
+
+/*
+If a Sleeper username isn't mapped above yet,
+the page will still work.
+
+We'll add all 12 official mappings after we
+confirm the standings data is displaying correctly.
+*/
+
+
+function getWinPercentage(wins, losses, ties) {
+
+  const games = wins + losses + ties;
+
+  if (games === 0) {
+    return ".000";
+  }
+
+  return (
+    (wins + (ties * .5)) / games
+  ).toFixed(3).replace(/^0/, "");
+
+}
+
+
+function sortStandings(a,b) {
+
+  const aGames =
+    a.wins + a.losses + a.ties;
+
+  const bGames =
+    b.wins + b.losses + b.ties;
+
+  const aPct =
+    aGames === 0
+      ? 0
+      : (a.wins + a.ties * .5) / aGames;
+
+  const bPct =
+    bGames === 0
+      ? 0
+      : (b.wins + b.ties * .5) / bGames;
+
+
+  if (bPct !== aPct) {
+    return bPct - aPct;
+  }
+
+
+  /*
+  Secondary sort:
+  Sleeper's roster settings include fantasy
+  points-for information.
+
+  We use it here only to give tied records a
+  consistent display order.
+  */
+
+  return b.pointsFor - a.pointsFor;
+
+}
+
+
+async function loadStandings() {
+
+  const loading =
+    document.getElementById("loading");
+
+  const table =
+    document.getElementById("standingsTable");
+
+  const body =
+    document.getElementById("standingsBody");
+
+
+  try {
+
+    const [
+      usersResponse,
+      rostersResponse
+    ] = await Promise.all([
+
+      fetch(
+        `https://api.sleeper.app/v1/league/${LEAGUE_ID}/users`
+      ),
+
+      fetch(
+        `https://api.sleeper.app/v1/league/${LEAGUE_ID}/rosters`
+      )
+
+    ]);
+
+
+    if (
+      !usersResponse.ok ||
+      !rostersResponse.ok
+    ) {
+      throw new Error(
+        "Sleeper returned an error."
+      );
+    }
+
+
+    const users =
+      await usersResponse.json();
+
+    const rosters =
+      await rostersResponse.json();
+
+
+    const usersById = {};
+
+    users.forEach(user => {
+
+      usersById[user.user_id] = user;
+
+    });
+
+
+    const standings = rosters.map(roster => {
+
+      const user =
+        usersById[roster.owner_id];
+
+      const username =
+        user?.display_name ||
+        user?.username ||
+        "Unknown";
+
+
+      const official =
+        TEAM_DATA[username];
+
+
+      const wins =
+        roster.settings?.wins ?? 0;
+
+      const losses =
+        roster.settings?.losses ?? 0;
+
+      const ties =
+        roster.settings?.ties ?? 0;
+
+
+      /*
+      Sleeper stores points as whole points
+      plus a decimal component.
+      */
+
+      const pointsFor =
+        (roster.settings?.fpts ?? 0) +
+        ((roster.settings?.fpts_decimal ?? 0) / 100);
+
+
+      return {
+
+        username,
+
+        name:
+          official?.name ||
+          user?.metadata?.team_name ||
+          username,
+
+        owner:
+          official?.owner ||
+          username,
+
+        logo:
+          official?.logo ||
+          "",
+
+        page:
+          official?.page ||
+          "",
+
+        wins,
+        losses,
+        ties,
+        pointsFor
+
+      };
+
+    });
+
+
+    standings.sort(sortStandings);
+
+
+    const everyoneWinless =
+      standings.every(team =>
+        team.wins === 0 &&
+        team.losses === 0 &&
+        team.ties === 0
+      );
+
+
+    body.innerHTML = "";
+
+
+    standings.forEach((team,index) => {
+
+      const row =
+        document.createElement("tr");
+
+
+      const rank =
+        everyoneWinless
+          ? "—"
+          : index + 1;
+
+
+      const logoHTML =
+        team.logo
+          ? `<img src="${team.logo}" alt="${team.name}">`
+          : "";
+
+
+      const nameHTML =
+        team.page
+          ? `<a href="${team.page}">${team.name}</a>`
+          : team.name;
+
+
+      row.innerHTML = `
+
+        <td class="rank">
+          ${rank}
+        </td>
+
+        <td class="team-cell">
+
+          <div class="team-info">
+
+            ${logoHTML}
+
+            <div>
+
+              <div class="team-name">
+                ${nameHTML}
+              </div>
+
+              <div class="owner">
+                ${team.owner}
+              </div>
+
+            </div>
+
+          </div>
+
+        </td>
+
+        <td class="number">
+          ${team.wins}
+        </td>
+
+        <td class="number">
+          ${team.losses}
+        </td>
+
+        <td class="number">
+          ${team.ties}
+        </td>
+
+        <td class="win-pct">
+          ${getWinPercentage(
+            team.wins,
+            team.losses,
+            team.ties
+          )}
+        </td>
+
+      `;
+
+
+      body.appendChild(row);
+
+    });
+
+
+    loading.style.display =
+      "none";
+
+    table.style.display =
+      "table";
+
+  }
+
+  catch(error) {
+
+    console.error(error);
+
+    loading.innerHTML =
+      "Live standings are temporarily unavailable.";
+
+  }
+
+}
+
+
+loadStandings();
+
+</script>
+
+</body>
+</html>
