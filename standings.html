@@ -9,7 +9,6 @@
 <style>
 :root {
   --dark: #03180f;
-  --dark2: #061f14;
   --green: #0d3d25;
   --orange: #e86614;
   --cream: #fff0cf;
@@ -165,8 +164,6 @@ nav a.active {
   color: var(--muted);
 }
 
-/* TABLE */
-
 .table-wrap {
   overflow-x: auto;
 }
@@ -194,7 +191,7 @@ th.team-heading {
 }
 
 td {
-  padding: 13px 10px;
+  padding: 12px 10px;
   border-bottom: 1px solid rgba(255,255,255,.07);
   text-align: center;
 }
@@ -221,8 +218,8 @@ tbody tr:hover {
 }
 
 .team-info img {
-  width: 52px;
-  height: 52px;
+  width: 58px;
+  height: 58px;
   object-fit: contain;
 }
 
@@ -230,6 +227,10 @@ tbody tr:hover {
   font-weight: 900;
   color: white;
   text-transform: uppercase;
+}
+
+.team-name a:hover {
+  color: var(--orange);
 }
 
 .owner {
@@ -267,8 +268,6 @@ footer {
   font-size: .8rem;
 }
 
-/* MOBILE */
-
 @media(max-width:800px) {
 
   .nav-wrap {
@@ -281,8 +280,8 @@ footer {
   }
 
   .team-info img {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
   }
 
   td,
@@ -400,16 +399,13 @@ through the completion of the 2025 FFFFL season.
 const LEAGUE_ID = "1312020664282025984";
 
 
-/*
-This map lets us control the official FFFFL names,
-owners, logos and future profile links ourselves.
-
-Sleeper remains responsible for the live record.
-*/
+/* =====================================================
+   OFFICIAL FFFFL TEAM INFORMATION
+   ===================================================== */
 
 const TEAM_DATA = {
 
-  "JMacEsq": {
+  "jmacesq": {
     name: "Knightmare",
     owner: "Jared",
     logo: "team-logos/knightmare.png",
@@ -422,61 +418,61 @@ const TEAM_DATA = {
     logo: "team-logos/go-luck-yourself.png"
   },
 
-  "Jiraffone22": {
+  "jiraffone22": {
     name: "Diggs Island",
     owner: "Jordan",
     logo: "team-logos/diggs-island.png"
   },
 
-  "TheRealJRSmith": {
+  "therealjrsmith": {
     name: "Prison Jeff",
     owner: "Jeff",
     logo: "team-logos/prison-jeff.png"
   },
 
-  "KBACC": {
+  "kbacc": {
     name: "Bacc Field",
     owner: "Kevin",
     logo: "team-logos/bacc-field.png"
   },
 
-  "JMAC4": {
+  "jmac4": {
     name: "Caucasians",
     owner: "Josh",
     logo: "team-logos/caucasians.png"
   },
 
-  "JMACTB": {
+  "jmactb": {
     name: "Brady Gaga",
     owner: "Jonah",
     logo: "team-logos/brady-gaga.png"
   },
 
-  "AXJ": {
+  "axj": {
     name: "Njigbas In Paris",
     owner: "Austin",
     logo: "team-logos/njigbas-in-paris.png"
   },
 
-  "Smitty44": {
+  "smitty44": {
     name: "Show Me Your TDs",
     owner: "Tim",
     logo: "team-logos/show-me-your-tds.png"
   },
 
-  "JerryCulkin": {
+  "jerryculkin": {
     name: "Just Bobby",
     owner: "Jerry",
     logo: "team-logos/just-bobby.png"
   },
 
-  "TCulkin1": {
+  "tculkin1": {
     name: "Tommy Gunz",
     owner: "Thomas",
     logo: "team-logos/tommy-gunz.png"
   },
 
-  "Deelindblad": {
+  "deelindblad": {
     name: "Dyl Pickle Six",
     owner: "Dylan",
     logo: "team-logos/dyl-pickle-six.png"
@@ -485,18 +481,14 @@ const TEAM_DATA = {
 };
 
 
-/*
-If a Sleeper username isn't mapped above yet,
-the page will still work.
-
-We'll add all 12 official mappings after we
-confirm the standings data is displaying correctly.
-*/
-
+/* =====================================================
+   WIN PERCENTAGE
+   ===================================================== */
 
 function getWinPercentage(wins, losses, ties) {
 
-  const games = wins + losses + ties;
+  const games =
+    wins + losses + ties;
 
   if (games === 0) {
     return ".000";
@@ -504,10 +496,16 @@ function getWinPercentage(wins, losses, ties) {
 
   return (
     (wins + (ties * .5)) / games
-  ).toFixed(3).replace(/^0/, "");
+  )
+  .toFixed(3)
+  .replace(/^0/, "");
 
 }
 
+
+/* =====================================================
+   STANDINGS SORT
+   ===================================================== */
 
 function sortStandings(a,b) {
 
@@ -533,19 +531,16 @@ function sortStandings(a,b) {
   }
 
 
-  /*
-  Secondary sort:
-  Sleeper's roster settings include fantasy
-  points-for information.
-
-  We use it here only to give tied records a
-  consistent display order.
-  */
+  /* Points For breaks tied records for display */
 
   return b.pointsFor - a.pointsFor;
 
 }
 
+
+/* =====================================================
+   LOAD LIVE SLEEPER STANDINGS
+   ===================================================== */
 
 async function loadStandings() {
 
@@ -581,9 +576,11 @@ async function loadStandings() {
       !usersResponse.ok ||
       !rostersResponse.ok
     ) {
+
       throw new Error(
         "Sleeper returned an error."
       );
+
     }
 
 
@@ -596,81 +593,99 @@ async function loadStandings() {
 
     const usersById = {};
 
+
     users.forEach(user => {
 
-      usersById[user.user_id] = user;
+      usersById[user.user_id] =
+        user;
 
     });
 
 
-    const standings = rosters.map(roster => {
+    const standings =
+      rosters.map(roster => {
 
-      const user =
-        usersById[roster.owner_id];
-
-      const username =
-        user?.display_name ||
-        user?.username ||
-        "Unknown";
+        const user =
+          usersById[roster.owner_id];
 
 
-      const official =
-        TEAM_DATA[username];
+        const sleeperName =
+          user?.display_name ||
+          user?.username ||
+          "Unknown";
 
 
-      const wins =
-        roster.settings?.wins ?? 0;
+        /*
+        Convert username to lowercase so
+        capitalization never breaks our mapping.
+        */
 
-      const losses =
-        roster.settings?.losses ?? 0;
-
-      const ties =
-        roster.settings?.ties ?? 0;
-
-
-      /*
-      Sleeper stores points as whole points
-      plus a decimal component.
-      */
-
-      const pointsFor =
-        (roster.settings?.fpts ?? 0) +
-        ((roster.settings?.fpts_decimal ?? 0) / 100);
+        const lookupName =
+          sleeperName.toLowerCase();
 
 
-      return {
-
-        username,
-
-        name:
-          official?.name ||
-          user?.metadata?.team_name ||
-          username,
-
-        owner:
-          official?.owner ||
-          username,
-
-        logo:
-          official?.logo ||
-          "",
-
-        page:
-          official?.page ||
-          "",
-
-        wins,
-        losses,
-        ties,
-        pointsFor
-
-      };
-
-    });
+        const official =
+          TEAM_DATA[lookupName];
 
 
-    standings.sort(sortStandings);
+        const wins =
+          roster.settings?.wins ?? 0;
 
+        const losses =
+          roster.settings?.losses ?? 0;
+
+        const ties =
+          roster.settings?.ties ?? 0;
+
+
+        const pointsFor =
+          (roster.settings?.fpts ?? 0) +
+          (
+            (roster.settings?.fpts_decimal ?? 0)
+            / 100
+          );
+
+
+        return {
+
+          name:
+            official?.name ||
+            user?.metadata?.team_name ||
+            sleeperName,
+
+          owner:
+            official?.owner ||
+            sleeperName,
+
+          logo:
+            official?.logo ||
+            "",
+
+          page:
+            official?.page ||
+            "",
+
+          wins,
+          losses,
+          ties,
+          pointsFor
+
+        };
+
+      });
+
+
+    standings.sort(
+      sortStandings
+    );
+
+
+    /*
+    Before Week 1 everyone is 0-0.
+
+    Rather than pretending someone is ranked #1,
+    all teams receive a dash until games are played.
+    */
 
     const everyoneWinless =
       standings.every(team =>
@@ -683,84 +698,104 @@ async function loadStandings() {
     body.innerHTML = "";
 
 
-    standings.forEach((team,index) => {
-
-      const row =
-        document.createElement("tr");
+    standings.forEach(
+      (team,index) => {
 
 
-      const rank =
-        everyoneWinless
-          ? "—"
-          : index + 1;
+        const row =
+          document.createElement("tr");
 
 
-      const logoHTML =
-        team.logo
-          ? `<img src="${team.logo}" alt="${team.name}">`
-          : "";
+        const rank =
+          everyoneWinless
+            ? "—"
+            : index + 1;
 
 
-      const nameHTML =
-        team.page
-          ? `<a href="${team.page}">${team.name}</a>`
-          : team.name;
+        const logoHTML =
+          team.logo
+            ? `
+              <img
+                src="${team.logo}"
+                alt="${team.name}"
+              >
+            `
+            : "";
 
 
-      row.innerHTML = `
+        const nameHTML =
+          team.page
+            ? `
+              <a href="${team.page}">
+                ${team.name}
+              </a>
+            `
+            : team.name;
 
-        <td class="rank">
-          ${rank}
-        </td>
 
-        <td class="team-cell">
+        row.innerHTML = `
 
-          <div class="team-info">
+          <td class="rank">
+            ${rank}
+          </td>
 
-            ${logoHTML}
+          <td class="team-cell">
 
-            <div>
+            <div class="team-info">
 
-              <div class="team-name">
-                ${nameHTML}
-              </div>
+              ${logoHTML}
 
-              <div class="owner">
-                ${team.owner}
+              <div>
+
+                <div class="team-name">
+                  ${nameHTML}
+                </div>
+
+                <div class="owner">
+                  ${team.owner}
+                </div>
+
               </div>
 
             </div>
 
-          </div>
-
-        </td>
-
-        <td class="number">
-          ${team.wins}
-        </td>
-
-        <td class="number">
-          ${team.losses}
-        </td>
-
-        <td class="number">
-          ${team.ties}
-        </td>
-
-        <td class="win-pct">
-          ${getWinPercentage(
-            team.wins,
-            team.losses,
-            team.ties
-          )}
-        </td>
-
-      `;
+          </td>
 
 
-      body.appendChild(row);
+          <td class="number">
+            ${team.wins}
+          </td>
 
-    });
+
+          <td class="number">
+            ${team.losses}
+          </td>
+
+
+          <td class="number">
+            ${team.ties}
+          </td>
+
+
+          <td class="win-pct">
+
+            ${getWinPercentage(
+              team.wins,
+              team.losses,
+              team.ties
+            )}
+
+          </td>
+
+        `;
+
+
+        body.appendChild(
+          row
+        );
+
+      }
+    );
 
 
     loading.style.display =
@@ -770,6 +805,7 @@ async function loadStandings() {
       "table";
 
   }
+
 
   catch(error) {
 
