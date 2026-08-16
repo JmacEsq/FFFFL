@@ -44,30 +44,38 @@
       margin-bottom: 15px;
     }
 
-    .roster-title {
-      margin-top: 15px;
+    .section-title {
+      margin-top: 18px;
       margin-bottom: 8px;
       font-weight: bold;
       color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      padding-bottom: 6px;
     }
 
     .player {
-      padding: 5px 0;
+      display: grid;
+      grid-template-columns: 50px 1fr 55px;
+      gap: 10px;
+      align-items: center;
+      padding: 7px 0;
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
     .position {
       color: #e86614;
       font-weight: bold;
-      display: inline-block;
-      width: 42px;
     }
 
-    .starter {
-      color: #d4b45a;
-      font-size: .75rem;
-      font-weight: bold;
-      margin-left: 8px;
+    .team-abbr {
+      color: #aaa;
+      text-align: right;
+    }
+
+    .starter-row {
+      background: rgba(212,180,90,.05);
     }
   </style>
 </head>
@@ -85,48 +93,91 @@
   <script>
     const LEAGUE_ID = "1312020664282025984";
 
-    async function loadSleeperData() {
+    const POSITION_ORDER = {
+      QB: 1,
+      RB: 2,
+      WR: 3,
+      TE: 4,
+      FLEX: 5,
+      DEF: 6,
+      K: 7
+    };
 
+    function getDisplayName(player) {
+      return (
+        player.full_name ||
+        `${player.first_name || ""} ${player.last_name || ""}`.trim() ||
+        "Unknown Player"
+      );
+    }
+
+    function getPositionRank(position) {
+      return POSITION_ORDER[position] || 99;
+    }
+
+    function sortPlayers(list) {
+      return list.sort((a, b) => {
+        const posDiff =
+          getPositionRank(a.player.position) -
+          getPositionRank(b.player.position);
+
+        if (posDiff !== 0) {
+          return posDiff;
+        }
+
+        return getDisplayName(a.player).localeCompare(
+          getDisplayName(b.player)
+        );
+      });
+    }
+
+    function createPlayerRow(item, starter = false) {
+      const player = item.player;
+
+      const fullName = getDisplayName(player);
+      const position = player.position || "—";
+      const nflTeam = player.team || "FA";
+
+      return `
+        <div class="player ${starter ? "starter-row" : ""}">
+          <span class="position">${position}</span>
+          <span>${fullName}</span>
+          <span class="team-abbr">${nflTeam}</span>
+        </div>
+      `;
+    }
+
+    async function loadSleeperData() {
       const status = document.getElementById("status");
       const teamsContainer = document.getElementById("teams");
 
       try {
-
-        status.innerHTML = "Loading FFFL league data...";
+        status.innerHTML = "Loading league data...";
 
         const [
           leagueResponse,
           usersResponse,
-          rostersResponse
+          rostersResponse,
+          playersResponse
         ] = await Promise.all([
           fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}`),
           fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}/users`),
-          fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}/rosters`)
+          fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}/rosters`),
+          fetch("https://api.sleeper.app/v1/players/nfl")
         ]);
 
         if (
           !leagueResponse.ok ||
           !usersResponse.ok ||
-          !rostersResponse.ok
+          !rostersResponse.ok ||
+          !playersResponse.ok
         ) {
-          throw new Error("Sleeper returned an error while loading league data.");
+          throw new Error("Sleeper returned an error.");
         }
 
         const league = await leagueResponse.json();
         const users = await usersResponse.json();
         const rosters = await rostersResponse.json();
-
-        status.innerHTML =
-          `League data loaded.<br>
-          Loading NFL player names...`;
-
-        const playersResponse =
-          await fetch("https://api.sleeper.app/v1/players/nfl");
-
-        if (!playersResponse.ok) {
-          throw new Error("Could not load Sleeper player database.");
-        }
-
         const players = await playersResponse.json();
 
         const usersById = {};
@@ -138,11 +189,9 @@
         status.innerHTML =
           `<strong>Connected successfully.</strong><br>
           League: ${league.name}<br>
-          Rosters found: ${rosters.length}<br>
-          Player database loaded successfully.`;
+          Rosters found: ${rosters.length}`;
 
         rosters.forEach(roster => {
-
           const owner = usersById[roster.owner_id];
 
           const ownerName =
@@ -153,80 +202,52 @@
             owner?.metadata?.team_name ||
             ownerName;
 
-          const wins =
-            roster.settings?.wins ?? 0;
+          const wins = roster.settings?.wins ?? 0;
+          const losses = roster.settings?.losses ?? 0;
+          const ties = roster.settings?.ties ?? 0;
 
-          const losses =
-            roster.settings?.losses ?? 0;
+          const starterIds = roster.starters || [];
+          const rosterIds = roster.players || [];
 
-          const ties =
-            roster.settings?.ties ?? 0;
+          const starters = [];
+          const bench = [];
 
-          const rosterPlayers =
-            roster.players || [];
-
-          const starters =
-            roster.starters || [];
-
-          const teamDiv =
-            document.createElement("div");
-
-          teamDiv.className = "team";
-
-          let playerHTML = "";
-
-          rosterPlayers.forEach(playerId => {
-
+          rosterIds.forEach(playerId => {
             const player = players[playerId];
 
-            if (!player) {
-              playerHTML += `
-                <div class="player">
-                  Unknown Player (${playerId})
-                </div>
-              `;
-              return;
+            if (!player) return;
+
+            const item = {
+              playerId,
+              player
+            };
+
+            if (starterIds.includes(playerId)) {
+              starters.push(item);
+            } else {
+              bench.push(item);
             }
+          });
 
-            const fullName =
-              player.full_name ||
-              `${player.first_name || ""} ${player.last_name || ""}`.trim() ||
-              "Unknown Player";
+          sortPlayers(starters);
+          sortPlayers(bench);
 
-            const position =
-              player.position || "—";
+          const teamDiv = document.createElement("div");
+          teamDiv.className = "team";
 
-            const nflTeam =
-              player.team || "FA";
+          let startersHTML = "";
 
-            const isStarter =
-              starters.includes(playerId);
+          starters.forEach(item => {
+            startersHTML += createPlayerRow(item, true);
+          });
 
-            playerHTML += `
-              <div class="player">
+          let benchHTML = "";
 
-                <span class="position">
-                  ${position}
-                </span>
-
-                ${fullName}
-
-                <span style="color:#aaa;">
-                  • ${nflTeam}
-                </span>
-
-                ${
-                  isStarter
-                    ? `<span class="starter">STARTER</span>`
-                    : ""
-                }
-
-              </div>
-            `;
+          bench.forEach(item => {
+            benchHTML += createPlayerRow(item, false);
           });
 
           teamDiv.innerHTML = `
-
             <h2>${teamName}</h2>
 
             <div>
@@ -239,28 +260,29 @@
               ${wins}-${losses}${ties ? `-${ties}` : ""}
             </div>
 
-            <div class="roster-title">
-              Current Roster
+            <div class="section-title">
+              Starting Lineup
             </div>
 
-            ${playerHTML}
+            ${startersHTML || "<div>No starters found.</div>"}
 
+            <div class="section-title">
+              Bench
+            </div>
+
+            ${benchHTML || "<div>No bench players found.</div>"}
           `;
 
           teamsContainer.appendChild(teamDiv);
-
         });
 
       } catch (error) {
-
         console.error(error);
 
         status.innerHTML =
           `<strong>Connection failed.</strong><br>
           ${error.message}`;
-
       }
-
     }
 
     loadSleeperData();
