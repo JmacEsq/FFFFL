@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FFFFL Sleeper Test</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #03180f;
+      color: #fff0cf;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #e86614;
+    }
+
+    .status {
+      margin: 20px 0;
+      padding: 15px;
+      background: #0d3d25;
+      border-radius: 8px;
+    }
+
+    .team {
+      margin: 15px 0;
+      padding: 15px;
+      background: #0d3d25;
+      border: 1px solid #d4b45a;
+      border-radius: 8px;
+    }
+
+    .team h2 {
+      margin-bottom: 8px;
+      color: #e86614;
+    }
+
+    .players {
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>FFFFL Sleeper API Test</h1>
+
+  <div class="status" id="status">
+    Connecting to Sleeper...
+  </div>
+
+  <div id="teams"></div>
+
+  <script>
+    const LEAGUE_ID = "1312020664282025984";
+
+    async function loadSleeperData() {
+      const status = document.getElementById("status");
+      const teamsContainer = document.getElementById("teams");
+
+      try {
+
+        const [leagueResponse, usersResponse, rostersResponse] =
+          await Promise.all([
+            fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}`),
+            fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}/users`),
+            fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}/rosters`)
+          ]);
+
+        if (
+          !leagueResponse.ok ||
+          !usersResponse.ok ||
+          !rostersResponse.ok
+        ) {
+          throw new Error("Sleeper returned an error.");
+        }
+
+        const league = await leagueResponse.json();
+        const users = await usersResponse.json();
+        const rosters = await rostersResponse.json();
+
+        status.innerHTML =
+          `<strong>Connected successfully.</strong><br>
+          League: ${league.name}<br>
+          Rosters found: ${rosters.length}`;
+
+        const usersById = {};
+
+        users.forEach(user => {
+          usersById[user.user_id] = user;
+        });
+
+        rosters.forEach(roster => {
+
+          const owner = usersById[roster.owner_id];
+
+          const ownerName =
+            owner?.display_name ||
+            "Unknown Owner";
+
+          const teamName =
+            owner?.metadata?.team_name ||
+            ownerName;
+
+          const wins =
+            roster.settings?.wins ?? 0;
+
+          const losses =
+            roster.settings?.losses ?? 0;
+
+          const ties =
+            roster.settings?.ties ?? 0;
+
+          const playerIds =
+            roster.players || [];
+
+          const teamDiv =
+            document.createElement("div");
+
+          teamDiv.className = "team";
+
+          teamDiv.innerHTML = `
+            <h2>${teamName}</h2>
+
+            <strong>Owner:</strong>
+            ${ownerName}
+
+            <br>
+
+            <strong>2026 Record:</strong>
+            ${wins}-${losses}${ties ? `-${ties}` : ""}
+
+            <br>
+
+            <strong>Roster ID:</strong>
+            ${roster.roster_id}
+
+            <div class="players">
+              <strong>Player IDs:</strong><br>
+              ${playerIds.join(", ") || "No players found"}
+            </div>
+          `;
+
+          teamsContainer.appendChild(teamDiv);
+        });
+
+      } catch (error) {
+
+        console.error(error);
+
+        status.innerHTML =
+          `<strong>Connection failed.</strong><br>
+          ${error.message}`;
+      }
+    }
+
+    loadSleeperData();
+  </script>
+
+</body>
+</html>
