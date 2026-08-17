@@ -403,7 +403,198 @@ nav a.active {
 
 }
 
+/* =====================================================
+   AROUND THE LEAGUE TICKER
+   ===================================================== */
 
+.league-ticker {
+  width:100%;
+  height:54px;
+
+  display:flex;
+  align-items:stretch;
+
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      90deg,
+      #020b07,
+      #071b11
+    );
+
+  border-bottom:
+    1px solid rgba(212,180,90,.35);
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.22);
+}
+
+.ticker-label {
+  position:relative;
+  z-index:5;
+
+  flex:0 0 auto;
+
+  display:flex;
+  align-items:center;
+
+  padding:
+    0 24px;
+
+  background:var(--orange);
+
+  color:#111;
+
+  font-size:.78rem;
+
+  font-weight:1000;
+
+  text-transform:uppercase;
+
+  letter-spacing:1.2px;
+
+  white-space:nowrap;
+}
+
+.ticker-label::after {
+  content:"";
+
+  position:absolute;
+
+  right:-16px;
+  top:0;
+
+  width:0;
+  height:0;
+
+  border-top:
+    27px solid transparent;
+
+  border-bottom:
+    27px solid transparent;
+
+  border-left:
+    16px solid var(--orange);
+}
+
+.ticker-window {
+  flex:1;
+
+  min-width:0;
+
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
+}
+
+.ticker-track {
+  display:flex;
+
+  align-items:center;
+
+  width:max-content;
+
+  white-space:nowrap;
+
+  animation:
+    tickerScroll 55s linear infinite;
+
+  will-change:transform;
+}
+
+.ticker-window:hover .ticker-track {
+  animation-play-state:paused;
+}
+
+.ticker-item {
+  display:inline-flex;
+
+  align-items:center;
+
+  color:#f5e5c5;
+
+  font-size:.84rem;
+
+  font-weight:800;
+
+  padding-left:40px;
+}
+
+.ticker-item::after {
+  content:"•";
+
+  color:var(--orange);
+
+  font-size:1.3rem;
+
+  margin-left:40px;
+}
+
+.ticker-item strong {
+  color:var(--orange);
+}
+
+.ticker-loading {
+  color:var(--muted);
+
+  font-size:.8rem;
+
+  font-weight:800;
+
+  padding-left:40px;
+
+  white-space:nowrap;
+}
+
+@keyframes tickerScroll {
+
+  from {
+    transform:translateX(0);
+  }
+
+  to {
+    transform:translateX(-50%);
+  }
+
+}
+
+
+@media(max-width:720px) {
+
+  .league-ticker {
+    height:48px;
+  }
+
+  .ticker-label {
+    padding:
+      0 15px;
+
+    font-size:.64rem;
+
+    letter-spacing:.7px;
+  }
+
+  .ticker-label::after {
+    right:-13px;
+
+    border-top-width:24px;
+    border-bottom-width:24px;
+    border-left-width:13px;
+  }
+
+  .ticker-item {
+    font-size:.75rem;
+
+    padding-left:30px;
+  }
+
+  .ticker-item::after {
+    margin-left:30px;
+  }
+
+}
 /* =====================================================
    MAIN
    ===================================================== */
@@ -1528,7 +1719,32 @@ Bragging rights are earned.
 
 </section>
 
+<!-- ===================================================
+     AROUND THE LEAGUE
+     =================================================== -->
 
+<section class="league-ticker">
+
+  <div class="ticker-label">
+    Around the League
+  </div>
+
+  <div class="ticker-window">
+
+    <div
+      id="tickerTrack"
+      class="ticker-track"
+    >
+
+      <div class="ticker-loading">
+        Loading the latest FFFFL activity...
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 <!-- ===================================================
      MAIN
@@ -2770,8 +2986,873 @@ async function loadStandings() {
 
 }
 
+  /* =====================================================
+   AROUND THE LEAGUE
+   ===================================================== */
+
+
+/*
+  MANUAL COMMISSIONER HEADLINES
+
+  Add anything here that Sleeper cannot know about.
+
+  Newest/manual priority stories should go first.
+
+  Example:
+
+  {
+    icon:"🎙️",
+    text:"Mike Hunt releases his latest Power Rankings."
+  }
+
+*/
+
+const MANUAL_HEADLINES = [
+
+  {
+    icon:"🏈",
+    text:"The 2026 FFFFL season is approaching."
+  },
+
+  {
+    icon:"🏆",
+    text:"Knightmare enters 2026 as the reigning FFFFL Champion."
+  },
+
+  {
+    icon:"🎙️",
+    text:"Follow Mike Hunt all season for the latest FFFFL news and drama."
+  }
+
+];
+
+
+
+function getOfficialTeamNameFromRoster(
+  rosterId,
+  rosters,
+  usersById
+) {
+
+  const roster =
+    rosters.find(
+      function(item) {
+
+        return (
+          Number(item.roster_id) ===
+          Number(rosterId)
+        );
+
+      }
+    );
+
+
+  if (!roster) {
+
+    return "Unknown Team";
+
+  }
+
+
+  const user =
+    usersById[
+      roster.owner_id
+    ];
+
+
+  if (!user) {
+
+    return "Unknown Team";
+
+  }
+
+
+  const official =
+    identifyTeam(user);
+
+
+  return (
+    official?.name ||
+    user.metadata?.team_name ||
+    user.display_name ||
+    "Unknown Team"
+  );
+
+}
+
+
+
+function getPlayerName(
+  playerId,
+  players
+) {
+
+  const player =
+    players[playerId];
+
+
+  if (!player) {
+
+    return "a player";
+
+  }
+
+
+  return (
+
+    player.full_name ||
+
+    `${player.first_name || ""} ${player.last_name || ""}`.trim() ||
+
+    "a player"
+
+  );
+
+}
+
+
+
+function formatTransaction(
+  transaction,
+  rosters,
+  usersById,
+  players
+) {
+
+  if (
+    transaction.status !== "complete"
+  ) {
+
+    return null;
+
+  }
+
+
+  /*
+     TRADE
+  */
+
+  if (
+    transaction.type === "trade"
+  ) {
+
+    const teams =
+
+      (transaction.roster_ids || [])
+      .map(
+        function(rosterId) {
+
+          return getOfficialTeamNameFromRoster(
+            rosterId,
+            rosters,
+            usersById
+          );
+
+        }
+      );
+
+
+    if (
+      teams.length >= 2
+    ) {
+
+      const playerNames = [];
+
+
+      if (
+        transaction.adds
+      ) {
+
+        Object.keys(
+          transaction.adds
+        )
+        .forEach(
+          function(playerId) {
+
+            playerNames.push(
+              getPlayerName(
+                playerId,
+                players
+              )
+            );
+
+          }
+        );
+
+      }
+
+
+      let text =
+        `${teams.join(" and ")} completed a trade`;
+
+
+      if (
+        playerNames.length === 1
+      ) {
+
+        text +=
+          ` involving ${playerNames[0]}`;
+
+      }
+
+      else if (
+        playerNames.length === 2
+      ) {
+
+        text +=
+          ` involving ${playerNames[0]} and ${playerNames[1]}`;
+
+      }
+
+      else if (
+        playerNames.length > 2
+      ) {
+
+        text +=
+          ` involving ${playerNames.slice(0,2).join(", ")} and more`;
+
+      }
+
+
+      text += ".";
+
+
+      return {
+
+        icon:"🤝",
+
+        text:text,
+
+        timestamp:
+          transaction.status_updated ||
+          transaction.created ||
+          0
+
+      };
+
+    }
+
+  }
+
+
+
+  /*
+     WAIVER / FREE AGENT
+  */
+
+  if (
+    transaction.type === "waiver" ||
+    transaction.type === "free_agent"
+  ) {
+
+    const rosterId =
+      transaction.roster_ids?.[0];
+
+
+    if (!rosterId) {
+
+      return null;
+
+    }
+
+
+    const teamName =
+      getOfficialTeamNameFromRoster(
+        rosterId,
+        rosters,
+        usersById
+      );
+
+
+    const adds =
+      Object.keys(
+        transaction.adds || {}
+      );
+
+
+    const drops =
+      Object.keys(
+        transaction.drops || {}
+      );
+
+
+    /*
+       ADD + DROP
+    */
+
+    if (
+      adds.length &&
+      drops.length
+    ) {
+
+      const addedPlayer =
+        getPlayerName(
+          adds[0],
+          players
+        );
+
+
+      const droppedPlayer =
+        getPlayerName(
+          drops[0],
+          players
+        );
+
+
+      let text =
+        `${teamName} added ${addedPlayer} and dropped ${droppedPlayer}`;
+
+
+      if (
+        transaction.type === "waiver" &&
+        transaction.settings?.waiver_bid !== undefined
+      ) {
+
+        text +=
+          ` for $${transaction.settings.waiver_bid} FAAB`;
+
+      }
+
+
+      text += ".";
+
+
+      return {
+
+        icon:
+          transaction.type === "waiver"
+            ? "💰"
+            : "🔄",
+
+        text:text,
+
+        timestamp:
+          transaction.status_updated ||
+          transaction.created ||
+          0
+
+      };
+
+    }
+
+
+
+    /*
+       ADD ONLY
+    */
+
+    if (
+      adds.length
+    ) {
+
+      const addedPlayer =
+        getPlayerName(
+          adds[0],
+          players
+        );
+
+
+      let text =
+        `${teamName} added ${addedPlayer}`;
+
+
+      if (
+        transaction.type === "waiver" &&
+        transaction.settings?.waiver_bid !== undefined
+      ) {
+
+        text +=
+          ` for $${transaction.settings.waiver_bid} FAAB`;
+
+      }
+
+
+      text += ".";
+
+
+      return {
+
+        icon:
+          transaction.type === "waiver"
+            ? "💰"
+            : "📈",
+
+        text:text,
+
+        timestamp:
+          transaction.status_updated ||
+          transaction.created ||
+          0
+
+      };
+
+    }
+
+
+
+    /*
+       DROP ONLY
+    */
+
+    if (
+      drops.length
+    ) {
+
+      const droppedPlayer =
+        getPlayerName(
+          drops[0],
+          players
+        );
+
+
+      return {
+
+        icon:"✂️",
+
+        text:
+          `${teamName} dropped ${droppedPlayer}.`,
+
+        timestamp:
+          transaction.status_updated ||
+          transaction.created ||
+          0
+
+      };
+
+    }
+
+  }
+
+
+  return null;
+
+}
+
+
+
+function renderTicker(
+  stories
+) {
+
+  const ticker =
+    document.getElementById(
+      "tickerTrack"
+    );
+
+
+  if (!ticker) {
+
+    return;
+
+  }
+
+
+  if (
+    !stories.length
+  ) {
+
+    ticker.innerHTML = `
+
+      <div class="ticker-item">
+
+        No recent league activity.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  const storyHTML =
+
+    stories
+    .map(
+      function(story) {
+
+        return `
+
+          <div class="ticker-item">
+
+            <span>
+
+              ${story.icon || "🏈"}
+
+              &nbsp;
+
+              ${story.text}
+
+            </span>
+
+          </div>
+
+        `;
+
+      }
+    )
+    .join("");
+
+
+  /*
+    Duplicate the stories so the ticker can
+    loop continuously without a blank space.
+  */
+
+  ticker.innerHTML =
+    storyHTML +
+    storyHTML;
+
+}
+
+
+
+async function loadLeagueTicker() {
+
+  try {
+
+
+    /*
+      Sleeper's NFL state tells us the
+      current NFL week.
+    */
+
+    const stateResponse =
+      await fetch(
+        "https://api.sleeper.app/v1/state/nfl"
+      );
+
+
+    if (
+      !stateResponse.ok
+    ) {
+
+      throw new Error(
+        "Could not load NFL state."
+      );
+
+    }
+
+
+    const nflState =
+      await stateResponse.json();
+
+
+    let currentWeek =
+      Number(
+        nflState.week ||
+        nflState.display_week ||
+        nflState.leg ||
+        1
+      );
+
+
+    /*
+      During preseason, Sleeper's week value
+      can behave differently.
+
+      We always check at least Week 1.
+    */
+
+    if (
+      currentWeek < 1
+    ) {
+
+      currentWeek = 1;
+
+    }
+
+
+
+    /*
+      Check the current week plus the two
+      previous weeks.
+
+      That keeps the ticker recent while also
+      preventing it from going empty immediately
+      after the NFL week changes.
+    */
+
+    const weeksToCheck = [];
+
+
+    for (
+      let week = currentWeek;
+      week >= Math.max(1,currentWeek - 2);
+      week--
+    ) {
+
+      weeksToCheck.push(
+        week
+      );
+
+    }
+
+
+
+    const transactionRequests =
+
+      weeksToCheck.map(
+        function(week) {
+
+          return fetch(
+
+            `https://api.sleeper.app/v1/league/${LEAGUE_ID}/transactions/${week}`
+
+          )
+          .then(
+            function(response) {
+
+              if (!response.ok) {
+
+                return [];
+
+              }
+
+
+              return response.json();
+
+            }
+          );
+
+        }
+      );
+
+
+
+    const [
+      usersResponse,
+      rostersResponse,
+      playersResponse,
+      transactionResults
+    ] = await Promise.all([
+
+      fetch(
+        `https://api.sleeper.app/v1/league/${LEAGUE_ID}/users`
+      ),
+
+      fetch(
+        `https://api.sleeper.app/v1/league/${LEAGUE_ID}/rosters`
+      ),
+
+      fetch(
+        "https://api.sleeper.app/v1/players/nfl"
+      ),
+
+      Promise.all(
+        transactionRequests
+      )
+
+    ]);
+
+
+
+    if (
+      !usersResponse.ok ||
+      !rostersResponse.ok ||
+      !playersResponse.ok
+    ) {
+
+      throw new Error(
+        "Sleeper returned an error."
+      );
+
+    }
+
+
+
+    const users =
+      await usersResponse.json();
+
+
+    const rosters =
+      await rostersResponse.json();
+
+
+    const players =
+      await playersResponse.json();
+
+
+
+    const usersById = {};
+
+
+    users.forEach(
+      function(user) {
+
+        usersById[
+          user.user_id
+        ] = user;
+
+      }
+    );
+
+
+
+    const transactions =
+
+      transactionResults
+      .flat()
+      .filter(
+        function(transaction) {
+
+          return (
+            transaction &&
+            transaction.status === "complete"
+          );
+
+        }
+      );
+
+
+
+    /*
+      Newest transactions first.
+    */
+
+    transactions.sort(
+      function(a,b) {
+
+        const bTime =
+          b.status_updated ||
+          b.created ||
+          0;
+
+
+        const aTime =
+          a.status_updated ||
+          a.created ||
+          0;
+
+
+        return (
+          bTime -
+          aTime
+        );
+
+      }
+    );
+
+
+
+    /*
+      Convert Sleeper transactions into
+      readable FFFFL headlines.
+    */
+
+    const sleeperStories = [];
+
+
+    transactions.forEach(
+      function(transaction) {
+
+        const story =
+          formatTransaction(
+            transaction,
+            rosters,
+            usersById,
+            players
+          );
+
+
+        if (
+          story
+        ) {
+
+          sleeperStories.push(
+            story
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /*
+      Remove duplicate transaction headlines.
+    */
+
+    const uniqueStories = [];
+
+
+    sleeperStories.forEach(
+      function(story) {
+
+        const duplicate =
+          uniqueStories.some(
+            function(existing) {
+
+              return (
+                existing.text ===
+                story.text
+              );
+
+            }
+          );
+
+
+        if (!duplicate) {
+
+          uniqueStories.push(
+            story
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /*
+      Keep the ticker from becoming enormous.
+      Latest 8 Sleeper transactions +
+      commissioner headlines.
+    */
+
+    const finalStories = [
+
+      ...uniqueStories.slice(0,8),
+
+      ...MANUAL_HEADLINES
+
+    ];
+
+
+    renderTicker(
+      finalStories
+    );
+
+
+  }
+
+  catch(error) {
+
+
+    console.error(
+      "Ticker error:",
+      error
+    );
+
+
+    /*
+      If Sleeper ever fails, the ticker
+      still works using commissioner news.
+    */
+
+    renderTicker(
+      MANUAL_HEADLINES
+    );
+
+  }
+
+}
 
 loadStandings();
+loadLeagueTicker();
 
 
 </script>
