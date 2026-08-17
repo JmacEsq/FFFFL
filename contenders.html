@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Contenders League | FFFFL</title>
+<title>Contenders League | FFCL</title>
 
 <style>
 
@@ -39,7 +39,6 @@ a {
   color:inherit;
   text-decoration:none;
 }
-
 
 /* HEADER */
 
@@ -106,7 +105,6 @@ nav a.active {
   color:var(--orange);
 }
 
-
 /* HERO */
 
 .hero {
@@ -168,7 +166,6 @@ nav a.active {
   transform:translateY(-2px);
 }
 
-
 /* PAGE */
 
 .page {
@@ -176,7 +173,6 @@ nav a.active {
   margin:auto;
   padding:40px 20px 70px;
 }
-
 
 /* INTRO */
 
@@ -233,7 +229,6 @@ nav a.active {
   letter-spacing:.6px;
 }
 
-
 /* SECTIONS */
 
 .section {
@@ -257,7 +252,6 @@ nav a.active {
   font-size:.8rem;
   margin-top:5px;
 }
-
 
 /* STANDINGS */
 
@@ -342,7 +336,6 @@ tbody tr:hover {
   font-weight:900;
 }
 
-
 /* MATCHUPS */
 
 .week-header {
@@ -402,7 +395,6 @@ tbody tr:hover {
   font-size:1.35rem;
   font-weight:1000;
 }
-
 
 /* LINEUPS */
 
@@ -479,7 +471,6 @@ tbody tr:hover {
   font-size:.8rem;
 }
 
-
 /* LOADING */
 
 .loading {
@@ -491,7 +482,6 @@ tbody tr:hover {
   color:var(--muted);
 }
 
-
 /* FOOTER */
 
 footer {
@@ -502,7 +492,6 @@ footer {
   padding:22px;
   font-size:.8rem;
 }
-
 
 /* MOBILE */
 
@@ -584,14 +573,13 @@ Contenders League
 </h1>
 
 <div class="hero-subtitle">
-The Road to the FFFFL
+Florida's Finest Contenders League
 </div>
 
 <p>
-The Florida's Finest Contenders League is the developmental league
-within the Florida's Finest fantasy football universe. Eight franchises
-compete for league supremacy and the opportunity to establish themselves
-among Florida's Finest.
+The FFCL is the eight-team proving ground beneath Florida's Finest.
+Standings, weekly matchups and current rosters on this page update
+automatically from Sleeper throughout the season.
 </p>
 
 <a
@@ -600,7 +588,7 @@ among Florida's Finest.
   target="_blank"
   rel="noopener noreferrer"
 >
-Open Contenders in Sleeper
+Open FFCL in Sleeper
 </a>
 
 </section>
@@ -613,14 +601,13 @@ Open Contenders in Sleeper
 <section class="intro-card">
 
 <h2>
-Florida's Finest Contenders League
+The Road to Florida's Finest
 </h2>
 
 <p>
-The Contenders League gives eight managers their own competitive league
-while serving as the proving ground beneath the FFFFL. Standings,
-weekly matchups, scores and rosters on this page update directly from
-Sleeper throughout the season.
+Eight franchises compete in the Florida's Finest Contenders League.
+This page serves as the central FFCL hub, combining the live standings,
+current-week matchups and every franchise's current lineup in one place.
 </p>
 
 <div class="league-facts">
@@ -715,7 +702,7 @@ Current Week Matchups
 </h2>
 
 <p>
-The four Contenders matchups for the current Sleeper week.
+The four FFCL matchups for the current Sleeper week.
 </p>
 
 </div>
@@ -760,7 +747,7 @@ Team Lineups
 </h2>
 
 <p>
-Current starters and benches for all eight Contenders franchises.
+Current starters and benches for all eight FFCL franchises.
 </p>
 
 </div>
@@ -801,83 +788,53 @@ const LEAGUE_ID =
 
 
 /* =====================================================
-   OFFICIAL CONTENDERS TEAM INFORMATION
+   OFFICIAL FFCL TEAM MAPPING
+   We match by Sleeper username.
    ===================================================== */
 
-const TEAM_DATA = [
+const TEAM_BY_USERNAME = {
 
-{
-  aliases:[
-    "nawlins taints"
-  ],
-  name:"Nawlins Taints",
-  owner:"Jordan M"
-},
+  "jmacesq": {
+    name:"Nawlins Taints",
+    owner:"Jordan M"
+  },
 
-{
-  aliases:[
-    "americas fantasy team",
-    "america s fantasy team"
-  ],
-  name:"America's Fantasy Team",
-  owner:"Justin"
-},
+  "aft1989": {
+    name:"America's Fantasy Team",
+    owner:"Justin"
+  },
 
-{
-  aliases:[
-    "motor city madmen"
-  ],
-  name:"Motor City Madmen",
-  owner:"Gary"
-},
+  "bustybeattybetz": {
+    name:"The Tube Squad",
+    owner:"Tanner"
+  },
 
-{
-  aliases:[
-    "prestige worldwide"
-  ],
-  name:"Prestige Worldwide",
-  owner:"Tony"
-},
+  "gbev21": {
+    name:"Motor City Madmen",
+    owner:"Gary"
+  },
 
-{
-  aliases:[
-    "beattys tube squad",
-    "beatty s tube squad",
-    "the tube squad"
-  ],
-  name:"The Tube Squad",
-  owner:"Tanner"
-},
+  "mfrat069": {
+    name:"Romo Wittens His Panties",
+    owner:"Marc"
+  },
 
-{
-  aliases:[
-    "team mfrat069",
-    "romo wittens his panties"
-  ],
-  name:"Romo Wittens His Panties",
-  owner:"Marc"
-},
+  "fsuvern": {
+    name:"Dawg Pound",
+    owner:"James"
+  },
 
-{
-  aliases:[
-    "team fsuvern",
-    "dawg pound"
-  ],
-  name:"Dawg Pound",
-  owner:"James"
-},
+  "tonypapers": {
+    name:"Prestige Worldwide",
+    owner:"Tony"
+  },
 
-{
-  aliases:[
-    "team billyhuff21",
-    "team billy"
-  ],
-  name:"Team Billy",
-  owner:"Billy"
-}
+  "billyhuff21": {
+    name:"Team Billy",
+    owner:"Billy"
+  }
 
-];
-
+};
 
 
 /* =====================================================
@@ -888,9 +845,6 @@ function clean(value) {
 
   return String(value || "")
     .toLowerCase()
-    .replace(/[™®©]/g,"")
-    .replace(/[^a-z0-9 ]/g," ")
-    .replace(/\s+/g," ")
     .trim();
 
 }
@@ -898,37 +852,40 @@ function clean(value) {
 
 function identifyTeam(user) {
 
-  const values = [
-
-    clean(user?.metadata?.team_name),
-
-    clean(user?.display_name),
-
-    clean(user?.username)
-
-  ];
+  const username =
+    clean(
+      user?.username ||
+      user?.display_name
+    );
 
 
-  for (const team of TEAM_DATA) {
+  const official =
+    TEAM_BY_USERNAME[
+      username
+    ];
 
-    for (const alias of team.aliases) {
 
-      if (
-        values.includes(
-          clean(alias)
-        )
-      ) {
+  if (official) {
 
-        return team;
-
-      }
-
-    }
+    return official;
 
   }
 
 
-  return null;
+  return {
+
+    name:
+      user?.metadata?.team_name ||
+      user?.display_name ||
+      user?.username ||
+      "Unknown Team",
+
+    owner:
+      user?.display_name ||
+      user?.username ||
+      "Unknown"
+
+  };
 
 }
 
@@ -1059,7 +1016,7 @@ function playerRow(item) {
 
 
 /* =====================================================
-   LOAD USERS + ROSTERS
+   LOAD CORE LEAGUE DATA
    ===================================================== */
 
 async function loadLeagueCore() {
@@ -1105,8 +1062,9 @@ async function loadLeagueCore() {
   users.forEach(
     function(user) {
 
-      usersById[user.user_id] =
-        user;
+      usersById[
+        user.user_id
+      ] = user;
 
     }
   );
@@ -1134,20 +1092,7 @@ async function loadLeagueCore() {
 
         roster,
         user,
-
-        official:
-          official || {
-
-            name:
-              user?.metadata?.team_name ||
-              user?.display_name ||
-              "Unknown Team",
-
-            owner:
-              user?.display_name ||
-              "Unknown"
-
-          }
+        official
 
       };
 
@@ -1425,7 +1370,7 @@ async function loadStandings(core) {
 
 
 /* =====================================================
-   CURRENT WEEK
+   CURRENT NFL WEEK
    ===================================================== */
 
 async function getCurrentWeek() {
@@ -1449,12 +1394,6 @@ async function getCurrentWeek() {
       await response.json();
 
 
-    const week =
-      Number(
-        state.week || 1
-      );
-
-
     if (
       state.season_type !==
       "regular"
@@ -1467,7 +1406,9 @@ async function getCurrentWeek() {
 
     return Math.max(
       1,
-      week
+      Number(
+        state.week || 1
+      )
     );
 
   }
@@ -1483,7 +1424,7 @@ async function getCurrentWeek() {
 
 
 /* =====================================================
-   MATCHUPS
+   CURRENT WEEK MATCHUPS
    ===================================================== */
 
 async function loadMatchups(
@@ -1711,7 +1652,7 @@ async function loadMatchups(
 
 
 /* =====================================================
-   ALL TEAM LINEUPS
+   ALL EIGHT CURRENT ROSTERS
    ===================================================== */
 
 async function loadLineups(core) {
@@ -1979,7 +1920,7 @@ async function loadLineups(core) {
 
 
 /* =====================================================
-   INITIALIZE
+   INITIALIZE PAGE
    ===================================================== */
 
 async function initialize() {
