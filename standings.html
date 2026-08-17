@@ -8,285 +8,272 @@
 
 <style>
 :root {
-  --dark: #03180f;
-  --green: #0d3d25;
-  --orange: #e86614;
-  --cream: #fff0cf;
-  --gold: #d4b45a;
-  --muted: #a99573;
+  --green-dark:#03180f;
+  --green:#0d3d25;
+  --orange:#e86614;
+  --cream:#fff0cf;
+  --gold:#d4b45a;
+  --muted:#a99573;
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   background:
-    radial-gradient(circle at top, rgba(30,100,60,.12), transparent 35%),
+    radial-gradient(circle at top,rgba(30,100,60,.12),transparent 35%),
     linear-gradient(180deg,#06150f,#020806);
-  color: var(--cream);
-  min-height: 100vh;
+  color:var(--cream);
+  min-height:100vh;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+  color:inherit;
+  text-decoration:none;
 }
 
-/* HEADER */
-
 .site-header {
-  background: rgba(2,18,11,.98);
-  border-bottom: 1px solid rgba(232,102,20,.35);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  background:rgba(2,18,11,.98);
+  border-bottom:1px solid rgba(232,102,20,.35);
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 .nav-wrap {
-  max-width: 1250px;
-  margin: auto;
-  min-height: 74px;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 25px;
+  max-width:1250px;
+  margin:auto;
+  min-height:74px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
 }
 
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 900;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
 }
 
 .brand img {
-  width: 54px;
-  height: 54px;
-  object-fit: contain;
+  width:54px;
+  height:54px;
+  object-fit:contain;
 }
 
 .brand-text span:first-child {
-  display: block;
-  font-size: 1.05rem;
+  display:block;
+  font-size:1.05rem;
 }
 
 .brand-text span:last-child {
-  display: block;
-  color: var(--orange);
-  font-size: .8rem;
-  margin-top: 4px;
-  letter-spacing: 1.2px;
+  display:block;
+  color:var(--orange);
+  font-size:.8rem;
+  margin-top:4px;
+  letter-spacing:1.2px;
 }
 
 nav {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
 }
 
 nav a {
-  font-size: .87rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .6px;
+  font-size:.87rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.6px;
 }
 
 nav a:hover,
 nav a.active {
-  color: var(--orange);
+  color:var(--orange);
 }
 
-/* HERO */
-
 .hero {
-  text-align: center;
-  padding: 65px 20px 55px;
-  border-bottom: 1px solid rgba(212,180,90,.25);
+  text-align:center;
+  padding:65px 20px 55px;
+  border-bottom:1px solid rgba(212,180,90,.25);
 }
 
 .eyebrow {
-  color: var(--orange);
-  font-weight: 900;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-size: .85rem;
-  margin-bottom: 12px;
+  color:var(--orange);
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-size:.85rem;
+  margin-bottom:12px;
 }
 
 .hero h1 {
-  color: white;
-  font-size: clamp(3rem,7vw,5.7rem);
-  line-height: .95;
-  text-transform: uppercase;
-  font-weight: 1000;
+  color:white;
+  font-size:clamp(3rem,7vw,5.7rem);
+  line-height:.95;
+  text-transform:uppercase;
+  font-weight:1000;
 }
 
 .hero p {
-  margin: 18px auto 0;
-  max-width: 650px;
-  color: #d9c8a8;
-  line-height: 1.6;
+  margin:18px auto 0;
+  max-width:650px;
+  color:#d9c8a8;
+  line-height:1.6;
 }
 
-/* PAGE */
-
 .page {
-  max-width: 1100px;
-  margin: auto;
-  padding: 35px 20px 70px;
+  max-width:1100px;
+  margin:auto;
+  padding:35px 20px 70px;
 }
 
 .standings-card {
-  border: 1px solid rgba(212,180,90,.5);
-  border-radius: 10px;
-  overflow: hidden;
+  border:1px solid rgba(212,180,90,.5);
+  border-radius:10px;
+  overflow:hidden;
   background:
     linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
 }
 
 .card-title {
-  padding: 18px;
-  text-align: center;
-  font-size: 1.25rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding:18px;
+  text-align:center;
+  font-size:1.25rem;
+  font-weight:900;
+  text-transform:uppercase;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .loading {
-  padding: 35px;
-  text-align: center;
-  color: var(--muted);
+  padding:35px;
+  text-align:center;
+  color:var(--muted);
 }
 
 .table-wrap {
-  overflow-x: auto;
+  overflow-x:auto;
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
+  width:100%;
+  border-collapse:collapse;
 }
 
 thead {
-  background: var(--orange);
-  color: #111;
+  background:var(--orange);
+  color:#111;
 }
 
 th {
-  padding: 12px 10px;
-  text-align: center;
-  font-size: .75rem;
-  text-transform: uppercase;
-  letter-spacing: .5px;
+  padding:12px 10px;
+  text-align:center;
+  font-size:.75rem;
+  text-transform:uppercase;
 }
 
 th.team-heading {
-  text-align: left;
+  text-align:left;
 }
 
 td {
-  padding: 12px 10px;
-  border-bottom: 1px solid rgba(255,255,255,.07);
-  text-align: center;
-}
-
-tbody tr:hover {
-  background: rgba(255,255,255,.035);
+  padding:12px 10px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  text-align:center;
 }
 
 .rank {
-  width: 60px;
-  color: var(--orange);
-  font-weight: 900;
-  font-size: 1.05rem;
+  width:60px;
+  color:var(--orange);
+  font-weight:900;
 }
 
 .team-cell {
-  text-align: left;
+  text-align:left;
 }
 
 .team-info {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
 
 .team-info img {
-  width: 58px;
-  height: 58px;
-  object-fit: contain;
+  width:58px;
+  height:58px;
+  object-fit:contain;
 }
 
 .team-name {
-  font-weight: 900;
-  color: white;
-  text-transform: uppercase;
+  color:white;
+  font-weight:900;
+  text-transform:uppercase;
 }
 
 .team-name a:hover {
-  color: var(--orange);
+  color:var(--orange);
 }
 
 .owner {
-  color: var(--orange);
-  font-size: .72rem;
-  font-weight: 800;
-  margin-top: 3px;
-  text-transform: uppercase;
+  color:var(--orange);
+  font-size:.72rem;
+  font-weight:800;
+  text-transform:uppercase;
+  margin-top:3px;
 }
 
 .number {
-  font-weight: 900;
+  font-weight:900;
 }
 
 .win-pct {
-  color: var(--gold);
-  font-weight: 900;
+  color:var(--gold);
+  font-weight:900;
 }
 
 .note {
-  margin-top: 17px;
-  text-align: center;
-  color: var(--muted);
-  font-size: .76rem;
-  font-style: italic;
-  line-height: 1.5;
+  margin-top:17px;
+  text-align:center;
+  color:var(--muted);
+  font-size:.76rem;
+  font-style:italic;
+  line-height:1.5;
 }
 
 footer {
-  border-top: 1px solid rgba(232,102,20,.25);
-  background: #02100a;
-  text-align: center;
-  color: var(--muted);
-  padding: 22px;
-  font-size: .8rem;
+  border-top:1px solid rgba(232,102,20,.25);
+  background:#02100a;
+  text-align:center;
+  color:var(--muted);
+  padding:22px;
+  font-size:.8rem;
 }
 
 @media(max-width:800px) {
-
   .nav-wrap {
-    flex-direction: column;
-    padding: 12px 20px;
+    flex-direction:column;
+    padding:12px 20px;
   }
 
   nav {
-    justify-content: center;
+    justify-content:center;
   }
 
   .team-info img {
-    width: 42px;
-    height: 42px;
+    width:42px;
+    height:42px;
   }
 
   td,
   th {
-    padding: 10px 7px;
+    padding:10px 7px;
   }
 }
 </style>
@@ -295,287 +282,270 @@ footer {
 <body>
 
 <header class="site-header">
+  <div class="nav-wrap">
 
-<div class="nav-wrap">
+    <a class="brand" href="index.html">
+      <img src="FFFFL Logo.png" alt="FFFFL Logo">
 
-<a class="brand" href="index.html">
+      <div class="brand-text">
+        <span>Florida's Finest</span>
+        <span>Fantasy Football League</span>
+      </div>
+    </a>
 
-<img src="FFFFL Logo.png" alt="FFFFL Logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="teams.html">Teams</a>
+      <a href="standings.html" class="active">Standings</a>
+      <a href="index.html#schedule">Schedule</a>
+      <a href="index.html#record-book">Record Book</a>
+      <a href="index.html#history">History</a>
+      <a href="index.html#mike-hunt">Mike Hunt</a>
+      <a href="index.html#contenders">Contenders</a>
+    </nav>
 
-<div class="brand-text">
-<span>Florida's Finest</span>
-<span>Fantasy Football League</span>
-</div>
-
-</a>
-
-<nav>
-<a href="index.html">Home</a>
-<a href="teams.html">Teams</a>
-<a href="standings.html" class="active">Standings</a>
-<a href="index.html#schedule">Schedule</a>
-<a href="index.html#record-book">Record Book</a>
-<a href="index.html#history">History</a>
-<a href="index.html#mike-hunt">Mike Hunt</a>
-<a href="index.html#contenders">Contenders</a>
-</nav>
-
-</div>
-
+  </div>
 </header>
 
 
 <section class="hero">
 
-<div class="eyebrow">
-2026 FFFFL Season
-</div>
+  <div class="eyebrow">
+    2026 FFFFL Season
+  </div>
 
-<h1>
-League Standings
-</h1>
+  <h1>League Standings</h1>
 
-<p>
-Live regular-season standings for Florida's Finest Fantasy Football League.
-Records update automatically from Sleeper throughout the 2026 season.
-</p>
+  <p>
+    Live regular-season standings for Florida's Finest Fantasy Football League.
+    Records update automatically from Sleeper throughout the 2026 season.
+  </p>
 
 </section>
 
 
 <main class="page">
 
-<section class="standings-card">
+  <section class="standings-card">
 
-<div class="card-title">
-2026 FFFFL Standings
-</div>
+    <div class="card-title">
+      2026 FFFFL Standings
+    </div>
 
-<div id="loading" class="loading">
-Loading live standings from Sleeper...
-</div>
+    <div id="loading" class="loading">
+      Loading live standings from Sleeper...
+    </div>
 
-<div class="table-wrap">
+    <div class="table-wrap">
 
-<table id="standingsTable" style="display:none;">
+      <table id="standingsTable" style="display:none;">
 
-<thead>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th class="team-heading">Team</th>
+            <th>W</th>
+            <th>L</th>
+            <th>T</th>
+            <th>PCT</th>
+          </tr>
+        </thead>
 
-<tr>
-<th>#</th>
-<th class="team-heading">Team</th>
-<th>W</th>
-<th>L</th>
-<th>T</th>
-<th>PCT</th>
-</tr>
+        <tbody id="standingsBody"></tbody>
 
-</thead>
+      </table>
 
-<tbody id="standingsBody"></tbody>
+    </div>
 
-</table>
+  </section>
 
-</div>
 
-</section>
-
-<div class="note">
-2026 standings and records are updated live through Sleeper.
-Historical franchise records are maintained separately and are current
-through the completion of the 2025 FFFFL season.
-</div>
+  <div class="note">
+    2026 standings and records are updated live through Sleeper.
+    Historical franchise records are maintained separately and are current
+    through the completion of the 2025 FFFFL season.
+  </div>
 
 </main>
 
 
 <footer>
-© 2012–2026 Florida's Finest Fantasy Football League
+  © 2012–2026 Florida's Finest Fantasy Football League
 </footer>
 
-
-<script>
 
 <script>
 
 const LEAGUE_ID = "1312020664282025984";
 
 
-/* =====================================================
-   OFFICIAL FFFFL FRANCHISE INFORMATION
-   ===================================================== */
-
 const TEAM_DATA = [
 
   {
-    aliases: ["knightmare"],
-    name: "Knightmare",
-    owner: "Jared",
-    logo: "team-logos/knightmare.png",
-    page: "knightmare.html"
+    aliases:["knightmare","jmacesq"],
+    name:"Knightmare",
+    owner:"Jared",
+    logo:"team-logos/knightmare.png",
+    page:"knightmare.html"
   },
 
   {
-    aliases: ["go luck yourself"],
-    name: "Go Luck Yourself",
-    owner: "Zack",
-    logo: "team-logos/go-luck-yourself.png"
+    aliases:["go luck yourself","zmurli13"],
+    name:"Go Luck Yourself",
+    owner:"Zack",
+    logo:"team-logos/go-luck-yourself.png"
   },
 
   {
-    aliases: ["diggs island"],
-    name: "Diggs Island",
-    owner: "Jordan",
-    logo: "team-logos/diggs-island.png"
+    aliases:["diggs island","jiraffone22"],
+    name:"Diggs Island",
+    owner:"Jordan",
+    logo:"team-logos/diggs-island.png"
   },
 
   {
-    aliases: ["prison jeff"],
-    name: "Prison Jeff",
-    owner: "Jeff",
-    logo: "team-logos/prison-jeff.png"
+    aliases:["prison jeff","therealjrsmith"],
+    name:"Prison Jeff",
+    owner:"Jeff",
+    logo:"team-logos/prison-jeff.png"
   },
 
   {
-    aliases: ["bacc field"],
-    name: "Bacc Field",
-    owner: "Kevin",
-    logo: "team-logos/bacc-field.png"
+    aliases:["bacc field","kbacc"],
+    name:"Bacc Field",
+    owner:"Kevin",
+    logo:"team-logos/bacc-field.png"
   },
 
   {
-    aliases: ["caucasians"],
-    name: "Caucasians",
-    owner: "Josh",
-    logo: "team-logos/caucasians.png"
+    aliases:["caucasians","jmac4"],
+    name:"Caucasians",
+    owner:"Josh",
+    logo:"team-logos/caucasians.png"
   },
 
   {
-    aliases: ["brady gaga"],
-    name: "Brady Gaga",
-    owner: "Jonah",
-    logo: "team-logos/brady-gaga.png"
+    aliases:["brady gaga","jmactb"],
+    name:"Brady Gaga",
+    owner:"Jonah",
+    logo:"team-logos/brady-gaga.png"
   },
 
   {
-    aliases: ["njigbas in paris"],
-    name: "Njigbas In Paris",
-    owner: "Austin",
-    logo: "team-logos/njigbas-in-paris.png"
+    aliases:["njigbas in paris","axj"],
+    name:"Njigbas In Paris",
+    owner:"Austin",
+    logo:"team-logos/njigbas-in-paris.png"
   },
 
   {
-    aliases: ["show me your tds"],
-    name: "Show Me Your TDs",
-    owner: "Tim",
-    logo: "team-logos/show-me-your-tds.png"
+    aliases:["show me your tds","smitty44"],
+    name:"Show Me Your TDs",
+    owner:"Tim",
+    logo:"team-logos/show-me-your-tds.png"
   },
 
   {
-    aliases: ["just bobby"],
-    name: "Just Bobby",
-    owner: "Jerry",
-    logo: "team-logos/just-bobby.png"
+    aliases:["just bobby","jerryculkin"],
+    name:"Just Bobby",
+    owner:"Jerry",
+    logo:"team-logos/just-bobby.png"
   },
 
   {
-    aliases: ["t gunz", "tommy gunz"],
-    name: "Tommy Gunz",
-    owner: "Thomas",
-    logo: "team-logos/tommy-gunz.png"
+    aliases:["t gunz","tommy gunz","tculkin1"],
+    name:"Tommy Gunz",
+    owner:"Thomas",
+    logo:"team-logos/tommy-gunz.png"
   },
 
   {
-    aliases: ["dyl pickle 6", "dyl pickle six"],
-    name: "Dyl Pickle Six",
-    owner: "Dylan",
-    logo: "team-logos/dyl-pickle-six.png"
+    aliases:[
+      "dyl pickle 6",
+      "dyl pickle six",
+      "deelundblad",
+      "deelindblad"
+    ],
+    name:"Dyl Pickle Six",
+    owner:"Dylan",
+    logo:"team-logos/dyl-pickle-six.png"
   }
 
 ];
 
 
-/* =====================================================
-   NORMALIZE SLEEPER TEAM NAMES
-   Removes emoji, ™, punctuation, extra spaces, etc.
-   ===================================================== */
+function clean(value) {
 
-function normalizeName(value) {
-
-  return (value || "")
+  return String(value || "")
     .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9 ]/g, "")
-    .replace(/\s+/g, " ")
+    .replace(/[™®©]/g,"")
+    .replace(/[^a-z0-9 ]/g," ")
+    .replace(/\s+/g," ")
     .trim();
 
 }
 
 
-/* =====================================================
-   FIND OFFICIAL FFFFL FRANCHISE
-   ===================================================== */
+function identifyTeam(user) {
 
-function findOfficialTeam(user) {
+  const possibleValues = [
 
-  const sleeperTeamName =
-    normalizeName(user?.metadata?.team_name);
+    clean(user?.metadata?.team_name),
 
-  const displayName =
-    normalizeName(user?.display_name);
+    clean(user?.display_name),
 
-  const username =
-    normalizeName(user?.username);
+    clean(user?.username)
+
+  ];
 
 
-  return TEAM_DATA.find(team =>
+  for (const team of TEAM_DATA) {
 
-    team.aliases.some(alias => {
+    for (const alias of team.aliases) {
 
-      const cleanAlias =
-        normalizeName(alias);
+      if (
+        possibleValues.includes(
+          clean(alias)
+        )
+      ) {
 
-      return (
-        sleeperTeamName === cleanAlias ||
-        displayName === cleanAlias ||
-        username === cleanAlias
-      );
+        return team;
 
-    })
+      }
 
-  );
+    }
+
+  }
+
+
+  return null;
 
 }
 
 
-/* =====================================================
-   WIN PERCENTAGE
-   ===================================================== */
-
-function getWinPercentage(wins, losses, ties) {
+function winPct(wins, losses, ties) {
 
   const games =
     wins + losses + ties;
 
+
   if (games === 0) {
+
     return ".000";
+
   }
 
+
   return (
-    (wins + (ties * .5)) / games
+    (wins + ties * .5) / games
   )
   .toFixed(3)
-  .replace(/^0/, "");
+  .replace(/^0/,"");
 
 }
 
 
-/* =====================================================
-   SORT STANDINGS
-   ===================================================== */
-
-function sortStandings(a, b) {
+function sortStandings(a,b) {
 
   const aGames =
     a.wins + a.losses + a.ties;
@@ -585,19 +555,21 @@ function sortStandings(a, b) {
 
 
   const aPct =
-    aGames === 0
-      ? 0
-      : (a.wins + a.ties * .5) / aGames;
+    aGames
+      ? (a.wins + a.ties * .5) / aGames
+      : 0;
 
 
   const bPct =
-    bGames === 0
-      ? 0
-      : (b.wins + b.ties * .5) / bGames;
+    bGames
+      ? (b.wins + b.ties * .5) / bGames
+      : 0;
 
 
   if (bPct !== aPct) {
+
     return bPct - aPct;
+
   }
 
 
@@ -605,10 +577,6 @@ function sortStandings(a, b) {
 
 }
 
-
-/* =====================================================
-   LOAD LIVE STANDINGS FROM SLEEPER
-   ===================================================== */
 
 async function loadStandings() {
 
@@ -624,29 +592,40 @@ async function loadStandings() {
 
   try {
 
-    const [
-      usersResponse,
-      rostersResponse
-    ] = await Promise.all([
+    const usersURL =
+      `https://api.sleeper.app/v1/league/${LEAGUE_ID}/users`;
 
-      fetch(
-        `https://api.sleeper.app/v1/league/${LEAGUE_ID}/users`
-      ),
-
-      fetch(
-        `https://api.sleeper.app/v1/league/${LEAGUE_ID}/rosters`
-      )
-
-    ]);
+    const rostersURL =
+      `https://api.sleeper.app/v1/league/${LEAGUE_ID}/rosters`;
 
 
-    if (
-      !usersResponse.ok ||
-      !rostersResponse.ok
-    ) {
+    const responses =
+      await Promise.all([
+        fetch(usersURL),
+        fetch(rostersURL)
+      ]);
+
+
+    const usersResponse =
+      responses[0];
+
+    const rostersResponse =
+      responses[1];
+
+
+    if (!usersResponse.ok) {
 
       throw new Error(
-        "Sleeper returned an error."
+        `Users request failed: ${usersResponse.status}`
+      );
+
+    }
+
+
+    if (!rostersResponse.ok) {
+
+      throw new Error(
+        `Rosters request failed: ${rostersResponse.status}`
       );
 
     }
@@ -662,7 +641,7 @@ async function loadStandings() {
     const usersById = {};
 
 
-    users.forEach(user => {
+    users.forEach(function(user) {
 
       usersById[user.user_id] =
         user;
@@ -670,113 +649,117 @@ async function loadStandings() {
     });
 
 
-    const standings =
-      rosters.map(roster => {
-
-        const user =
-          usersById[roster.owner_id];
+    const standings = [];
 
 
-        const official =
-          findOfficialTeam(user);
+    rosters.forEach(function(roster) {
+
+      const user =
+        usersById[roster.owner_id];
 
 
-        const wins =
-          roster.settings?.wins ?? 0;
+      if (!user) {
 
-        const losses =
-          roster.settings?.losses ?? 0;
+        return;
 
-        const ties =
-          roster.settings?.ties ?? 0;
+      }
 
 
-        const pointsFor =
-          (roster.settings?.fpts ?? 0) +
-          (
-            (roster.settings?.fpts_decimal ?? 0)
-            / 100
-          );
+      const official =
+        identifyTeam(user);
 
 
-        return {
+      const wins =
+        Number(roster.settings?.wins || 0);
 
-          name:
-            official?.name ||
-            user?.metadata?.team_name ||
-            user?.display_name ||
-            "Unknown",
+      const losses =
+        Number(roster.settings?.losses || 0);
 
-          owner:
-            official?.owner ||
-            user?.display_name ||
-            "Unknown",
+      const ties =
+        Number(roster.settings?.ties || 0);
 
-          logo:
-            official?.logo ||
-            "",
 
-          page:
-            official?.page ||
-            "",
+      const fpts =
+        Number(roster.settings?.fpts || 0);
 
-          wins,
-          losses,
-          ties,
-          pointsFor
+      const decimal =
+        Number(
+          roster.settings?.fpts_decimal || 0
+        );
 
-        };
+
+      standings.push({
+
+        name:
+          official?.name ||
+          user.metadata?.team_name ||
+          user.display_name ||
+          "Unknown Team",
+
+        owner:
+          official?.owner ||
+          user.display_name ||
+          "Unknown",
+
+        logo:
+          official?.logo || "",
+
+        page:
+          official?.page || "",
+
+        wins:wins,
+
+        losses:losses,
+
+        ties:ties,
+
+        pointsFor:
+          fpts + decimal / 100
 
       });
 
-
-    standings.sort(
-      sortStandings
-    );
+    });
 
 
-    const everyoneWinless =
-      standings.every(team =>
-        team.wins === 0 &&
-        team.losses === 0 &&
-        team.ties === 0
-      );
+    standings.sort(sortStandings);
+
+
+    const preseason =
+      standings.every(function(team) {
+
+        return (
+          team.wins === 0 &&
+          team.losses === 0 &&
+          team.ties === 0
+        );
+
+      });
 
 
     body.innerHTML = "";
 
 
-    standings.forEach((team, index) => {
-
+    standings.forEach(function(team,index) {
 
       const row =
         document.createElement("tr");
 
 
       const rank =
-        everyoneWinless
+        preseason
           ? "—"
           : index + 1;
 
 
-      const logoHTML =
+      const logo =
         team.logo
-          ? `
-            <img
-              src="${team.logo}"
-              alt="${team.name}"
-            >
-          `
+          ? `<img src="${team.logo}" alt="${team.name}">`
           : "";
 
 
-      const nameHTML =
+      const teamName =
         team.page
-          ? `
-            <a href="${team.page}">
-              ${team.name}
-            </a>
-          `
+          ? `<a href="${team.page}">${team.name}</a>`
           : team.name;
 
 
@@ -790,12 +773,12 @@ async function loadStandings() {
 
           <div class="team-info">
 
-            ${logoHTML}
+            ${logo}
 
             <div>
 
               <div class="team-name">
-                ${nameHTML}
+                ${teamName}
               </div>
 
               <div class="owner">
@@ -821,7 +804,7 @@ async function loadStandings() {
         </td>
 
         <td class="win-pct">
-          ${getWinPercentage(
+          ${winPct(
             team.wins,
             team.losses,
             team.ties
@@ -834,6 +817,15 @@ async function loadStandings() {
       body.appendChild(row);
 
     });
+
+
+    if (standings.length !== 12) {
+
+      throw new Error(
+        `Expected 12 rosters but received ${standings.length}.`
+      );
+
+    }
 
 
     loading.style.display =
@@ -850,7 +842,8 @@ async function loadStandings() {
     console.error(error);
 
     loading.innerHTML =
-      "Live standings are temporarily unavailable.";
+      `<strong>Live standings could not load.</strong><br><br>
+       ${error.message}`;
 
   }
 
