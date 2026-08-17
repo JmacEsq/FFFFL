@@ -7,15 +7,15 @@
 <title>Record Book | FFFFL</title>
 
 <style>
-
 :root {
   --dark:#03180f;
+  --dark2:#06150f;
   --green:#0d3d25;
   --orange:#e86614;
   --cream:#fff0cf;
   --gold:#d4b45a;
-  --muted:#a99573;
   --white:#ffffff;
+  --muted:#a99573;
 }
 
 * {
@@ -39,7 +39,9 @@ a {
 }
 
 
-/* HEADER */
+/* =========================
+   HEADER
+   ========================= */
 
 .site-header {
   background:rgba(2,18,11,.98);
@@ -105,7 +107,9 @@ nav a.active {
 }
 
 
-/* HERO */
+/* =========================
+   HERO
+   ========================= */
 
 .hero {
   text-align:center;
@@ -134,7 +138,7 @@ nav a.active {
 
 .hero p {
   margin:18px auto 0;
-  max-width:680px;
+  max-width:700px;
   color:#d9c8a8;
   line-height:1.6;
 }
@@ -142,7 +146,7 @@ nav a.active {
 .through {
   display:inline-block;
   margin-top:20px;
-  padding:8px 15px;
+  padding:9px 15px;
   border:1px solid var(--gold);
   border-radius:5px;
   color:var(--gold);
@@ -153,19 +157,18 @@ nav a.active {
 }
 
 
-/* PAGE */
+/* =========================
+   PAGE
+   ========================= */
 
 .page {
   max-width:1180px;
   margin:auto;
-  padding:40px 20px 70px;
+  padding:42px 20px 70px;
 }
 
-
-/* SECTION */
-
 .record-section {
-  margin-bottom:45px;
+  margin-bottom:50px;
 }
 
 .section-heading {
@@ -187,75 +190,223 @@ nav a.active {
 }
 
 
-/* CHAMPIONS */
+/* =========================
+   CHAMPIONSHIP RAFTERS
+   ========================= */
+
+.rafters-section {
+  margin-bottom:55px;
+}
+
+.rafters-arena {
+  position:relative;
+  overflow:hidden;
+  padding:40px 26px 46px;
+  border:1px solid rgba(212,180,90,.4);
+  border-radius:12px;
+  background:
+    linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.45)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.018) 0,
+      rgba(255,255,255,.018) 1px,
+      transparent 1px,
+      transparent 70px
+    ),
+    linear-gradient(180deg,#0a2417,#03110b);
+  box-shadow:inset 0 18px 35px rgba(0,0,0,.35);
+}
+
+.rafters-arena:before {
+  content:"";
+  position:absolute;
+  top:20px;
+  left:0;
+  right:0;
+  height:5px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(212,180,90,.25),
+      rgba(212,180,90,.7),
+      rgba(212,180,90,.25),
+      transparent
+    );
+}
+
+.rafters-grid {
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:16px;
+  align-items:start;
+}
+
+.banner {
+  position:relative;
+  min-height:245px;
+  padding:26px 10px 40px;
+  text-align:center;
+  background:
+    linear-gradient(180deg,#12452b 0%,#082719 58%,#04150d 100%);
+  border:2px solid var(--gold);
+  box-shadow:
+    0 14px 22px rgba(0,0,0,.35),
+    inset 0 0 0 3px rgba(255,255,255,.025);
+  clip-path:polygon(
+    0 0,
+    100% 0,
+    100% 88%,
+    50% 100%,
+    0 88%
+  );
+  transition:.2s ease;
+}
+
+.banner:hover {
+  transform:translateY(-5px);
+  border-color:var(--orange);
+}
+
+.banner:before {
+  content:"";
+  position:absolute;
+  top:-28px;
+  left:50%;
+  transform:translateX(-50%);
+  width:2px;
+  height:28px;
+  background:var(--gold);
+}
+
+.banner-year {
+  color:var(--gold);
+  font-size:1.8rem;
+  font-weight:1000;
+  margin-bottom:17px;
+}
+
+.banner-trophy {
+  font-size:1.65rem;
+  margin-bottom:14px;
+}
+
+.banner-team {
+  color:white;
+  font-weight:1000;
+  text-transform:uppercase;
+  line-height:1.15;
+  font-size:.88rem;
+  min-height:52px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.banner-title {
+  color:var(--orange);
+  font-size:.62rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-top:13px;
+}
+
+.banner-owner {
+  color:#cdbb99;
+  font-size:.6rem;
+  font-weight:800;
+  text-transform:uppercase;
+  margin-top:6px;
+}
+
+
+/* =========================
+   CHAMPIONSHIP LEADERBOARD
+   ========================= */
 
 .champ-grid {
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:15px;
+  gap:16px;
 }
 
 .champ-card {
+  min-height:210px;
   background:
     linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
-  border:1px solid rgba(212,180,90,.45);
-  border-radius:9px;
+  border:1px solid rgba(212,180,90,.5);
+  border-radius:10px;
   padding:22px 15px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
   text-align:center;
   transition:.2s ease;
 }
 
-.champ-card:hover {
+a.champ-card:hover {
   border-color:var(--orange);
-  transform:translateY(-2px);
+  transform:translateY(-3px);
 }
 
 .trophy {
   font-size:2rem;
-  margin-bottom:9px;
+  margin-bottom:8px;
 }
 
 .champ-number {
-  font-size:2rem;
   color:var(--gold);
+  font-size:2rem;
   font-weight:1000;
+  margin-bottom:8px;
 }
 
 .champ-name {
   color:white;
   font-weight:900;
   text-transform:uppercase;
-  margin-top:7px;
   line-height:1.25;
 }
 
 .champ-owner {
   color:var(--orange);
   font-size:.72rem;
-  text-transform:uppercase;
   font-weight:900;
-  margin-top:5px;
+  text-transform:uppercase;
+  margin-top:6px;
 }
 
-.retired-label {
+.status-badge {
   display:inline-block;
-  margin-top:8px;
-  color:#938268;
-  border:1px solid rgba(147,130,104,.4);
+  margin-top:10px;
+  padding:4px 8px;
   border-radius:4px;
-  padding:3px 7px;
   font-size:.58rem;
   font-weight:900;
-  letter-spacing:.7px;
   text-transform:uppercase;
+  letter-spacing:.7px;
+}
+
+.retired {
+  color:#a99573;
+  border:1px solid rgba(169,149,115,.45);
+}
+
+.contenders {
+  color:var(--gold);
+  border:1px solid rgba(212,180,90,.45);
 }
 
 
-/* TABLES */
+/* =========================
+   TABLES
+   ========================= */
 
 .table-card {
   border:1px solid rgba(212,180,90,.45);
-  border-radius:9px;
+  border-radius:10px;
   overflow:hidden;
   background:
     linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
@@ -288,7 +439,7 @@ th.team-heading {
 }
 
 td {
-  padding:12px 10px;
+  padding:13px 10px;
   text-align:center;
   border-bottom:1px solid rgba(255,255,255,.065);
 }
@@ -338,12 +489,14 @@ tbody tr:hover {
 }
 
 
-/* SHIT KING */
+/* =========================
+   SHIT KING
+   ========================= */
 
 .shit-grid {
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
 }
 
 .shit-card {
@@ -351,8 +504,14 @@ tbody tr:hover {
   background:
     linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
   border:1px solid rgba(232,102,20,.35);
-  border-radius:9px;
+  border-radius:10px;
   padding:22px 15px;
+  transition:.2s ease;
+}
+
+a.shit-card:hover {
+  transform:translateY(-3px);
+  border-color:var(--orange);
 }
 
 .shit-icon {
@@ -377,11 +536,13 @@ tbody tr:hover {
   color:var(--muted);
   font-size:.7rem;
   text-transform:uppercase;
-  margin-top:4px;
+  margin-top:5px;
 }
 
 
-/* NOTE */
+/* =========================
+   NOTE / FOOTER
+   ========================= */
 
 .note {
   text-align:center;
@@ -391,9 +552,6 @@ tbody tr:hover {
   font-style:italic;
   margin-top:25px;
 }
-
-
-/* FOOTER */
 
 footer {
   border-top:1px solid rgba(232,102,20,.25);
@@ -405,11 +563,22 @@ footer {
 }
 
 
-/* MOBILE */
+/* =========================
+   RESPONSIVE
+   ========================= */
 
-@media(max-width:900px) {
+@media(max-width:1100px) {
+  .rafters-grid {
+    grid-template-columns:repeat(4,1fr);
+  }
+}
 
-  .champ-grid,
+@media(max-width:950px) {
+
+  .champ-grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+
   .shit-grid {
     grid-template-columns:repeat(2,1fr);
   }
@@ -422,16 +591,22 @@ footer {
   nav {
     justify-content:center;
   }
+}
+
+@media(max-width:650px) {
+
+  .rafters-grid {
+    grid-template-columns:repeat(2,1fr);
+  }
 
 }
 
-@media(max-width:520px) {
+@media(max-width:560px) {
 
   .champ-grid,
   .shit-grid {
     grid-template-columns:1fr;
   }
-
 }
 
 </style>
@@ -456,7 +631,6 @@ footer {
 
 </a>
 
-
 <nav>
   <a href="index.html">Home</a>
   <a href="teams.html">Teams</a>
@@ -467,7 +641,6 @@ footer {
   <a href="mike-hunt.html">Mike Hunt</a>
   <a href="contenders.html">Contenders</a>
 </nav>
-
 
 </div>
 
@@ -486,9 +659,9 @@ Record Book
 </h1>
 
 <p>
-The historical leaderboard of FFFFL franchises — from championships
-and regular-season dominance to playoff success and the league's
-most infamous distinction.
+The historical leaderboard of FFFFL franchises — from championship
+banners hanging in the rafters to regular-season dominance, playoff
+success and the league's most infamous distinction.
 </p>
 
 <div class="through">
@@ -502,7 +675,164 @@ Records Through 2025 Season
 <main class="page">
 
 
-<!-- CHAMPIONSHIPS -->
+<!-- ========================
+     CHAMPIONSHIP RAFTERS
+     ======================== -->
+
+<section class="rafters-section">
+
+<div class="section-heading">
+
+<h2>Championship Rafters</h2>
+
+<p>
+Every FFFFL champion, in chronological order.
+</p>
+
+</div>
+
+<div class="rafters-arena">
+
+<div class="rafters-grid">
+
+
+<a class="banner" href="brady-gaga.html">
+<div class="banner-year">2012</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Brady Gaga</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Jonah</div>
+</a>
+
+
+<div class="banner">
+<div class="banner-year">2013</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Oreo Blizzard</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Joe</div>
+</div>
+
+
+<div class="banner">
+<div class="banner-year">2014</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Oreo Blizzard</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Joe</div>
+</div>
+
+
+<a class="banner" href="knightmare.html">
+<div class="banner-year">2015</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Knightmare</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Jared</div>
+</a>
+
+
+<a class="banner" href="contenders.html">
+<div class="banner-year">2016</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Dawg Pound</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">James</div>
+</a>
+
+
+<a class="banner" href="show-me-your-tds.html">
+<div class="banner-year">2017</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Show Me Your TDs</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Tim</div>
+</a>
+
+
+<a class="banner" href="contenders.html">
+<div class="banner-year">2018</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Romo Wittens His Panties</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Marc</div>
+</a>
+
+
+<a class="banner" href="go-luck-yourself.html">
+<div class="banner-year">2019</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Go Luck Yourself</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Zack</div>
+</a>
+
+
+<a class="banner" href="contenders.html">
+<div class="banner-year">2020</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Romo Wittens His Panties</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Marc</div>
+</a>
+
+
+<a class="banner" href="bacc-field.html">
+<div class="banner-year">2021</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Bacc Field</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Kevin</div>
+</a>
+
+
+<a class="banner" href="diggs-island.html">
+<div class="banner-year">2022</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Diggs Island</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Jordan</div>
+</a>
+
+
+<a class="banner" href="go-luck-yourself.html">
+<div class="banner-year">2023</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Go Luck Yourself</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Zack</div>
+</a>
+
+
+<a class="banner" href="caucasians.html">
+<div class="banner-year">2024</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Caucasians</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Josh</div>
+</a>
+
+
+<a class="banner" href="knightmare.html">
+<div class="banner-year">2025</div>
+<div class="banner-trophy">🏆</div>
+<div class="banner-team">Knightmare</div>
+<div class="banner-title">FFFFL Champion</div>
+<div class="banner-owner">Jared</div>
+</a>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ========================
+     CHAMPIONSHIPS
+     ======================== -->
 
 <section class="record-section">
 
@@ -511,7 +841,7 @@ Records Through 2025 Season
 <h2>🏆 Championships</h2>
 
 <p>
-Franchises ranked by FFFFL championships won.
+Franchises ranked by total FFFFL championships.
 </p>
 
 </div>
@@ -521,217 +851,86 @@ Franchises ranked by FFFFL championships won.
 
 
 <a class="champ-card" href="knightmare.html">
-
-<!-- CHAMPIONSHIPS -->
-
-<section class="record-section">
-
-<div class="section-heading">
-
-<h2>🏆 Championships</h2>
-
-<p>
-Franchises ranked by FFFFL championships won.
-</p>
-
-</div>
-
-
-<div class="champ-grid">
-
-
-<a class="champ-card" href="knightmare.html">
-
 <div class="trophy">🏆</div>
-
-<div class="champ-number">
-2×
-</div>
-
-<div class="champ-name">
-Knightmare
-</div>
-
-<div class="champ-owner">
-Jared
-</div>
-
+<div class="champ-number">2×</div>
+<div class="champ-name">Knightmare</div>
+<div class="champ-owner">Jared</div>
 </a>
 
 
 <a class="champ-card" href="go-luck-yourself.html">
-
 <div class="trophy">🏆</div>
-
-<div class="champ-number">
-2×
-</div>
-
-<div class="champ-name">
-Go Luck Yourself
-</div>
-
-<div class="champ-owner">
-Zack
-</div>
-
+<div class="champ-number">2×</div>
+<div class="champ-name">Go Luck Yourself</div>
+<div class="champ-owner">Zack</div>
 </a>
 
 
 <div class="champ-card">
-
 <div class="trophy">🏆</div>
-
-<div class="champ-number">
-2×
-</div>
-
-<div class="champ-name">
-Oreo Blizzard
-</div>
-
-<div class="champ-owner">
-Joe
-</div>
-
-<div class="retired-label">
-Retired
-</div>
-
+<div class="champ-number">2×</div>
+<div class="champ-name">Oreo Blizzard</div>
+<div class="champ-owner">Joe</div>
+<div class="status-badge retired">Retired</div>
 </div>
 
 
-<div class="champ-card">
-
+<a class="champ-card" href="contenders.html">
 <div class="trophy">🏆</div>
-
-<div class="champ-number">
-2×
-</div>
-
-<div class="champ-name">
-Romo Wittens His Panties
-</div>
-
-<div class="champ-owner">
-Marc
-</div>
-
-</div>
+<div class="champ-number">2×</div>
+<div class="champ-name">Romo Wittens His Panties</div>
+<div class="champ-owner">Marc</div>
+<div class="status-badge contenders">Contenders</div>
+</a>
 
 
 <a class="champ-card" href="brady-gaga.html">
-
 <div class="trophy">🏆</div>
-
-<div class="champ-number">
-1×
-</div>
-
-<div class="champ-name">
-Brady Gaga
-</div>
-
-<div class="champ-owner">
-Jonah
-</div>
-
+<div class="champ-number">1×</div>
+<div class="champ-name">Brady Gaga</div>
+<div class="champ-owner">Jonah</div>
 </a>
 
 
 <a class="champ-card" href="caucasians.html">
-
 <div class="trophy">🏆</div>
-
-<div class="champ-number">
-1×
-</div>
-
-<div class="champ-name">
-Caucasians
-</div>
-
-<div class="champ-owner">
-Josh
-</div>
-
+<div class="champ-number">1×</div>
+<div class="champ-name">Caucasians</div>
+<div class="champ-owner">Josh</div>
 </a>
 
 
 <a class="champ-card" href="show-me-your-tds.html">
-
 <div class="trophy">🏆</div>
-
-<div class="champ-number">
-1×
-</div>
-
-<div class="champ-name">
-Show Me Your TDs
-</div>
-
-<div class="champ-owner">
-Tim
-</div>
-
+<div class="champ-number">1×</div>
+<div class="champ-name">Show Me Your TDs</div>
+<div class="champ-owner">Tim</div>
 </a>
 
 
 <a class="champ-card" href="diggs-island.html">
-
 <div class="trophy">🏆</div>
-
-<div class="champ-number">
-1×
-</div>
-
-<div class="champ-name">
-Diggs Island
-</div>
-
-<div class="champ-owner">
-Jordan
-</div>
-
+<div class="champ-number">1×</div>
+<div class="champ-name">Diggs Island</div>
+<div class="champ-owner">Jordan</div>
 </a>
 
 
 <a class="champ-card" href="bacc-field.html">
-
 <div class="trophy">🏆</div>
-
-<div class="champ-number">
-1×
-</div>
-
-<div class="champ-name">
-Bacc Field
-</div>
-
-<div class="champ-owner">
-Kevin
-</div>
-
+<div class="champ-number">1×</div>
+<div class="champ-name">Bacc Field</div>
+<div class="champ-owner">Kevin</div>
 </a>
 
 
-<div class="champ-card">
-
+<a class="champ-card" href="contenders.html">
 <div class="trophy">🏆</div>
-
-<div class="champ-number">
-1×
-</div>
-
-<div class="champ-name">
-Dawg Pound
-</div>
-
-<div class="champ-owner">
-James
-</div>
-
-</div>
+<div class="champ-number">1×</div>
+<div class="champ-name">Dawg Pound</div>
+<div class="champ-owner">James</div>
+<div class="status-badge contenders">Contenders</div>
+</a>
 
 
 </div>
@@ -739,7 +938,10 @@ James
 </section>
 
 
-<!-- ALL TIME WINS -->
+
+<!-- ========================
+     ALL-TIME REGULAR SEASON
+     ======================== -->
 
 <section class="record-section">
 
@@ -748,7 +950,7 @@ James
 <h2>All-Time Regular Season</h2>
 
 <p>
-Franchise regular-season records through the completion of 2025.
+Franchise regular-season records through completion of the 2025 season.
 </p>
 
 </div>
@@ -761,23 +963,16 @@ Franchise regular-season records through the completion of 2025.
 <table>
 
 <thead>
-
 <tr>
-
 <th>#</th>
 <th class="team-heading">Franchise</th>
 <th>Seasons</th>
 <th>Record</th>
 <th>Win %</th>
-
 </tr>
-
 </thead>
 
-
-<tbody id="regularSeasonTable">
-</tbody>
-
+<tbody id="regularSeasonTable"></tbody>
 
 </table>
 
@@ -789,7 +984,9 @@ Franchise regular-season records through the completion of 2025.
 
 
 
-<!-- PLAYOFFS -->
+<!-- ========================
+     PLAYOFF HISTORY
+     ======================== -->
 
 <section class="record-section">
 
@@ -798,7 +995,7 @@ Franchise regular-season records through the completion of 2025.
 <h2>Playoff History</h2>
 
 <p>
-Every franchise ranked by total postseason victories.
+Franchises ranked by total FFFFL postseason victories.
 </p>
 
 </div>
@@ -811,23 +1008,16 @@ Every franchise ranked by total postseason victories.
 <table>
 
 <thead>
-
 <tr>
-
 <th>#</th>
 <th class="team-heading">Franchise</th>
 <th>Apps</th>
 <th>Record</th>
 <th>Wins</th>
-
 </tr>
-
 </thead>
 
-
-<tbody id="playoffTable">
-</tbody>
-
+<tbody id="playoffTable"></tbody>
 
 </table>
 
@@ -839,7 +1029,9 @@ Every franchise ranked by total postseason victories.
 
 
 
-<!-- SHIT KING -->
+<!-- ========================
+     SHIT KINGS
+     ======================== -->
 
 <section class="record-section">
 
@@ -848,7 +1040,7 @@ Every franchise ranked by total postseason victories.
 <h2>💩 Shit Kings</h2>
 
 <p>
-The other side of FFFFL history.
+The other side of FFFFL immortality.
 </p>
 
 </div>
@@ -858,116 +1050,50 @@ The other side of FFFFL history.
 
 
 <div class="shit-card">
-
 <div class="shit-icon">👑</div>
-
-<div class="shit-number">
-1×
+<div class="shit-number">1×</div>
+<div class="shit-name">Oreo Blizzard</div>
+<div class="shit-owner">Joe · Retired</div>
 </div>
 
-<div class="shit-name">
-Oreo Blizzard
-</div>
 
-<div class="shit-owner">
-Joe · Retired
-</div>
-
-</div>
+<a class="shit-card" href="contenders.html">
+<div class="shit-icon">👑</div>
+<div class="shit-number">1×</div>
+<div class="shit-name">America's Fantasy Team</div>
+<div class="shit-owner">Justin · Contenders</div>
+</a>
 
 
 <div class="shit-card">
-
 <div class="shit-icon">👑</div>
-
-<div class="shit-number">
-1×
-</div>
-
-<div class="shit-name">
-America's Fantasy Team
-</div>
-
-<div class="shit-owner">
-Justin
-</div>
-
-</div>
-
-
-<div class="shit-card">
-
-<div class="shit-icon">👑</div>
-
-<div class="shit-number">
-1×
-</div>
-
-<div class="shit-name">
-Kuech-in It Real
-</div>
-
-<div class="shit-owner">
-Hayley · Retired
-</div>
-
+<div class="shit-number">1×</div>
+<div class="shit-name">Kuech-in It Real</div>
+<div class="shit-owner">Hayley · Retired</div>
 </div>
 
 
 <a class="shit-card" href="show-me-your-tds.html">
-
 <div class="shit-icon">👑</div>
-
-<div class="shit-number">
-1×
-</div>
-
-<div class="shit-name">
-Show Me Your TDs
-</div>
-
-<div class="shit-owner">
-Tim
-</div>
-
+<div class="shit-number">1×</div>
+<div class="shit-name">Show Me Your TDs</div>
+<div class="shit-owner">Tim</div>
 </a>
 
 
 <a class="shit-card" href="diggs-island.html">
-
 <div class="shit-icon">👑</div>
-
-<div class="shit-number">
-1×
-</div>
-
-<div class="shit-name">
-Diggs Island
-</div>
-
-<div class="shit-owner">
-Jordan
-</div>
-
+<div class="shit-number">1×</div>
+<div class="shit-name">Diggs Island</div>
+<div class="shit-owner">Jordan</div>
 </a>
 
 
 <a class="shit-card" href="dyl-pickle-six.html">
-
 <div class="shit-icon">👑</div>
-
-<div class="shit-number">
-1×
-</div>
-
-<div class="shit-name">
-Dyl Pickle Six
-</div>
-
-<div class="shit-owner">
-Dylan
-</div>
-
+<div class="shit-number">1×</div>
+<div class="shit-name">Dyl Pickle Six</div>
+<div class="shit-owner">Dylan</div>
 </a>
 
 
@@ -979,9 +1105,9 @@ Dylan
 
 <div class="note">
 
-Historical records are maintained by the FFFFL and are current through
-the completion of the 2025 season. The 2026 season will be incorporated
-into the official record book following completion of the season.
+Historical franchise statistics and championship history are current
+through completion of the 2025 FFFFL season. The 2026 season will be
+added to the official record book after the season is complete.
 
 </div>
 
@@ -1004,419 +1130,419 @@ into the official record book following completion of the season.
 const FRANCHISES = [
 
 {
-name:"Knightmare",
-owner:"Jared",
-seasons:14,
-wins:140,
-losses:116,
-playoffs:10,
-playoffWins:6,
-playoffLosses:8,
-page:"knightmare.html",
-retired:false
+  name:"Knightmare",
+  owner:"Jared",
+  status:"",
+  seasons:14,
+  wins:140,
+  losses:116,
+  playoffs:10,
+  playoffWins:6,
+  playoffLosses:8,
+  page:"knightmare.html"
 },
 
 {
-name:"Brady Gaga",
-owner:"Jonah",
-seasons:14,
-wins:139,
-losses:117,
-playoffs:9,
-playoffWins:6,
-playoffLosses:8,
-page:"brady-gaga.html",
-retired:false
+  name:"Brady Gaga",
+  owner:"Jonah",
+  status:"",
+  seasons:14,
+  wins:139,
+  losses:117,
+  playoffs:9,
+  playoffWins:6,
+  playoffLosses:8,
+  page:"brady-gaga.html"
 },
 
 {
-name:"Caucasians",
-owner:"Josh",
-seasons:11,
-wins:113,
-losses:88,
-playoffs:7,
-playoffWins:4,
-playoffLosses:6,
-page:"caucasians.html",
-retired:false
+  name:"Caucasians",
+  owner:"Josh",
+  status:"",
+  seasons:11,
+  wins:113,
+  losses:88,
+  playoffs:7,
+  playoffWins:4,
+  playoffLosses:6,
+  page:"caucasians.html"
 },
 
 {
-name:"Go Luck Yourself",
-owner:"Zack",
-seasons:11,
-wins:107,
-losses:111,
-playoffs:4,
-playoffWins:6,
-playoffLosses:2,
-page:"go-luck-yourself.html",
-retired:false
+  name:"Go Luck Yourself",
+  owner:"Zack",
+  status:"",
+  seasons:11,
+  wins:107,
+  losses:111,
+  playoffs:4,
+  playoffWins:6,
+  playoffLosses:2,
+  page:"go-luck-yourself.html"
 },
 
 {
-name:"Oreo Blizzard",
-owner:"Joe",
-seasons:12,
-wins:95,
-losses:105,
-playoffs:6,
-playoffWins:9,
-playoffLosses:4,
-page:"",
-retired:true
+  name:"Oreo Blizzard",
+  owner:"Joe",
+  status:"Retired",
+  seasons:12,
+  wins:95,
+  losses:105,
+  playoffs:6,
+  playoffWins:9,
+  playoffLosses:4,
+  page:""
 },
 
 {
-name:"Dawg Pound",
-owner:"James",
-seasons:12,
-wins:95,
-losses:105,
-playoffs:5,
-playoffWins:5,
-playoffLosses:4,
-page:"",
-retired:false
+  name:"Dawg Pound",
+  owner:"James",
+  status:"Contenders",
+  seasons:12,
+  wins:95,
+  losses:105,
+  playoffs:5,
+  playoffWins:5,
+  playoffLosses:4,
+  page:"contenders.html"
 },
 
 {
-name:"Romo Wittens His Panties",
-owner:"Marc",
-seasons:11,
-wins:92,
-losses:80,
-playoffs:6,
-playoffWins:5,
-playoffLosses:4,
-page:"",
-retired:false
+  name:"Romo Wittens His Panties",
+  owner:"Marc",
+  status:"Contenders",
+  seasons:11,
+  wins:92,
+  losses:80,
+  playoffs:6,
+  playoffWins:5,
+  playoffLosses:4,
+  page:"contenders.html"
 },
 
 {
-name:"Just Bobby",
-owner:"Jerry",
-seasons:8,
-wins:88,
-losses:91,
-playoffs:4,
-playoffWins:1,
-playoffLosses:4,
-page:"just-bobby.html",
-retired:false
+  name:"Just Bobby",
+  owner:"Jerry",
+  status:"",
+  seasons:8,
+  wins:88,
+  losses:91,
+  playoffs:4,
+  playoffWins:1,
+  playoffLosses:4,
+  page:"just-bobby.html"
 },
 
 {
-name:"Show Me Your TDs",
-owner:"Tim",
-seasons:9,
-wins:87,
-losses:105,
-playoffs:2,
-playoffWins:2,
-playoffLosses:1,
-page:"show-me-your-tds.html",
-retired:false
+  name:"Show Me Your TDs",
+  owner:"Tim",
+  status:"",
+  seasons:9,
+  wins:87,
+  losses:105,
+  playoffs:2,
+  playoffWins:2,
+  playoffLosses:1,
+  page:"show-me-your-tds.html"
 },
 
 {
-name:"America's Fantasy Team",
-owner:"Justin",
-seasons:12,
-wins:87,
-losses:128,
-playoffs:2,
-playoffWins:2,
-playoffLosses:2,
-page:"",
-retired:false
+  name:"America's Fantasy Team",
+  owner:"Justin",
+  status:"Contenders",
+  seasons:12,
+  wins:87,
+  losses:128,
+  playoffs:2,
+  playoffWins:2,
+  playoffLosses:2,
+  page:"contenders.html"
 },
 
 {
-name:"Diggs Island",
-owner:"Jordan",
-seasons:8,
-wins:83,
-losses:84,
-playoffs:6,
-playoffWins:5,
-playoffLosses:5,
-page:"diggs-island.html",
-retired:false
+  name:"Diggs Island",
+  owner:"Jordan",
+  status:"",
+  seasons:8,
+  wins:83,
+  losses:84,
+  playoffs:6,
+  playoffWins:5,
+  playoffLosses:5,
+  page:"diggs-island.html"
 },
 
 {
-name:"Bacc Field",
-owner:"Kevin",
-seasons:8,
-wins:82,
-losses:85,
-playoffs:3,
-playoffWins:6,
-playoffLosses:2,
-page:"bacc-field.html",
-retired:false
+  name:"Bacc Field",
+  owner:"Kevin",
+  status:"",
+  seasons:8,
+  wins:82,
+  losses:85,
+  playoffs:3,
+  playoffWins:6,
+  playoffLosses:2,
+  page:"bacc-field.html"
 },
 
 {
-name:"Kuech-in It Real",
-owner:"Hayley",
-seasons:5,
-wins:37,
-losses:43,
-playoffs:3,
-playoffWins:1,
-playoffLosses:3,
-page:"",
-retired:true
+  name:"Kuech-in It Real",
+  owner:"Hayley",
+  status:"Retired",
+  seasons:5,
+  wins:37,
+  losses:43,
+  playoffs:3,
+  playoffWins:1,
+  playoffLosses:3,
+  page:""
 },
 
 {
-name:"Dyl Pickle Six",
-owner:"Dylan",
-seasons:3,
-wins:36,
-losses:48,
-playoffs:0,
-playoffWins:0,
-playoffLosses:0,
-page:"dyl-pickle-six.html",
-retired:false
+  name:"Dyl Pickle Six",
+  owner:"Dylan",
+  status:"",
+  seasons:3,
+  wins:36,
+  losses:48,
+  playoffs:0,
+  playoffWins:0,
+  playoffLosses:0,
+  page:"dyl-pickle-six.html"
 },
 
 {
-name:"Njigbas In Paris",
-owner:"Austin",
-seasons:2,
-wins:34,
-losses:22,
-playoffs:2,
-playoffWins:2,
-playoffLosses:2,
-page:"njigbas-in-paris.html",
-retired:false
+  name:"Njigbas In Paris",
+  owner:"Austin",
+  status:"",
+  seasons:2,
+  wins:34,
+  losses:22,
+  playoffs:2,
+  playoffWins:2,
+  playoffLosses:2,
+  page:"njigbas-in-paris.html"
 },
 
 {
-name:"Prison Jeff",
-owner:"Jeff",
-seasons:2,
-wins:28,
-losses:28,
-playoffs:1,
-playoffWins:0,
-playoffLosses:1,
-page:"prison-jeff.html",
-retired:false
+  name:"Prison Jeff",
+  owner:"Jeff",
+  status:"",
+  seasons:2,
+  wins:28,
+  losses:28,
+  playoffs:1,
+  playoffWins:0,
+  playoffLosses:1,
+  page:"prison-jeff.html"
 },
 
 {
-name:"Tommy Gunz",
-owner:"Thomas",
-seasons:1,
-wins:10,
-losses:18,
-playoffs:0,
-playoffWins:0,
-playoffLosses:0,
-page:"tommy-gunz.html",
-retired:false
-},
-
-{
-name:"No Name",
-owner:"UA",
-seasons:0,
-wins:0,
-losses:0,
-playoffs:0,
-playoffWins:0,
-playoffLosses:0,
-page:"",
-retired:true
+  name:"Tommy Gunz",
+  owner:"Thomas",
+  status:"",
+  seasons:1,
+  wins:10,
+  losses:18,
+  playoffs:0,
+  playoffWins:0,
+  playoffLosses:0,
+  page:"tommy-gunz.html"
 }
 
 ];
 
 
-
 function pct(wins,losses) {
 
-const total =
-wins + losses;
+  const total =
+    wins + losses;
 
-if (!total)
-return ".000";
+  if (!total) {
+    return ".000";
+  }
 
-return (wins / total)
-.toFixed(3)
-.replace(/^0/,"");
+  return (
+    wins / total
+  )
+  .toFixed(3)
+  .replace(/^0/,"");
 
 }
-
 
 
 function teamHTML(team) {
 
-const name =
-team.page
-?
-`<a href="${team.page}">${team.name}</a>`
-:
-team.name;
+  const nameHTML =
+    team.page
+      ?
+      `<a href="${team.page}">${team.name}</a>`
+      :
+      team.name;
 
+  let ownerLine =
+    team.owner;
 
-return `
+  if (team.status) {
+    ownerLine +=
+      ` · ${team.status}`;
+  }
 
-<div class="team-name">
-${name}
-</div>
+  return `
+    <div class="team-name">
+      ${nameHTML}
+    </div>
 
-<div class="owner">
-
-${team.owner}
-
-${team.retired ? " · Retired" : ""}
-
-</div>
-
-`;
+    <div class="owner">
+      ${ownerLine}
+    </div>
+  `;
 
 }
-
 
 
 /* REGULAR SEASON */
 
 const regular =
-[...FRANCHISES]
-.filter(team =>
-team.wins + team.losses > 0
-)
-.sort((a,b) => {
+  [...FRANCHISES]
+  .sort(
+    function(a,b) {
 
-if (b.wins !== a.wins)
-return b.wins - a.wins;
+      if (b.wins !== a.wins) {
+        return b.wins - a.wins;
+      }
 
-return pct(b.wins,b.losses) -
-pct(a.wins,a.losses);
+      const bPct =
+        b.wins /
+        (b.wins + b.losses);
 
-});
+      const aPct =
+        a.wins /
+        (a.wins + a.losses);
+
+      return bPct - aPct;
+
+    }
+  );
 
 
 const regularBody =
-document.getElementById(
-"regularSeasonTable"
-);
+  document.getElementById(
+    "regularSeasonTable"
+  );
 
 
 regular.forEach(
-(team,index) => {
+  function(team,index) {
 
-const row =
-document.createElement("tr");
+    const row =
+      document.createElement(
+        "tr"
+      );
+
+    row.innerHTML = `
+
+      <td class="rank">
+        ${index + 1}
+      </td>
+
+      <td class="team-cell">
+        ${teamHTML(team)}
+      </td>
+
+      <td>
+        ${team.seasons}
+      </td>
+
+      <td class="record">
+        ${team.wins}-${team.losses}
+      </td>
+
+      <td class="percentage">
+        ${pct(team.wins,team.losses)}
+      </td>
+
+    `;
+
+    regularBody.appendChild(row);
+
+  }
+);
 
 
-row.innerHTML = `
-
-<td class="rank">
-${index + 1}
-</td>
-
-<td class="team-cell">
-${teamHTML(team)}
-</td>
-
-<td>
-${team.seasons}
-</td>
-
-<td class="record">
-${team.wins}-${team.losses}
-</td>
-
-<td class="percentage">
-${pct(team.wins,team.losses)}
-</td>
-
-`;
-
-
-regularBody.appendChild(row);
-
-});
-
-
-
-/* PLAYOFF TABLE */
+/* PLAYOFF HISTORY */
 
 const playoffs =
-[...FRANCHISES]
-.filter(team =>
-team.playoffs > 0
-)
-.sort((a,b) => {
+  [...FRANCHISES]
+  .filter(
+    function(team) {
+      return team.playoffs > 0;
+    }
+  )
+  .sort(
+    function(a,b) {
 
-if (
-b.playoffWins !==
-a.playoffWins
-)
-return (
-b.playoffWins -
-a.playoffWins
-);
+      if (
+        b.playoffWins !==
+        a.playoffWins
+      ) {
+        return (
+          b.playoffWins -
+          a.playoffWins
+        );
+      }
 
-return (
-b.playoffs -
-a.playoffs
-);
+      return (
+        b.playoffs -
+        a.playoffs
+      );
 
-});
+    }
+  );
 
 
 const playoffBody =
-document.getElementById(
-"playoffTable"
-);
+  document.getElementById(
+    "playoffTable"
+  );
 
 
 playoffs.forEach(
-(team,index) => {
+  function(team,index) {
 
-const row =
-document.createElement("tr");
+    const row =
+      document.createElement(
+        "tr"
+      );
 
+    row.innerHTML = `
 
-row.innerHTML = `
+      <td class="rank">
+        ${index + 1}
+      </td>
 
-<td class="rank">
-${index + 1}
-</td>
+      <td class="team-cell">
+        ${teamHTML(team)}
+      </td>
 
-<td class="team-cell">
-${teamHTML(team)}
-</td>
+      <td>
+        ${team.playoffs}
+      </td>
 
-<td>
-${team.playoffs}
-</td>
+      <td class="record">
+        ${team.playoffWins}-${team.playoffLosses}
+      </td>
 
-<td class="record">
-${team.playoffWins}-${team.playoffLosses}
-</td>
+      <td class="percentage">
+        ${team.playoffWins}
+      </td>
 
-<td class="percentage">
-${team.playoffWins}
-</td>
+    `;
 
-`;
+    playoffBody.appendChild(row);
 
-
-playoffBody.appendChild(row);
-
-});
-
+  }
+);
 
 </script>
 
