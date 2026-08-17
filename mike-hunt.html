@@ -38,6 +38,775 @@ a {
   text-decoration:none;
 }
 
+
+/* HEADER */
+
+.site-header {
+  background:rgba(2,18,11,.98);
+  border-bottom:1px solid rgba(232,102,20,.35);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.nav-wrap {
+  max-width:1250px;
+  margin:auto;
+  min-height:74px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+}
+
+.brand img {
+  width:54px;
+  height:54px;
+  object-fit:contain;
+}
+
+.brand-text span:first-child {
+  display:block;
+  font-size:1.05rem;
+}
+
+.brand-text span:last-child {
+  display:block;
+  color:var(--orange);
+  font-size:.8rem;
+  margin-top:4px;
+  letter-spacing:1.2px;
+}
+
+nav {
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+nav a {
+  font-size:.87rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+}
+
+nav a:hover,
+nav a.active {
+  color:var(--orange);
+}
+
+
+/* HERO */
+
+.hero {
+  border-bottom:1px solid rgba(212,180,90,.25);
+  background:
+    radial-gradient(circle at 30% 35%,rgba(232,102,20,.12),transparent 27%),
+    radial-gradient(circle at 70% 50%,rgba(29,106,61,.17),transparent 32%),
+    linear-gradient(180deg,#081810,#030b07);
+}
+
+.hero-inner {
+  max-width:1180px;
+  min-height:610px;
+  margin:auto;
+  padding:55px 20px 0;
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  align-items:end;
+  gap:35px;
+}
+
+.mike-photo-wrap {
+  height:555px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  position:relative;
+}
+
+.mike-photo-wrap:before {
+  content:"";
+  position:absolute;
+  width:390px;
+  height:390px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle,rgba(232,102,20,.16),transparent 65%);
+  bottom:50px;
+}
+
+.mike-photo {
+  width:100%;
+  max-width:520px;
+  max-height:555px;
+  object-fit:contain;
+  object-position:bottom;
+  position:relative;
+  z-index:2;
+  filter:
+    drop-shadow(0 22px 25px rgba(0,0,0,.48));
+}
+
+.hero-copy {
+  padding-bottom:75px;
+}
+
+.eyebrow {
+  color:var(--orange);
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:.86rem;
+  margin-bottom:14px;
+}
+
+.hero h1 {
+  color:white;
+  font-size:clamp(4rem,8vw,7.5rem);
+  text-transform:uppercase;
+  line-height:.84;
+  font-weight:1000;
+  letter-spacing:-3px;
+}
+
+.subtitle {
+  color:var(--gold);
+  text-transform:uppercase;
+  font-size:1.05rem;
+  font-weight:900;
+  letter-spacing:2px;
+  margin-top:19px;
+}
+
+.description {
+  max-width:610px;
+  margin-top:22px;
+  color:#d9c8a8;
+  line-height:1.75;
+  font-size:1rem;
+}
+
+.tagline {
+  margin-top:18px;
+  color:white;
+  font-size:.93rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:1.1px;
+}
+
+.tiktok-button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-top:28px;
+  padding:15px 25px;
+  background:var(--orange);
+  color:#111;
+  border-radius:7px;
+  font-size:.88rem;
+  font-weight:1000;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  transition:.2s ease;
+  box-shadow:0 12px 25px rgba(0,0,0,.28);
+}
+
+.tiktok-button:hover {
+  transform:translateY(-3px);
+}
+
+.handle {
+  color:var(--muted);
+  font-size:.77rem;
+  margin-top:12px;
+}
+
+
+/* PAGE */
+
+.page {
+  max-width:1180px;
+  margin:auto;
+  padding:48px 20px 70px;
+}
+
+.section-heading {
+  margin-bottom:23px;
+  padding-bottom:11px;
+  border-bottom:1px solid rgba(232,102,20,.35);
+}
+
+.section-heading h2 {
+  color:white;
+  font-size:1.9rem;
+  text-transform:uppercase;
+}
+
+.section-heading p {
+  color:var(--muted);
+  font-size:.82rem;
+  margin-top:6px;
+}
+
+
+/* WEEKLY LINEUP */
+
+.week-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.segment-card {
+  display:grid;
+  grid-template-columns:110px 1fr;
+  min-height:130px;
+  background:
+    linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
+  border:1px solid rgba(212,180,90,.42);
+  border-radius:10px;
+  overflow:hidden;
+  transition:.2s ease;
+}
+
+.segment-card:hover {
+  transform:translateY(-3px);
+  border-color:var(--orange);
+}
+
+.segment-day {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:15px 8px;
+  background:rgba(0,0,0,.18);
+  border-right:1px solid rgba(255,255,255,.06);
+  color:var(--gold);
+  font-weight:1000;
+  text-transform:uppercase;
+  font-size:.78rem;
+  letter-spacing:.8px;
+}
+
+.segment-copy {
+  padding:20px;
+}
+
+.segment-copy h3 {
+  color:white;
+  text-transform:uppercase;
+  font-size:1.05rem;
+  margin-bottom:7px;
+}
+
+.segment-copy p {
+  color:#cab999;
+  line-height:1.6;
+  font-size:.87rem;
+}
+
+.segment-copy .segment-type {
+  color:var(--orange);
+  font-size:.65rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.9px;
+  margin-bottom:6px;
+}
+
+
+/* TIKTOK CTA */
+
+.media-card {
+  margin-top:45px;
+  padding:36px 25px;
+  text-align:center;
+  background:
+    radial-gradient(circle at center,rgba(232,102,20,.11),transparent 45%),
+    linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
+  border:1px solid rgba(212,180,90,.45);
+  border-radius:10px;
+}
+
+.media-card h2 {
+  color:white;
+  text-transform:uppercase;
+  font-size:1.8rem;
+}
+
+.media-card p {
+  max-width:650px;
+  margin:12px auto 0;
+  color:#cdbb9c;
+  line-height:1.7;
+}
+
+.media-card .tiktok-button {
+  margin-top:22px;
+}
+
+
+/* FOOTER */
+
+footer {
+  border-top:1px solid rgba(232,102,20,.25);
+  background:#02100a;
+  text-align:center;
+  color:var(--muted);
+  padding:22px;
+  font-size:.8rem;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:900px) {
+
+  .nav-wrap {
+    flex-direction:column;
+    padding:12px 20px;
+  }
+
+  nav {
+    justify-content:center;
+  }
+
+  .hero-inner {
+    min-height:auto;
+    grid-template-columns:1fr;
+    text-align:center;
+    padding-top:45px;
+  }
+
+  .hero-copy {
+    order:1;
+    padding-bottom:15px;
+  }
+
+  .mike-photo-wrap {
+    order:2;
+    height:460px;
+  }
+
+  .mike-photo {
+    max-height:460px;
+  }
+
+  .description {
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+}
+
+
+@media(max-width:720px) {
+
+  .week-grid {
+    grid-template-columns:1fr;
+  }
+
+  .segment-card {
+    grid-template-columns:90px 1fr;
+  }
+
+}
+
+
+@media(max-width:520px) {
+
+  .hero h1 {
+    font-size:4rem;
+  }
+
+  .mike-photo-wrap {
+    height:370px;
+  }
+
+  .mike-photo {
+    max-height:370px;
+  }
+
+  .segment-card {
+    grid-template-columns:1fr;
+  }
+
+  .segment-day {
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    padding:10px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<header class="site-header">
+
+<div class="nav-wrap">
+
+<a class="brand" href="index.html">
+
+<img src="FFFFL Logo.png" alt="FFFFL Logo">
+
+<div class="brand-text">
+<span>Florida's Finest</span>
+<span>Fantasy Football League</span>
+</div>
+
+</a>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="teams.html">Teams</a>
+  <a href="standings.html">Standings</a>
+  <a href="schedule.html">Schedule</a>
+  <a href="record-book.html">Record Book</a>
+  <a href="history.html">History</a>
+  <a href="mike-hunt.html" class="active">Mike Hunt</a>
+  <a href="contenders.html">Contenders</a>
+</nav>
+
+</div>
+
+</header>
+
+
+
+<section class="hero">
+
+<div class="hero-inner">
+
+
+<div class="mike-photo-wrap">
+
+<img
+  class="mike-photo"
+  src="mike-hunt.png"
+  alt="Mike Hunt"
+>
+
+</div>
+
+
+<div class="hero-copy">
+
+<div class="eyebrow">
+FFFFL Media
+</div>
+
+<h1>
+Mike Hunt
+</h1>
+
+<div class="subtitle">
+The Voice of Florida's Finest
+</div>
+
+<p class="description">
+Breaking news, interviews, power rankings, featured matchups,
+Contenders coverage and everything else happening around the
+Florida's Finest Fantasy Football League.
+</p>
+
+<div class="tagline">
+Interviews. Rankings. News. Questionable Journalism.
+</div>
+
+<a
+  class="tiktok-button"
+  href="https://www.tiktok.com/@ffffl_official?_r=1&_t=ZP-98wgv5T8T1y"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+Watch Mike Hunt on TikTok →
+</a>
+
+<div class="handle">
+@ffffl_official
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<main class="page">
+
+
+<section>
+
+<div class="section-heading">
+
+<h2>
+The Weekly Lineup
+</h2>
+
+<p>
+Seven days of FFFFL coverage throughout the fantasy football season.
+</p>
+
+</div>
+
+
+<div class="week-grid">
+
+
+<div class="segment-card">
+
+<div class="segment-day">
+Monday
+</div>
+
+<div class="segment-copy">
+
+<div class="segment-type">
+Start / Sit Review
+</div>
+
+<h3>
+Start ’Em Shame ’Em
+</h3>
+
+<p>
+Mike highlights the best and worst start/sit decisions from the week,
+including the lineup calls owners would probably rather forget.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="segment-card">
+
+<div class="segment-day">
+Tuesday
+</div>
+
+<div class="segment-copy">
+
+<div class="segment-type">
+Power Rankings
+</div>
+
+<h3>
+Mikey’s Power Rankings
+</h3>
+
+<p>
+Mike ranks all 12 FFFFL franchises from 12 to 1 and gives a quick
+take on where each team stands.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="segment-card">
+
+<div class="segment-day">
+Wednesday
+</div>
+
+<div class="segment-copy">
+
+<div class="segment-type">
+Owner Interview
+</div>
+
+<h3>
+The Mike Drop
+</h3>
+
+<p>
+Mike sits down with an FFFFL owner for an interview, league talk
+and a few truth bombs.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="segment-card">
+
+<div class="segment-day">
+Thursday
+</div>
+
+<div class="segment-copy">
+
+<div class="segment-type">
+Featured Matchup
+</div>
+
+<h3>
+Game of the Week
+</h3>
+
+<p>
+Mike previews the FFFFL’s featured matchup and breaks down the
+storylines heading into the week.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="segment-card">
+
+<div class="segment-day">
+Friday
+</div>
+
+<div class="segment-copy">
+
+<div class="segment-type">
+FFCL Coverage
+</div>
+
+<h3>
+Contenders League Brief
+</h3>
+
+<p>
+A quick status update from the Florida's Finest Contenders League,
+including standings, performances and the latest from the FFCL.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="segment-card">
+
+<div class="segment-day">
+Saturday
+</div>
+
+<div class="segment-copy">
+
+<div class="segment-type">
+Bottom of the Table
+</div>
+
+<h3>
+Shit King Tracker
+</h3>
+
+<p>
+Mike checks the bottom of the standings and identifies the franchises
+currently in danger of claiming the league's least desirable title.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="segment-card">
+
+<div class="segment-day">
+Sunday
+</div>
+
+<div class="segment-copy">
+
+<div class="segment-type">
+Weekly Lineups
+</div>
+
+<h3>
+Matchups
+</h3>
+
+<p>
+The starting lineups for every FFFFL matchup are posted as the
+week's games get underway.
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<section class="media-card">
+
+<h2>
+Follow the FFFFL on TikTok
+</h2>
+
+<p>
+Watch every Mike Hunt segment, league interview, ranking,
+matchup preview and breaking-news report on the official
+Florida's Finest TikTok account.
+</p>
+
+<a
+  class="tiktok-button"
+  href="https://www.tiktok.com/@ffffl_official?_r=1&_t=ZP-98wgv5T8T1y"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+@ffffl_official →
+</a>
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+© 2012–2026 Florida's Finest Fantasy Football League
+
+</footer>
+
+
+</body>
+</html>  color:inherit;
+  text-decoration:none;
+}
+
 /* HEADER */
 
 .site-header {
