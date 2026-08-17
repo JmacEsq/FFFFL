@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Record Book | FFFFL</title>
+
+<style>
+
+:root {
+  --dark:#03180f;
+  --green:#0d3d25;
+  --orange:#e86614;
+  --cream:#fff0cf;
+  --gold:#d4b45a;
+  --muted:#a99573;
+  --white:#ffffff;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  font-family:Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top,rgba(30,100,60,.12),transparent 35%),
+    linear-gradient(180deg,#06150f,#020806);
+  color:var(--cream);
+  min-height:100vh;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+
+/* HEADER */
+
+.site-header {
+  background:rgba(2,18,11,.98);
+  border-bottom:1px solid rgba(232,102,20,.35);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.nav-wrap {
+  max-width:1250px;
+  margin:auto;
+  min-height:74px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+}
+
+.brand img {
+  width:54px;
+  height:54px;
+  object-fit:contain;
+}
+
+.brand-text span:first-child {
+  display:block;
+  font-size:1.05rem;
+}
+
+.brand-text span:last-child {
+  display:block;
+  color:var(--orange);
+  font-size:.8rem;
+  margin-top:4px;
+  letter-spacing:1.2px;
+}
+
+nav {
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+nav a {
+  font-size:.87rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+}
+
+nav a:hover,
+nav a.active {
+  color:var(--orange);
+}
+
+
+/* HERO */
+
+.hero {
+  text-align:center;
+  padding:70px 20px 55px;
+  border-bottom:1px solid rgba(212,180,90,.25);
+  background:
+    radial-gradient(circle at center,rgba(212,180,90,.08),transparent 45%);
+}
+
+.eyebrow {
+  color:var(--orange);
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-size:.85rem;
+  margin-bottom:12px;
+}
+
+.hero h1 {
+  color:white;
+  font-size:clamp(3rem,7vw,6rem);
+  line-height:.95;
+  text-transform:uppercase;
+  font-weight:1000;
+}
+
+.hero p {
+  margin:18px auto 0;
+  max-width:680px;
+  color:#d9c8a8;
+  line-height:1.6;
+}
+
+.through {
+  display:inline-block;
+  margin-top:20px;
+  padding:8px 15px;
+  border:1px solid var(--gold);
+  border-radius:5px;
+  color:var(--gold);
+  font-size:.75rem;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+
+/* PAGE */
+
+.page {
+  max-width:1180px;
+  margin:auto;
+  padding:40px 20px 70px;
+}
+
+
+/* SECTION */
+
+.record-section {
+  margin-bottom:45px;
+}
+
+.section-heading {
+  margin-bottom:18px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(232,102,20,.35);
+}
+
+.section-heading h2 {
+  color:white;
+  font-size:1.7rem;
+  text-transform:uppercase;
+}
+
+.section-heading p {
+  color:var(--muted);
+  font-size:.8rem;
+  margin-top:5px;
+}
+
+
+/* CHAMPIONS */
+
+.champ-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.champ-card {
+  background:
+    linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
+  border:1px solid rgba(212,180,90,.45);
+  border-radius:9px;
+  padding:22px 15px;
+  text-align:center;
+  transition:.2s ease;
+}
+
+.champ-card:hover {
+  border-color:var(--orange);
+  transform:translateY(-2px);
+}
+
+.trophy {
+  font-size:2rem;
+  margin-bottom:9px;
+}
+
+.champ-number {
+  font-size:2rem;
+  color:var(--gold);
+  font-weight:1000;
+}
+
+.champ-name {
+  color:white;
+  font-weight:900;
+  text-transform:uppercase;
+  margin-top:7px;
+  line-height:1.25;
+}
+
+.champ-owner {
+  color:var(--orange);
+  font-size:.72rem;
+  text-transform:uppercase;
+  font-weight:900;
+  margin-top:5px;
+}
+
+.retired-label {
+  display:inline-block;
+  margin-top:8px;
+  color:#938268;
+  border:1px solid rgba(147,130,104,.4);
+  border-radius:4px;
+  padding:3px 7px;
+  font-size:.58rem;
+  font-weight:900;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+}
+
+
+/* TABLES */
+
+.table-card {
+  border:1px solid rgba(212,180,90,.45);
+  border-radius:9px;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
+}
+
+.table-wrap {
+  overflow-x:auto;
+}
+
+table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+thead {
+  background:var(--orange);
+  color:#111;
+}
+
+th {
+  padding:12px 10px;
+  text-align:center;
+  text-transform:uppercase;
+  font-size:.72rem;
+  letter-spacing:.5px;
+}
+
+th.team-heading {
+  text-align:left;
+}
+
+td {
+  padding:12px 10px;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,.065);
+}
+
+tbody tr:last-child td {
+  border-bottom:none;
+}
+
+tbody tr:hover {
+  background:rgba(255,255,255,.035);
+}
+
+.rank {
+  color:var(--orange);
+  font-weight:900;
+  width:55px;
+}
+
+.team-cell {
+  text-align:left;
+}
+
+.team-name {
+  color:white;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.team-name a:hover {
+  color:var(--orange);
+}
+
+.owner {
+  color:var(--muted);
+  font-size:.7rem;
+  text-transform:uppercase;
+  margin-top:3px;
+}
+
+.record {
+  font-weight:900;
+}
+
+.percentage {
+  color:var(--gold);
+  font-weight:900;
+}
+
+
+/* SHIT KING */
+
+.shit-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.shit-card {
+  text-align:center;
+  background:
+    linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
+  border:1px solid rgba(232,102,20,.35);
+  border-radius:9px;
+  padding:22px 15px;
+}
+
+.shit-icon {
+  font-size:2rem;
+  margin-bottom:8px;
+}
+
+.shit-number {
+  color:var(--orange);
+  font-size:1.8rem;
+  font-weight:1000;
+}
+
+.shit-name {
+  color:white;
+  font-weight:900;
+  text-transform:uppercase;
+  margin-top:7px;
+}
+
+.shit-owner {
+  color:var(--muted);
+  font-size:.7rem;
+  text-transform:uppercase;
+  margin-top:4px;
+}
+
+
+/* NOTE */
+
+.note {
+  text-align:center;
+  color:var(--muted);
+  font-size:.76rem;
+  line-height:1.6;
+  font-style:italic;
+  margin-top:25px;
+}
+
+
+/* FOOTER */
+
+footer {
+  border-top:1px solid rgba(232,102,20,.25);
+  background:#02100a;
+  text-align:center;
+  color:var(--muted);
+  padding:22px;
+  font-size:.8rem;
+}
+
+
+/* MOBILE */
+
+@media(max-width:900px) {
+
+  .champ-grid,
+  .shit-grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .nav-wrap {
+    flex-direction:column;
+    padding:12px 20px;
+  }
+
+  nav {
+    justify-content:center;
+  }
+
+}
+
+@media(max-width:520px) {
+
+  .champ-grid,
+  .shit-grid {
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+<div class="nav-wrap">
+
+<a class="brand" href="index.html">
+
+<img src="FFFFL Logo.png" alt="FFFFL Logo">
+
+<div class="brand-text">
+<span>Florida's Finest</span>
+<span>Fantasy Football League</span>
+</div>
+
+</a>
+
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="teams.html">Teams</a>
+  <a href="standings.html">Standings</a>
+  <a href="schedule.html">Schedule</a>
+  <a href="record-book.html" class="active">Record Book</a>
+  <a href="history.html">History</a>
+  <a href="mike-hunt.html">Mike Hunt</a>
+  <a href="contenders.html">Contenders</a>
+</nav>
+
+
+</div>
+
+</header>
+
+
+
+<section class="hero">
+
+<div class="eyebrow">
+Florida's Finest Fantasy Football League
+</div>
+
+<h1>
+Record Book
+</h1>
+
+<p>
+The historical leaderboard of FFFFL franchises — from championships
+and regular-season dominance to playoff success and the league's
+most infamous distinction.
+</p>
+
+<div class="through">
+Records Through 2025 Season
+</div>
+
+</section>
+
+
+
+<main class="page">
+
+
+<!-- CHAMPIONSHIPS -->
+
+<section class="record-section">
+
+<div class="section-heading">
+
+<h2>🏆 Championships</h2>
+
+<p>
+Franchises ranked by FFFFL championships won.
+</p>
+
+</div>
+
+
+<div class="champ-grid">
+
+
+<a class="champ-card" href="knightmare.html">
+
+<div class="trophy">🏆</div>
+
+<div class="champ-number">
+2×
+</div>
+
+<div class="champ-name">
+Knightmare
+</div>
+
+<div class="champ-owner">
+Jared
+</div>
+
+</a>
+
+
+<a class="champ-card" href="go-luck-yourself.html">
+
+<div class="trophy">🏆</div>
+
+<div class="champ-number">
+2×
+</div>
+
+<div class="champ-name">
+Go Luck Yourself
+</div>
+
+<div class="champ-owner">
+Zack
+</div>
+
+</a>
+
+
+<div class="champ-card">
+
+<div class="trophy">🏆</div>
+
+<div class="champ-number">
+2×
+</div>
+
+<div class="champ-name">
+Oreo Blizzard
+</div>
+
+<div class="champ-owner">
+Joe
+</div>
+
+<div class="retired-label">
+Retired
+</div>
+
+</div>
+
+
+<div class="champ-card">
+
+<div class="trophy">🏆</div>
+
+<div class="champ-number">
+2×
+</div>
+
+<div class="champ-name">
+Romo Wittens His Panties
+</div>
+
+<div class="champ-owner">
+Marc
+</div>
+
+<div class="retired-label">
+Retired
+</div>
+
+</div>
+
+
+<a class="champ-card" href="brady-gaga.html">
+
+<div class="trophy">🏆</div>
+
+<div class="champ-number">
+1×
+</div>
+
+<div class="champ-name">
+Brady Gaga
+</div>
+
+<div class="champ-owner">
+Jonah
+</div>
+
+</a>
+
+
+<a class="champ-card" href="caucasians.html">
+
+<div class="trophy">🏆</div>
+
+<div class="champ-number">
+1×
+</div>
+
+<div class="champ-name">
+Caucasians
+</div>
+
+<div class="champ-owner">
+Josh
+</div>
+
+</a>
+
+
+<a class="champ-card" href="show-me-your-tds.html">
+
+<div class="trophy">🏆</div>
+
+<div class="champ-number">
+1×
+</div>
+
+<div class="champ-name">
+Show Me Your TDs
+</div>
+
+<div class="champ-owner">
+Tim
+</div>
+
+</a>
+
+
+<a class="champ-card" href="diggs-island.html">
+
+<div class="trophy">🏆</div>
+
+<div class="champ-number">
+1×
+</div>
+
+<div class="champ-name">
+Diggs Island
+</div>
+
+<div class="champ-owner">
+Jordan
+</div>
+
+</a>
+
+
+<a class="champ-card" href="bacc-field.html">
+
+<div class="trophy">🏆</div>
+
+<div class="champ-number">
+1×
+</div>
+
+<div class="champ-name">
+Bacc Field
+</div>
+
+<div class="champ-owner">
+Kevin
+</div>
+
+</a>
+
+
+<div class="champ-card">
+
+<div class="trophy">🏆</div>
+
+<div class="champ-number">
+1×
+</div>
+
+<div class="champ-name">
+Dawg Pound
+</div>
+
+<div class="champ-owner">
+James
+</div>
+
+<div class="retired-label">
+Retired
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ALL TIME WINS -->
+
+<section class="record-section">
+
+<div class="section-heading">
+
+<h2>All-Time Regular Season</h2>
+
+<p>
+Franchise regular-season records through the completion of 2025.
+</p>
+
+</div>
+
+
+<div class="table-card">
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+<th class="team-heading">Franchise</th>
+<th>Seasons</th>
+<th>Record</th>
+<th>Win %</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="regularSeasonTable">
+</tbody>
+
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- PLAYOFFS -->
+
+<section class="record-section">
+
+<div class="section-heading">
+
+<h2>Playoff History</h2>
+
+<p>
+Every franchise ranked by total postseason victories.
+</p>
+
+</div>
+
+
+<div class="table-card">
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+<th class="team-heading">Franchise</th>
+<th>Apps</th>
+<th>Record</th>
+<th>Wins</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="playoffTable">
+</tbody>
+
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- SHIT KING -->
+
+<section class="record-section">
+
+<div class="section-heading">
+
+<h2>💩 Shit Kings</h2>
+
+<p>
+The other side of FFFFL history.
+</p>
+
+</div>
+
+
+<div class="shit-grid">
+
+
+<div class="shit-card">
+
+<div class="shit-icon">👑</div>
+
+<div class="shit-number">
+1×
+</div>
+
+<div class="shit-name">
+Oreo Blizzard
+</div>
+
+<div class="shit-owner">
+Joe · Retired
+</div>
+
+</div>
+
+
+<div class="shit-card">
+
+<div class="shit-icon">👑</div>
+
+<div class="shit-number">
+1×
+</div>
+
+<div class="shit-name">
+America's Fantasy Team
+</div>
+
+<div class="shit-owner">
+Justin · Retired
+</div>
+
+</div>
+
+
+<div class="shit-card">
+
+<div class="shit-icon">👑</div>
+
+<div class="shit-number">
+1×
+</div>
+
+<div class="shit-name">
+Kuech-in It Real
+</div>
+
+<div class="shit-owner">
+Hayley · Retired
+</div>
+
+</div>
+
+
+<a class="shit-card" href="show-me-your-tds.html">
+
+<div class="shit-icon">👑</div>
+
+<div class="shit-number">
+1×
+</div>
+
+<div class="shit-name">
+Show Me Your TDs
+</div>
+
+<div class="shit-owner">
+Tim
+</div>
+
+</a>
+
+
+<a class="shit-card" href="diggs-island.html">
+
+<div class="shit-icon">👑</div>
+
+<div class="shit-number">
+1×
+</div>
+
+<div class="shit-name">
+Diggs Island
+</div>
+
+<div class="shit-owner">
+Jordan
+</div>
+
+</a>
+
+
+<a class="shit-card" href="dyl-pickle-six.html">
+
+<div class="shit-icon">👑</div>
+
+<div class="shit-number">
+1×
+</div>
+
+<div class="shit-name">
+Dyl Pickle Six
+</div>
+
+<div class="shit-owner">
+Dylan
+</div>
+
+</a>
+
+
+</div>
+
+</section>
+
+
+
+<div class="note">
+
+Historical records are maintained by the FFFFL and are current through
+the completion of the 2025 season. The 2026 season will be incorporated
+into the official record book following completion of the season.
+
+</div>
+
+
+</main>
+
+
+
+<footer>
+
+© 2012–2026 Florida's Finest Fantasy Football League
+
+</footer>
+
+
+
+<script>
+
+
+const FRANCHISES = [
+
+{
+name:"Knightmare",
+owner:"Jared",
+seasons:14,
+wins:140,
+losses:116,
+playoffs:10,
+playoffWins:6,
+playoffLosses:8,
+page:"knightmare.html",
+retired:false
+},
+
+{
+name:"Brady Gaga",
+owner:"Jonah",
+seasons:14,
+wins:139,
+losses:117,
+playoffs:9,
+playoffWins:6,
+playoffLosses:8,
+page:"brady-gaga.html",
+retired:false
+},
+
+{
+name:"Caucasians",
+owner:"Josh",
+seasons:11,
+wins:113,
+losses:88,
+playoffs:7,
+playoffWins:4,
+playoffLosses:6,
+page:"caucasians.html",
+retired:false
+},
+
+{
+name:"Go Luck Yourself",
+owner:"Zack",
+seasons:11,
+wins:107,
+losses:111,
+playoffs:4,
+playoffWins:6,
+playoffLosses:2,
+page:"go-luck-yourself.html",
+retired:false
+},
+
+{
+name:"Oreo Blizzard",
+owner:"Joe",
+seasons:12,
+wins:95,
+losses:105,
+playoffs:6,
+playoffWins:9,
+playoffLosses:4,
+page:"",
+retired:true
+},
+
+{
+name:"Dawg Pound",
+owner:"James",
+seasons:12,
+wins:95,
+losses:105,
+playoffs:5,
+playoffWins:5,
+playoffLosses:4,
+page:"",
+retired:true
+},
+
+{
+name:"Romo Wittens His Panties",
+owner:"Marc",
+seasons:11,
+wins:92,
+losses:80,
+playoffs:6,
+playoffWins:5,
+playoffLosses:4,
+page:"",
+retired:true
+},
+
+{
+name:"Just Bobby",
+owner:"Jerry",
+seasons:8,
+wins:88,
+losses:91,
+playoffs:4,
+playoffWins:1,
+playoffLosses:4,
+page:"just-bobby.html",
+retired:false
+},
+
+{
+name:"Show Me Your TDs",
+owner:"Tim",
+seasons:9,
+wins:87,
+losses:105,
+playoffs:2,
+playoffWins:2,
+playoffLosses:1,
+page:"show-me-your-tds.html",
+retired:false
+},
+
+{
+name:"America's Fantasy Team",
+owner:"Justin",
+seasons:12,
+wins:87,
+losses:128,
+playoffs:2,
+playoffWins:2,
+playoffLosses:2,
+page:"",
+retired:true
+},
+
+{
+name:"Diggs Island",
+owner:"Jordan",
+seasons:8,
+wins:83,
+losses:84,
+playoffs:6,
+playoffWins:5,
+playoffLosses:5,
+page:"diggs-island.html",
+retired:false
+},
+
+{
+name:"Bacc Field",
+owner:"Kevin",
+seasons:8,
+wins:82,
+losses:85,
+playoffs:3,
+playoffWins:6,
+playoffLosses:2,
+page:"bacc-field.html",
+retired:false
+},
+
+{
+name:"Kuech-in It Real",
+owner:"Hayley",
+seasons:5,
+wins:37,
+losses:43,
+playoffs:3,
+playoffWins:1,
+playoffLosses:3,
+page:"",
+retired:true
+},
+
+{
+name:"Dyl Pickle Six",
+owner:"Dylan",
+seasons:3,
+wins:36,
+losses:48,
+playoffs:0,
+playoffWins:0,
+playoffLosses:0,
+page:"dyl-pickle-six.html",
+retired:false
+},
+
+{
+name:"Njigbas In Paris",
+owner:"Austin",
+seasons:2,
+wins:34,
+losses:22,
+playoffs:2,
+playoffWins:2,
+playoffLosses:2,
+page:"njigbas-in-paris.html",
+retired:false
+},
+
+{
+name:"Prison Jeff",
+owner:"Jeff",
+seasons:2,
+wins:28,
+losses:28,
+playoffs:1,
+playoffWins:0,
+playoffLosses:1,
+page:"prison-jeff.html",
+retired:false
+},
+
+{
+name:"Tommy Gunz",
+owner:"Thomas",
+seasons:1,
+wins:10,
+losses:18,
+playoffs:0,
+playoffWins:0,
+playoffLosses:0,
+page:"tommy-gunz.html",
+retired:false
+},
+
+{
+name:"No Name",
+owner:"UA",
+seasons:0,
+wins:0,
+losses:0,
+playoffs:0,
+playoffWins:0,
+playoffLosses:0,
+page:"",
+retired:true
+}
+
+];
+
+
+
+function pct(wins,losses) {
+
+const total =
+wins + losses;
+
+if (!total)
+return ".000";
+
+return (wins / total)
+.toFixed(3)
+.replace(/^0/,"");
+
+}
+
+
+
+function teamHTML(team) {
+
+const name =
+team.page
+?
+`<a href="${team.page}">${team.name}</a>`
+:
+team.name;
+
+
+return `
+
+<div class="team-name">
+${name}
+</div>
+
+<div class="owner">
+
+${team.owner}
+
+${team.retired ? " · Retired" : ""}
+
+</div>
+
+`;
+
+}
+
+
+
+/* REGULAR SEASON */
+
+const regular =
+[...FRANCHISES]
+.filter(team =>
+team.wins + team.losses > 0
+)
+.sort((a,b) => {
+
+if (b.wins !== a.wins)
+return b.wins - a.wins;
+
+return pct(b.wins,b.losses) -
+pct(a.wins,a.losses);
+
+});
+
+
+const regularBody =
+document.getElementById(
+"regularSeasonTable"
+);
+
+
+regular.forEach(
+(team,index) => {
+
+const row =
+document.createElement("tr");
+
+
+row.innerHTML = `
+
+<td class="rank">
+${index + 1}
+</td>
+
+<td class="team-cell">
+${teamHTML(team)}
+</td>
+
+<td>
+${team.seasons}
+</td>
+
+<td class="record">
+${team.wins}-${team.losses}
+</td>
+
+<td class="percentage">
+${pct(team.wins,team.losses)}
+</td>
+
+`;
+
+
+regularBody.appendChild(row);
+
+});
+
+
+
+/* PLAYOFF TABLE */
+
+const playoffs =
+[...FRANCHISES]
+.filter(team =>
+team.playoffs > 0
+)
+.sort((a,b) => {
+
+if (
+b.playoffWins !==
+a.playoffWins
+)
+return (
+b.playoffWins -
+a.playoffWins
+);
+
+return (
+b.playoffs -
+a.playoffs
+);
+
+});
+
+
+const playoffBody =
+document.getElementById(
+"playoffTable"
+);
+
+
+playoffs.forEach(
+(team,index) => {
+
+const row =
+document.createElement("tr");
+
+
+row.innerHTML = `
+
+<td class="rank">
+${index + 1}
+</td>
+
+<td class="team-cell">
+${teamHTML(team)}
+</td>
+
+<td>
+${team.playoffs}
+</td>
+
+<td class="record">
+${team.playoffWins}-${team.playoffLosses}
+</td>
+
+<td class="percentage">
+${team.playoffWins}
+</td>
+
+`;
+
+
+playoffBody.appendChild(row);
+
+});
+
+
+</script>
+
+
+</body>
+</html>
