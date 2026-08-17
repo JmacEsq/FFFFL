@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Njigbas In Paris | FFFFL</title>
+
+  <style>
+    :root {
+      --green-dark: #03180f;
+      --green: #0d3d25;
+      --orange: #e86614;
+      --cream: #fff0cf;
+      --gold: #d4b45a;
+      --white: #ffffff;
+      --black: #050706;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(29,106,61,.15), transparent 32%),
+        linear-gradient(180deg, #07150f 0%, #020806 100%);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(2,18,11,.97);
+      border-bottom: 1px solid rgba(232,102,20,.35);
+    }
+
+    .nav-wrap {
+      max-width: 1250px;
+      margin: auto;
+      min-height: 74px;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+    }
+
+    .brand img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+    }
+
+    .brand-text span:first-child {
+      display: block;
+      font-size: 1.05rem;
+    }
+
+    .brand-text span:last-child {
+      display: block;
+      color: var(--orange);
+      font-size: .8rem;
+      margin-top: 4px;
+      letter-spacing: 1.2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: .87rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+    }
+
+    .team-hero {
+      border-bottom: 1px solid rgba(212,180,90,.25);
+      background:
+        radial-gradient(circle at 25% 40%, rgba(212,180,90,.12), transparent 30%),
+        linear-gradient(135deg, #06140d, #0d291a 55%, #050b08);
+    }
+
+    .team-hero-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 50px 20px;
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .team-logo {
+      text-align: center;
+    }
+
+    .team-logo img {
+      width: 300px;
+      height: 300px;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 28px rgba(0,0,0,.45));
+    }
+
+    .eyebrow {
+      color: var(--orange);
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 3px;
+      font-size: .9rem;
+      margin-bottom: 10px;
+    }
+
+    .team-title {
+      font-size: clamp(3.3rem, 7vw, 6rem);
+      line-height: .9;
+      text-transform: uppercase;
+      color: white;
+      font-weight: 1000;
+    }
+
+    .owner {
+      margin-top: 17px;
+      color: var(--orange);
+      font-weight: 900;
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .live-record {
+      margin-top: 24px;
+      display: inline-block;
+      padding: 12px 18px;
+      border: 1px solid var(--gold);
+      border-radius: 7px;
+      background: rgba(0,0,0,.2);
+    }
+
+    .live-record span {
+      color: var(--orange);
+      font-weight: 900;
+    }
+
+    .page-shell {
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+    }
+
+    .card {
+      background:
+        linear-gradient(180deg, rgba(8,55,34,.96), rgba(3,25,15,.97));
+      border: 1px solid rgba(212,180,90,.5);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 17px 18px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .section-label {
+      margin: 18px 0 8px;
+      color: var(--orange);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      font-size: .83rem;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .section-label:first-child {
+      margin-top: 0;
+    }
+
+    .player-row {
+      display: grid;
+      grid-template-columns: 48px 1fr 55px;
+      gap: 10px;
+      padding: 8px 6px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      align-items: center;
+    }
+
+    .player-pos {
+      color: var(--orange);
+      font-weight: 900;
+    }
+
+    .player-team {
+      color: #a99573;
+      text-align: right;
+    }
+
+    .history-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+    }
+
+    .history-box {
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 8px;
+      padding: 17px 12px;
+      text-align: center;
+    }
+
+    .history-box strong {
+      display: block;
+      color: var(--orange);
+      font-size: 1.6rem;
+      margin-bottom: 5px;
+    }
+
+    .history-box span {
+      text-transform: uppercase;
+      color: #d6c3a0;
+      font-size: .72rem;
+      letter-spacing: .6px;
+    }
+
+    .best-finish-box {
+      margin-top: 18px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid rgba(212,180,90,.35);
+      border-radius: 8px;
+      background: rgba(212,180,90,.06);
+    }
+
+    .best-finish-box .medal {
+      font-size: 2rem;
+      margin-bottom: 7px;
+    }
+
+    .best-finish-box strong {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--gold);
+    }
+
+    .history-note {
+      margin-top: 20px;
+      color: #9e8c6e;
+      font-size: .75rem;
+      line-height: 1.5;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 24px;
+      color: var(--orange);
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+
+    .site-footer {
+      margin-top: 30px;
+      background: #02100a;
+      border-top: 1px solid rgba(232,102,20,.25);
+      text-align: center;
+      padding: 22px;
+      color: #a99573;
+      font-size: .8rem;
+    }
+
+    @media (max-width: 850px) {
+      .team-hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-wrap {
+        flex-direction: column;
+        padding: 12px 20px;
+      }
+
+      nav {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="nav-wrap">
+
+    <a class="brand" href="index.html">
+      <img src="FFFFL Logo.png" alt="FFFFL Logo">
+
+      <div class="brand-text">
+        <span>Florida's Finest</span>
+        <span>Fantasy Football League</span>
+      </div>
+    </a>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="teams.html">Teams</a>
+      <a href="standings.html">Standings</a>
+      <a href="index.html#schedule">Schedule</a>
+      <a href="index.html#record-book">Record Book</a>
+      <a href="index.html#history">History</a>
+      <a href="index.html#mike-hunt">Mike Hunt</a>
+    </nav>
+
+  </div>
+</header>
+
+<section class="team-hero">
+
+  <div class="team-hero-inner">
+
+    <div class="team-logo">
+      <img src="team-logos/njigbas-in-paris.png" alt="Njigbas In Paris">
+    </div>
+
+    <div>
+
+      <div class="eyebrow">
+        FFFFL Franchise
+      </div>
+
+      <h1 class="team-title">
+        Njigbas In Paris
+      </h1>
+
+      <div class="owner">
+        Owner: Austin
+      </div>
+
+      <div class="live-record">
+        2026 Record:
+        <span id="liveRecord">Loading...</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<main class="page-shell">
+
+  <div class="grid">
+
+    <section class="card">
+
+      <div class="card-header">
+        Current Roster
+      </div>
+
+      <div class="card-body">
+
+        <div id="rosterStatus">
+          Loading roster from Sleeper...
+        </div>
+
+        <div id="roster"></div>
+
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <div class="card-header">
+        Franchise History
+      </div>
+
+      <div class="card-body">
+
+        <div class="history-grid">
+
+          <div class="history-box">
+            <strong>2</strong>
+            <span>Seasons</span>
+          </div>
+
+          <div class="history-box">
+            <strong>34-22</strong>
+            <span>All-Time Record</span>
+          </div>
+
+          <div class="history-box">
+            <strong>.607</strong>
+            <span>Win Percentage</span>
+          </div>
+
+          <div class="history-box">
+            <strong>2</strong>
+            <span>Playoff Appearances</span>
+          </div>
+
+          <div class="history-box">
+            <strong>2-2</strong>
+            <span>Playoff Record</span>
+          </div>
+
+          <div class="history-box">
+            <strong>0</strong>
+            <span>Championships</span>
+          </div>
+
+        </div>
+
+        <div class="best-finish-box">
+          <div class="medal">🥈</div>
+          <strong>Best Finish: 2nd Place</strong>
+        </div>
+
+        <div class="history-note">
+          Historical franchise records are current through the completion
+          of the 2025 FFFFL season. Current-season record and roster data
+          are updated live through Sleeper.
+        </div>
+
+        <a class="back-link" href="teams.html">
+          ← Back to all teams
+        </a>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  © 2012–2026 Florida's Finest Fantasy Football League
+</footer>
+
+<script>
+
+  const LEAGUE_ID = "1312020664282025984";
+
+  const TARGET_NAMES = [
+    "njigbas in paris",
+    "axj"
+  ];
+
+  const POSITION_ORDER = {
+    QB: 1,
+    RB: 2,
+    WR: 3,
+    TE: 4,
+    DEF: 5,
+    K: 6
+  };
+
+  function clean(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[™®©]/g, "")
+      .replace(/[^a-z0-9 ]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function playerName(player) {
+    return (
+      player.full_name ||
+      `${player.first_name || ""} ${player.last_name || ""}`.trim() ||
+      "Unknown Player"
+    );
+  }
+
+  function positionRank(position) {
+    return POSITION_ORDER[position] || 99;
+  }
+
+  function sortPlayers(list) {
+    return list.sort((a,b) => {
+
+      const difference =
+        positionRank(a.player.position) -
+        positionRank(b.player.position);
+
+      if (difference !== 0) {
+        return difference;
+      }
+
+      return playerName(a.player).localeCompare(
+        playerName(b.player)
+      );
+
+    });
+  }
+
+  function playerRow(item) {
+
+    const player = item.player;
+
+    return `
+      <div class="player-row">
+
+        <div class="player-pos">
+          ${player.position || "—"}
+        </div>
+
+        <div>
+          ${playerName(player)}
+        </div>
+
+        <div class="player-team">
+          ${player.team || "FA"}
+        </div>
+
+      </div>
+    `;
+  }
+
+  function isTargetUser(user) {
+
+    const values = [
+      clean(user?.metadata?.team_name),
+      clean(user?.display_name),
+      clean(user?.username)
+    ];
+
+    return TARGET_NAMES.some(
+      target => values.includes(clean(target))
+    );
+  }
+
+  async function loadTeam() {
+
+    const liveRecord =
+      document.getElementById("liveRecord");
+
+    const rosterStatus =
+      document.getElementById("rosterStatus");
+
+    const rosterContainer =
+      document.getElementById("roster");
+
+    try {
+
+      const [
+        usersResponse,
+        rostersResponse,
+        playersResponse
+      ] = await Promise.all([
+
+        fetch(
+          `https://api.sleeper.app/v1/league/${LEAGUE_ID}/users`
+        ),
+
+        fetch(
+          `https://api.sleeper.app/v1/league/${LEAGUE_ID}/rosters`
+        ),
+
+        fetch(
+          "https://api.sleeper.app/v1/players/nfl"
+        )
+
+      ]);
+
+      if (
+        !usersResponse.ok ||
+        !rostersResponse.ok ||
+        !playersResponse.ok
+      ) {
+        throw new Error(
+          "Sleeper returned an error."
+        );
+      }
+
+      const users =
+        await usersResponse.json();
+
+      const rosters =
+        await rostersResponse.json();
+
+      const players =
+        await playersResponse.json();
+
+      const targetUser =
+        users.find(isTargetUser);
+
+      if (!targetUser) {
+        throw new Error(
+          "Could not locate Njigbas In Paris in Sleeper."
+        );
+      }
+
+      const targetRoster =
+        rosters.find(
+          roster =>
+            roster.owner_id === targetUser.user_id
+        );
+
+      if (!targetRoster) {
+        throw new Error(
+          "Could not locate Njigbas In Paris roster."
+        );
+      }
+
+      const wins =
+        targetRoster.settings?.wins ?? 0;
+
+      const losses =
+        targetRoster.settings?.losses ?? 0;
+
+      const ties =
+        targetRoster.settings?.ties ?? 0;
+
+      liveRecord.textContent =
+        `${wins}-${losses}${ties ? `-${ties}` : ""}`;
+
+      const starterIds =
+        targetRoster.starters || [];
+
+      const rosterIds =
+        targetRoster.players || [];
+
+      const starters = [];
+      const bench = [];
+
+      rosterIds.forEach(playerId => {
+
+        const player =
+          players[playerId];
+
+        if (!player) return;
+
+        const item = {
+          playerId,
+          player
+        };
+
+        if (starterIds.includes(playerId)) {
+          starters.push(item);
+        } else {
+          bench.push(item);
+        }
+
+      });
+
+      sortPlayers(starters);
+      sortPlayers(bench);
+
+      let html = `
+        <div class="section-label">
+          Starting Lineup
+        </div>
+      `;
+
+      starters.forEach(item => {
+        html += playerRow(item);
+      });
+
+      html += `
+        <div class="section-label">
+          Bench
+        </div>
+      `;
+
+      bench.forEach(item => {
+        html += playerRow(item);
+      });
+
+      rosterStatus.style.display =
+        "none";
+
+      rosterContainer.innerHTML =
+        html;
+
+    }
+
+    catch(error) {
+
+      console.error(error);
+
+      liveRecord.textContent =
+        "Unavailable";
+
+      rosterStatus.innerHTML =
+        `Sleeper roster data is temporarily unavailable.`;
+
+    }
+
+  }
+
+  loadTeam();
+
+</script>
+
+</body>
+</html>
