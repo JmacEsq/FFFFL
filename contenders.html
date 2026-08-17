@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contenders League | FFFFL</title>
+
+<style>
+
+:root {
+  --dark:#03180f;
+  --dark2:#06150f;
+  --green:#0d3d25;
+  --green-light:#155a36;
+  --orange:#e86614;
+  --cream:#fff0cf;
+  --gold:#d4b45a;
+  --white:#ffffff;
+  --muted:#a99573;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  font-family:Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top,rgba(30,100,60,.13),transparent 35%),
+    linear-gradient(180deg,#06150f,#020806);
+  color:var(--cream);
+  min-height:100vh;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+
+/* HEADER */
+
+.site-header {
+  background:rgba(2,18,11,.98);
+  border-bottom:1px solid rgba(232,102,20,.35);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.nav-wrap {
+  max-width:1250px;
+  margin:auto;
+  min-height:74px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+}
+
+.brand img {
+  width:54px;
+  height:54px;
+  object-fit:contain;
+}
+
+.brand-text span:first-child {
+  display:block;
+  font-size:1.05rem;
+}
+
+.brand-text span:last-child {
+  display:block;
+  color:var(--orange);
+  font-size:.8rem;
+  margin-top:4px;
+  letter-spacing:1.2px;
+}
+
+nav {
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+nav a {
+  font-size:.87rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+}
+
+nav a:hover,
+nav a.active {
+  color:var(--orange);
+}
+
+
+/* HERO */
+
+.hero {
+  padding:70px 20px 58px;
+  text-align:center;
+  border-bottom:1px solid rgba(212,180,90,.25);
+  background:
+    radial-gradient(circle at center top,rgba(232,102,20,.10),transparent 35%);
+}
+
+.eyebrow {
+  color:var(--orange);
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-size:.85rem;
+  margin-bottom:12px;
+}
+
+.hero h1 {
+  color:white;
+  font-size:clamp(3rem,7vw,5.8rem);
+  line-height:.92;
+  text-transform:uppercase;
+  font-weight:1000;
+}
+
+.hero-subtitle {
+  margin-top:10px;
+  color:var(--gold);
+  text-transform:uppercase;
+  font-size:1rem;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.hero p {
+  max-width:760px;
+  margin:20px auto 0;
+  color:#d9c8a8;
+  line-height:1.7;
+}
+
+.sleeper-button {
+  display:inline-block;
+  margin-top:25px;
+  padding:12px 20px;
+  background:var(--orange);
+  color:#111;
+  font-weight:1000;
+  text-transform:uppercase;
+  border-radius:6px;
+  font-size:.8rem;
+  letter-spacing:.7px;
+  transition:.2s ease;
+}
+
+.sleeper-button:hover {
+  transform:translateY(-2px);
+}
+
+
+/* PAGE */
+
+.page {
+  max-width:1200px;
+  margin:auto;
+  padding:40px 20px 70px;
+}
+
+
+/* INTRO */
+
+.intro-card {
+  background:
+    linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
+  border:1px solid rgba(212,180,90,.5);
+  border-radius:10px;
+  padding:28px;
+  margin-bottom:42px;
+  text-align:center;
+}
+
+.intro-card h2 {
+  color:white;
+  text-transform:uppercase;
+  font-size:1.5rem;
+}
+
+.intro-card p {
+  max-width:850px;
+  margin:13px auto 0;
+  color:#cfbc9c;
+  line-height:1.7;
+}
+
+.league-facts {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:22px;
+}
+
+.fact {
+  background:rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:7px;
+  padding:15px;
+}
+
+.fact strong {
+  display:block;
+  color:var(--orange);
+  font-size:1.3rem;
+}
+
+.fact span {
+  display:block;
+  margin-top:4px;
+  color:#c7b695;
+  font-size:.7rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+}
+
+
+/* SECTIONS */
+
+.section {
+  margin-bottom:48px;
+}
+
+.section-heading {
+  margin-bottom:18px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(232,102,20,.35);
+}
+
+.section-heading h2 {
+  color:white;
+  text-transform:uppercase;
+  font-size:1.7rem;
+}
+
+.section-heading p {
+  color:var(--muted);
+  font-size:.8rem;
+  margin-top:5px;
+}
+
+
+/* STANDINGS */
+
+.standings-card {
+  border:1px solid rgba(212,180,90,.5);
+  border-radius:10px;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
+}
+
+.table-wrap {
+  overflow-x:auto;
+}
+
+table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+thead {
+  background:var(--orange);
+  color:#111;
+}
+
+th {
+  padding:12px 10px;
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  text-align:center;
+}
+
+th.team-heading {
+  text-align:left;
+}
+
+td {
+  padding:13px 10px;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+tbody tr:last-child td {
+  border-bottom:none;
+}
+
+tbody tr:hover {
+  background:rgba(255,255,255,.03);
+}
+
+.rank {
+  color:var(--orange);
+  font-weight:1000;
+  width:55px;
+}
+
+.team-cell {
+  text-align:left;
+}
+
+.team-name {
+  color:white;
+  text-transform:uppercase;
+  font-weight:900;
+}
+
+.owner {
+  color:var(--orange);
+  text-transform:uppercase;
+  font-size:.7rem;
+  font-weight:900;
+  margin-top:3px;
+}
+
+.record-number {
+  font-weight:900;
+}
+
+.pct {
+  color:var(--gold);
+  font-weight:900;
+}
+
+
+/* MATCHUPS */
+
+.week-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  margin-bottom:18px;
+}
+
+.week-title {
+  color:var(--orange);
+  font-size:.9rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.matchups-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.matchup-card {
+  background:
+    linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
+  border:1px solid rgba(212,180,90,.45);
+  border-radius:9px;
+  overflow:hidden;
+}
+
+.matchup-label {
+  text-align:center;
+  padding:9px;
+  color:var(--orange);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  font-size:.7rem;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.matchup-team {
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:15px;
+  padding:17px;
+}
+
+.matchup-team + .matchup-team {
+  border-top:1px solid rgba(255,255,255,.07);
+}
+
+.matchup-score {
+  color:var(--gold);
+  font-size:1.35rem;
+  font-weight:1000;
+}
+
+
+/* LINEUPS */
+
+.lineups-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.roster-card {
+  background:
+    linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
+  border:1px solid rgba(212,180,90,.45);
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.roster-header {
+  padding:18px;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.roster-header h3 {
+  color:white;
+  text-transform:uppercase;
+  font-size:1.15rem;
+}
+
+.roster-header div {
+  color:var(--orange);
+  text-transform:uppercase;
+  font-weight:900;
+  font-size:.72rem;
+  margin-top:4px;
+}
+
+.roster-body {
+  padding:17px;
+}
+
+.roster-section-title {
+  color:var(--orange);
+  text-transform:uppercase;
+  font-weight:900;
+  letter-spacing:.7px;
+  font-size:.75rem;
+  margin:12px 0 6px;
+  padding-bottom:5px;
+  border-bottom:1px solid rgba(255,255,255,.09);
+}
+
+.roster-section-title:first-child {
+  margin-top:0;
+}
+
+.player-row {
+  display:grid;
+  grid-template-columns:45px 1fr 48px;
+  gap:10px;
+  padding:7px 3px;
+  border-bottom:1px solid rgba(255,255,255,.055);
+  align-items:center;
+}
+
+.player-pos {
+  color:var(--orange);
+  font-weight:900;
+}
+
+.player-team {
+  color:var(--muted);
+  text-align:right;
+  font-size:.8rem;
+}
+
+
+/* LOADING */
+
+.loading {
+  background:#082c1b;
+  border:1px solid rgba(212,180,90,.4);
+  border-radius:8px;
+  padding:28px;
+  text-align:center;
+  color:var(--muted);
+}
+
+
+/* FOOTER */
+
+footer {
+  border-top:1px solid rgba(232,102,20,.25);
+  background:#02100a;
+  text-align:center;
+  color:var(--muted);
+  padding:22px;
+  font-size:.8rem;
+}
+
+
+/* MOBILE */
+
+@media(max-width:850px) {
+
+  .nav-wrap {
+    flex-direction:column;
+    padding:12px 20px;
+  }
+
+  nav {
+    justify-content:center;
+  }
+
+  .matchups-grid,
+  .lineups-grid {
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:650px) {
+
+  .league-facts {
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+<div class="nav-wrap">
+
+<a class="brand" href="index.html">
+
+<img src="FFFFL Logo.png" alt="FFFFL Logo">
+
+<div class="brand-text">
+<span>Florida's Finest</span>
+<span>Fantasy Football League</span>
+</div>
+
+</a>
+
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="teams.html">Teams</a>
+  <a href="standings.html">Standings</a>
+  <a href="schedule.html">Schedule</a>
+  <a href="record-book.html">Record Book</a>
+  <a href="history.html">History</a>
+  <a href="mike-hunt.html">Mike Hunt</a>
+  <a href="contenders.html" class="active">Contenders</a>
+</nav>
+
+
+</div>
+
+</header>
+
+
+
+<section class="hero">
+
+<div class="eyebrow">
+Florida's Finest
+</div>
+
+<h1>
+Contenders League
+</h1>
+
+<div class="hero-subtitle">
+The Road to the FFFFL
+</div>
+
+<p>
+The Florida's Finest Contenders League is the developmental league
+within the Florida's Finest fantasy football universe. Eight franchises
+compete for league supremacy and the opportunity to establish themselves
+among Florida's Finest.
+</p>
+
+<a
+  class="sleeper-button"
+  href="https://sleeper.com/leagues/1387900652335673344/matchup"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+Open Contenders in Sleeper
+</a>
+
+</section>
+
+
+
+<main class="page">
+
+
+<section class="intro-card">
+
+<h2>
+Florida's Finest Contenders League
+</h2>
+
+<p>
+The Contenders League gives eight managers their own competitive league
+while serving as the proving ground beneath the FFFFL. Standings,
+weekly matchups, scores and rosters on this page update directly from
+Sleeper throughout the season.
+</p>
+
+<div class="league-facts">
+
+<div class="fact">
+<strong>8</strong>
+<span>Franchises</span>
+</div>
+
+<div class="fact">
+<strong>2026</strong>
+<span>Season</span>
+</div>
+
+<div class="fact">
+<strong>Live</strong>
+<span>Sleeper Data</span>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- STANDINGS -->
+
+<section class="section">
+
+<div class="section-heading">
+
+<h2>
+Contenders Standings
+</h2>
+
+<p>
+Live regular-season records from Sleeper.
+</p>
+
+</div>
+
+
+<div id="standingsLoading" class="loading">
+Loading Contenders standings...
+</div>
+
+
+<div
+  id="standingsCard"
+  class="standings-card"
+  style="display:none;"
+>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>#</th>
+<th class="team-heading">Team</th>
+<th>W</th>
+<th>L</th>
+<th>T</th>
+<th>PCT</th>
+</tr>
+
+</thead>
+
+<tbody id="standingsBody">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- MATCHUPS -->
+
+<section class="section">
+
+<div class="section-heading">
+
+<h2>
+Current Week Matchups
+</h2>
+
+<p>
+The four Contenders matchups for the current Sleeper week.
+</p>
+
+</div>
+
+
+<div class="week-header">
+
+<div
+  id="currentWeekTitle"
+  class="week-title"
+>
+Loading current week...
+</div>
+
+</div>
+
+
+<div id="matchupsLoading" class="loading">
+Loading current matchups...
+</div>
+
+
+<div
+  id="matchupsGrid"
+  class="matchups-grid"
+  style="display:none;"
+>
+</div>
+
+</section>
+
+
+
+<!-- LINEUPS -->
+
+<section class="section">
+
+<div class="section-heading">
+
+<h2>
+Team Lineups
+</h2>
+
+<p>
+Current starters and benches for all eight Contenders franchises.
+</p>
+
+</div>
+
+
+<div id="lineupsLoading" class="loading">
+Loading Contenders rosters...
+</div>
+
+
+<div
+  id="lineupsGrid"
+  class="lineups-grid"
+  style="display:none;"
+>
+</div>
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+© 2012–2026 Florida's Finest Fantasy Football League
+
+</footer>
+
+
+
+<script>
+
+
+const LEAGUE_ID =
+  "1387900652335673344";
+
+
+/* =====================================================
+   OFFICIAL CONTENDERS TEAM INFORMATION
+   ===================================================== */
+
+const TEAM_DATA = [
+
+{
+  aliases:[
+    "nawlins taints"
+  ],
+  name:"Nawlins Taints",
+  owner:"Jordan M"
+},
+
+{
+  aliases:[
+    "americas fantasy team",
+    "america s fantasy team"
+  ],
+  name:"America's Fantasy Team",
+  owner:"Justin"
+},
+
+{
+  aliases:[
+    "motor city madmen"
+  ],
+  name:"Motor City Madmen",
+  owner:"Gary"
+},
+
+{
+  aliases:[
+    "prestige worldwide"
+  ],
+  name:"Prestige Worldwide",
+  owner:"Tony"
+},
+
+{
+  aliases:[
+    "beattys tube squad",
+    "beatty s tube squad",
+    "the tube squad"
+  ],
+  name:"The Tube Squad",
+  owner:"Tanner"
+},
+
+{
+  aliases:[
+    "team mfrat",
+    "romo wittens his panties"
+  ],
+  name:"Romo Wittens His Panties",
+  owner:"Marc"
+},
+
+{
+  aliases:[
+    "team fsuern",
+    "dawg pound"
+  ],
+  name:"Dawg Pound",
+  owner:"James"
+},
+
+{
+  aliases:[
+    "team billyhuff",
+    "team billy"
+  ],
+  name:"Team Billy",
+  owner:"Billy"
+}
+
+];
+
+
+
+/* =====================================================
+   HELPERS
+   ===================================================== */
+
+function clean(value) {
+
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[™®©]/g,"")
+    .replace(/[^a-z0-9 ]/g," ")
+    .replace(/\s+/g," ")
+    .trim();
+
+}
+
+
+function identifyTeam(user) {
+
+  const values = [
+
+    clean(user?.metadata?.team_name),
+
+    clean(user?.display_name),
+
+    clean(user?.username)
+
+  ];
+
+
+  for (const team of TEAM_DATA) {
+
+    for (const alias of team.aliases) {
+
+      if (
+        values.includes(
+          clean(alias)
+        )
+      ) {
+
+        return team;
+
+      }
+
+    }
+
+  }
+
+
+  return null;
+
+}
+
+
+function winPct(
+  wins,
+  losses,
+  ties
+) {
+
+  const games =
+    wins + losses + ties;
+
+
+  if (!games) {
+
+    return ".000";
+
+  }
+
+
+  return (
+    (wins + ties * .5) / games
+  )
+  .toFixed(3)
+  .replace(/^0/,"");
+
+}
+
+
+const POSITION_ORDER = {
+
+  QB:1,
+  RB:2,
+  WR:3,
+  TE:4,
+  DEF:5,
+  K:6
+
+};
+
+
+function playerName(player) {
+
+  return (
+    player.full_name ||
+    `${player.first_name || ""} ${player.last_name || ""}`.trim() ||
+    "Unknown Player"
+  );
+
+}
+
+
+function positionRank(position) {
+
+  return (
+    POSITION_ORDER[position] ||
+    99
+  );
+
+}
+
+
+function sortPlayers(list) {
+
+  return list.sort(
+    function(a,b) {
+
+      const pos =
+        positionRank(
+          a.player.position
+        ) -
+        positionRank(
+          b.player.position
+        );
+
+
+      if (pos !== 0) {
+
+        return pos;
+
+      }
+
+
+      return playerName(
+        a.player
+      )
+      .localeCompare(
+        playerName(
+          b.player
+        )
+      );
+
+    }
+  );
+
+}
+
+
+function playerRow(item) {
+
+  const player =
+    item.player;
+
+
+  return `
+
+    <div class="player-row">
+
+      <div class="player-pos">
+        ${player.position || "—"}
+      </div>
+
+      <div>
+        ${playerName(player)}
+      </div>
+
+      <div class="player-team">
+        ${player.team || "FA"}
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* =====================================================
+   LOAD USERS + ROSTERS
+   ===================================================== */
+
+async function loadLeagueCore() {
+
+  const [
+    usersResponse,
+    rostersResponse
+  ] = await Promise.all([
+
+    fetch(
+      `https://api.sleeper.app/v1/league/${LEAGUE_ID}/users`
+    ),
+
+    fetch(
+      `https://api.sleeper.app/v1/league/${LEAGUE_ID}/rosters`
+    )
+
+  ]);
+
+
+  if (
+    !usersResponse.ok ||
+    !rostersResponse.ok
+  ) {
+
+    throw new Error(
+      "Sleeper league data could not load."
+    );
+
+  }
+
+
+  const users =
+    await usersResponse.json();
+
+  const rosters =
+    await rostersResponse.json();
+
+
+  const usersById = {};
+
+
+  users.forEach(
+    function(user) {
+
+      usersById[user.user_id] =
+        user;
+
+    }
+  );
+
+
+  const teamsByRosterId = {};
+
+
+  rosters.forEach(
+    function(roster) {
+
+      const user =
+        usersById[
+          roster.owner_id
+        ];
+
+
+      const official =
+        identifyTeam(user);
+
+
+      teamsByRosterId[
+        roster.roster_id
+      ] = {
+
+        roster,
+        user,
+
+        official:
+          official || {
+
+            name:
+              user?.metadata?.team_name ||
+              user?.display_name ||
+              "Unknown Team",
+
+            owner:
+              user?.display_name ||
+              "Unknown"
+
+          }
+
+      };
+
+    }
+  );
+
+
+  return {
+
+    users,
+    rosters,
+    usersById,
+    teamsByRosterId
+
+  };
+
+}
+
+
+
+/* =====================================================
+   STANDINGS
+   ===================================================== */
+
+async function loadStandings(core) {
+
+  const loading =
+    document.getElementById(
+      "standingsLoading"
+    );
+
+  const card =
+    document.getElementById(
+      "standingsCard"
+    );
+
+  const body =
+    document.getElementById(
+      "standingsBody"
+    );
+
+
+  try {
+
+    const standings =
+      core.rosters.map(
+        function(roster) {
+
+          const data =
+            core.teamsByRosterId[
+              roster.roster_id
+            ];
+
+
+          const wins =
+            Number(
+              roster.settings?.wins ||
+              0
+            );
+
+          const losses =
+            Number(
+              roster.settings?.losses ||
+              0
+            );
+
+          const ties =
+            Number(
+              roster.settings?.ties ||
+              0
+            );
+
+          const fpts =
+            Number(
+              roster.settings?.fpts ||
+              0
+            );
+
+          const decimal =
+            Number(
+              roster.settings?.fpts_decimal ||
+              0
+            );
+
+
+          return {
+
+            name:
+              data.official.name,
+
+            owner:
+              data.official.owner,
+
+            wins,
+            losses,
+            ties,
+
+            pointsFor:
+              fpts +
+              decimal / 100
+
+          };
+
+        }
+      );
+
+
+    standings.sort(
+      function(a,b) {
+
+        const aGames =
+          a.wins +
+          a.losses +
+          a.ties;
+
+        const bGames =
+          b.wins +
+          b.losses +
+          b.ties;
+
+
+        const aPct =
+          aGames
+            ?
+            (
+              a.wins +
+              a.ties * .5
+            ) /
+            aGames
+            :
+            0;
+
+
+        const bPct =
+          bGames
+            ?
+            (
+              b.wins +
+              b.ties * .5
+            ) /
+            bGames
+            :
+            0;
+
+
+        if (
+          bPct !==
+          aPct
+        ) {
+
+          return (
+            bPct -
+            aPct
+          );
+
+        }
+
+
+        return (
+          b.pointsFor -
+          a.pointsFor
+        );
+
+      }
+    );
+
+
+    const preseason =
+      standings.every(
+        function(team) {
+
+          return (
+            team.wins === 0 &&
+            team.losses === 0 &&
+            team.ties === 0
+          );
+
+        }
+      );
+
+
+    body.innerHTML =
+      "";
+
+
+    standings.forEach(
+      function(team,index) {
+
+        const row =
+          document.createElement(
+            "tr"
+          );
+
+
+        row.innerHTML = `
+
+          <td class="rank">
+
+            ${
+              preseason
+                ?
+                "—"
+                :
+                index + 1
+            }
+
+          </td>
+
+
+          <td class="team-cell">
+
+            <div class="team-name">
+              ${team.name}
+            </div>
+
+            <div class="owner">
+              ${team.owner}
+            </div>
+
+          </td>
+
+
+          <td class="record-number">
+            ${team.wins}
+          </td>
+
+          <td class="record-number">
+            ${team.losses}
+          </td>
+
+          <td class="record-number">
+            ${team.ties}
+          </td>
+
+          <td class="pct">
+
+            ${winPct(
+              team.wins,
+              team.losses,
+              team.ties
+            )}
+
+          </td>
+
+        `;
+
+
+        body.appendChild(
+          row
+        );
+
+      }
+    );
+
+
+    loading.style.display =
+      "none";
+
+    card.style.display =
+      "block";
+
+  }
+
+  catch(error) {
+
+    console.error(error);
+
+    loading.textContent =
+      "Contenders standings are temporarily unavailable.";
+
+  }
+
+}
+
+
+
+/* =====================================================
+   CURRENT WEEK
+   ===================================================== */
+
+async function getCurrentWeek() {
+
+  try {
+
+    const response =
+      await fetch(
+        "https://api.sleeper.app/v1/state/nfl"
+      );
+
+
+    if (!response.ok) {
+
+      return 1;
+
+    }
+
+
+    const state =
+      await response.json();
+
+
+    const week =
+      Number(
+        state.week || 1
+      );
+
+
+    if (
+      state.season_type !==
+      "regular"
+    ) {
+
+      return 1;
+
+    }
+
+
+    return Math.max(
+      1,
+      week
+    );
+
+  }
+
+  catch(error) {
+
+    return 1;
+
+  }
+
+}
+
+
+
+/* =====================================================
+   MATCHUPS
+   ===================================================== */
+
+async function loadMatchups(
+  core,
+  week
+) {
+
+  const title =
+    document.getElementById(
+      "currentWeekTitle"
+    );
+
+  const loading =
+    document.getElementById(
+      "matchupsLoading"
+    );
+
+  const grid =
+    document.getElementById(
+      "matchupsGrid"
+    );
+
+
+  title.textContent =
+    `Week ${week}`;
+
+
+  try {
+
+    const response =
+      await fetch(
+        `https://api.sleeper.app/v1/league/${LEAGUE_ID}/matchups/${week}`
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Matchups could not load."
+      );
+
+    }
+
+
+    const matchups =
+      await response.json();
+
+
+    const groups = {};
+
+
+    matchups.forEach(
+      function(matchup) {
+
+        const id =
+          matchup.matchup_id;
+
+
+        if (!groups[id]) {
+
+          groups[id] = [];
+
+        }
+
+
+        groups[id].push(
+          matchup
+        );
+
+      }
+    );
+
+
+    grid.innerHTML =
+      "";
+
+
+    Object.values(
+      groups
+    )
+    .forEach(
+      function(group,index) {
+
+        if (
+          group.length < 2
+        ) {
+
+          return;
+
+        }
+
+
+        const first =
+          group[0];
+
+        const second =
+          group[1];
+
+
+        const teamA =
+          core.teamsByRosterId[
+            first.roster_id
+          ]?.official;
+
+        const teamB =
+          core.teamsByRosterId[
+            second.roster_id
+          ]?.official;
+
+
+        if (
+          !teamA ||
+          !teamB
+        ) {
+
+          return;
+
+        }
+
+
+        const card =
+          document.createElement(
+            "div"
+          );
+
+
+        card.className =
+          "matchup-card";
+
+
+        card.innerHTML = `
+
+          <div class="matchup-label">
+            Matchup ${index + 1}
+          </div>
+
+
+          <div class="matchup-team">
+
+            <div>
+
+              <div class="team-name">
+                ${teamA.name}
+              </div>
+
+              <div class="owner">
+                ${teamA.owner}
+              </div>
+
+            </div>
+
+            <div class="matchup-score">
+
+              ${
+                Number(
+                  first.points ||
+                  0
+                )
+                .toFixed(2)
+              }
+
+            </div>
+
+          </div>
+
+
+          <div class="matchup-team">
+
+            <div>
+
+              <div class="team-name">
+                ${teamB.name}
+              </div>
+
+              <div class="owner">
+                ${teamB.owner}
+              </div>
+
+            </div>
+
+            <div class="matchup-score">
+
+              ${
+                Number(
+                  second.points ||
+                  0
+                )
+                .toFixed(2)
+              }
+
+            </div>
+
+          </div>
+
+        `;
+
+
+        grid.appendChild(
+          card
+        );
+
+      }
+    );
+
+
+    loading.style.display =
+      "none";
+
+    grid.style.display =
+      "grid";
+
+  }
+
+  catch(error) {
+
+    console.error(error);
+
+    loading.textContent =
+      "Current matchups are temporarily unavailable.";
+
+  }
+
+}
+
+
+
+/* =====================================================
+   ALL TEAM LINEUPS
+   ===================================================== */
+
+async function loadLineups(core) {
+
+  const loading =
+    document.getElementById(
+      "lineupsLoading"
+    );
+
+  const grid =
+    document.getElementById(
+      "lineupsGrid"
+    );
+
+
+  try {
+
+    const response =
+      await fetch(
+        "https://api.sleeper.app/v1/players/nfl"
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Player database could not load."
+      );
+
+    }
+
+
+    const players =
+      await response.json();
+
+
+    const rosterCards = [];
+
+
+    core.rosters.forEach(
+      function(roster) {
+
+        const teamData =
+          core.teamsByRosterId[
+            roster.roster_id
+          ];
+
+
+        if (!teamData) {
+
+          return;
+
+        }
+
+
+        const starterIds =
+          roster.starters ||
+          [];
+
+        const rosterIds =
+          roster.players ||
+          [];
+
+
+        const starters = [];
+        const bench = [];
+
+
+        rosterIds.forEach(
+          function(playerId) {
+
+            const player =
+              players[playerId];
+
+
+            if (!player) {
+
+              return;
+
+            }
+
+
+            const item = {
+
+              playerId,
+              player
+
+            };
+
+
+            if (
+              starterIds.includes(
+                playerId
+              )
+            ) {
+
+              starters.push(
+                item
+              );
+
+            }
+
+            else {
+
+              bench.push(
+                item
+              );
+
+            }
+
+          }
+        );
+
+
+        sortPlayers(
+          starters
+        );
+
+        sortPlayers(
+          bench
+        );
+
+
+        rosterCards.push({
+
+          name:
+            teamData.official.name,
+
+          owner:
+            teamData.official.owner,
+
+          starters,
+          bench
+
+        });
+
+      }
+    );
+
+
+    rosterCards.sort(
+      function(a,b) {
+
+        return a.name.localeCompare(
+          b.name
+        );
+
+      }
+    );
+
+
+    grid.innerHTML =
+      "";
+
+
+    rosterCards.forEach(
+      function(team) {
+
+        const card =
+          document.createElement(
+            "div"
+          );
+
+
+        card.className =
+          "roster-card";
+
+
+        let starterHTML =
+          "";
+
+
+        team.starters.forEach(
+          function(item) {
+
+            starterHTML +=
+              playerRow(item);
+
+          }
+        );
+
+
+        let benchHTML =
+          "";
+
+
+        team.bench.forEach(
+          function(item) {
+
+            benchHTML +=
+              playerRow(item);
+
+          }
+        );
+
+
+        card.innerHTML = `
+
+          <div class="roster-header">
+
+            <h3>
+              ${team.name}
+            </h3>
+
+            <div>
+              ${team.owner}
+            </div>
+
+          </div>
+
+
+          <div class="roster-body">
+
+            <div class="roster-section-title">
+              Starting Lineup
+            </div>
+
+            ${
+              starterHTML ||
+              "No starters found."
+            }
+
+
+            <div class="roster-section-title">
+              Bench
+            </div>
+
+            ${
+              benchHTML ||
+              "No bench players found."
+            }
+
+          </div>
+
+        `;
+
+
+        grid.appendChild(
+          card
+        );
+
+      }
+    );
+
+
+    loading.style.display =
+      "none";
+
+    grid.style.display =
+      "grid";
+
+  }
+
+  catch(error) {
+
+    console.error(error);
+
+    loading.textContent =
+      "Contenders rosters are temporarily unavailable.";
+
+  }
+
+}
+
+
+
+/* =====================================================
+   INITIALIZE
+   ===================================================== */
+
+async function initialize() {
+
+  try {
+
+    const core =
+      await loadLeagueCore();
+
+
+    const week =
+      await getCurrentWeek();
+
+
+    await Promise.all([
+
+      loadStandings(
+        core
+      ),
+
+      loadMatchups(
+        core,
+        week
+      ),
+
+      loadLineups(
+        core
+      )
+
+    ]);
+
+  }
+
+  catch(error) {
+
+    console.error(error);
+
+
+    document.getElementById(
+      "standingsLoading"
+    ).textContent =
+      "Sleeper league data could not load.";
+
+
+    document.getElementById(
+      "matchupsLoading"
+    ).textContent =
+      "Sleeper league data could not load.";
+
+
+    document.getElementById(
+      "lineupsLoading"
+    ).textContent =
+      "Sleeper league data could not load.";
+
+  }
+
+}
+
+
+initialize();
+
+
+</script>
+
+
+</body>
+</html>
