@@ -36,6 +36,8 @@ a {
   text-decoration:none;
 }
 
+/* HEADER */
+
 .site-header {
   background:rgba(2,18,11,.98);
   border-bottom:1px solid rgba(232,102,20,.35);
@@ -99,6 +101,8 @@ nav a.active {
   color:var(--orange);
 }
 
+/* HERO */
+
 .hero {
   text-align:center;
   padding:65px 20px 55px;
@@ -128,6 +132,8 @@ nav a.active {
   color:#d9c8a8;
   line-height:1.6;
 }
+
+/* PAGE */
 
 .page {
   max-width:1100px;
@@ -177,6 +183,7 @@ th {
   text-align:center;
   font-size:.75rem;
   text-transform:uppercase;
+  letter-spacing:.5px;
 }
 
 th.team-heading {
@@ -189,44 +196,60 @@ td {
   text-align:center;
 }
 
+tbody tr {
+  transition:background .2s ease;
+}
+
+tbody tr:hover {
+  background:rgba(255,255,255,.045);
+}
+
 .rank {
   width:60px;
   color:var(--orange);
   font-weight:900;
+  font-size:1.05rem;
 }
 
 .team-cell {
   text-align:left;
 }
 
-.team-info {
+.team-link {
   display:flex;
   align-items:center;
   gap:14px;
+  width:100%;
+}
+
+.team-link:hover .team-name {
+  color:var(--orange);
 }
 
 .team-info img {
   width:58px;
   height:58px;
   object-fit:contain;
+  transition:transform .2s ease;
+}
+
+.team-link:hover img {
+  transform:scale(1.07);
 }
 
 .team-name {
-  color:white;
   font-weight:900;
+  color:white;
   text-transform:uppercase;
-}
-
-.team-name a:hover {
-  color:var(--orange);
+  transition:color .2s ease;
 }
 
 .owner {
   color:var(--orange);
   font-size:.72rem;
   font-weight:800;
-  text-transform:uppercase;
   margin-top:3px;
+  text-transform:uppercase;
 }
 
 .number {
@@ -257,6 +280,7 @@ footer {
 }
 
 @media(max-width:800px) {
+
   .nav-wrap {
     flex-direction:column;
     padding:12px 20px;
@@ -393,70 +417,80 @@ const TEAM_DATA = [
     aliases:["go luck yourself","zmurli13"],
     name:"Go Luck Yourself",
     owner:"Zack",
-    logo:"team-logos/go-luck-yourself.png"
+    logo:"team-logos/go-luck-yourself.png",
+    page:"go-luck-yourself.html"
   },
 
   {
     aliases:["diggs island","jiraffone22"],
     name:"Diggs Island",
     owner:"Jordan",
-    logo:"team-logos/diggs-island.png"
+    logo:"team-logos/diggs-island.png",
+    page:"diggs-island.html"
   },
 
   {
     aliases:["prison jeff","therealjrsmith"],
     name:"Prison Jeff",
     owner:"Jeff",
-    logo:"team-logos/prison-jeff.png"
+    logo:"team-logos/prison-jeff.png",
+    page:"prison-jeff.html"
   },
 
   {
     aliases:["bacc field","kbacc"],
     name:"Bacc Field",
     owner:"Kevin",
-    logo:"team-logos/bacc-field.png"
+    logo:"team-logos/bacc-field.png",
+    page:"bacc-field.html"
   },
 
   {
     aliases:["caucasians","jmac4"],
     name:"Caucasians",
     owner:"Josh",
-    logo:"team-logos/caucasians.png"
+    logo:"team-logos/caucasians.png",
+    page:"caucasians.html"
   },
 
   {
     aliases:["brady gaga","jmactb"],
     name:"Brady Gaga",
     owner:"Jonah",
-    logo:"team-logos/brady-gaga.png"
+    logo:"team-logos/brady-gaga.png",
+    page:"brady-gaga.html"
   },
 
   {
     aliases:["njigbas in paris","axj"],
     name:"Njigbas In Paris",
     owner:"Austin",
-    logo:"team-logos/njigbas-in-paris.png"
+    logo:"team-logos/njigbas-in-paris.png",
+    page:"njigbas-in-paris.html"
   },
 
   {
     aliases:["show me your tds","smitty44"],
     name:"Show Me Your TDs",
     owner:"Tim",
-    logo:"team-logos/show-me-your-tds.png"
+    logo:"team-logos/show-me-your-tds.png",
+    page:"show-me-your-tds.html"
   },
 
   {
     aliases:["just bobby","jerryculkin"],
     name:"Just Bobby",
     owner:"Jerry",
-    logo:"team-logos/just-bobby.png"
+    logo:"team-logos/just-bobby.png",
+    page:"just-bobby.html"
   },
 
   {
     aliases:["t gunz","tommy gunz","tculkin1"],
     name:"Tommy Gunz",
     owner:"Thomas",
-    logo:"team-logos/tommy-gunz.png"
+    logo:"team-logos/tommy-gunz.png",
+    page:"tommy-gunz.html"
   },
 
   {
@@ -468,7 +502,8 @@ const TEAM_DATA = [
     ],
     name:"Dyl Pickle Six",
     owner:"Dylan",
-    logo:"team-logos/dyl-pickle-six.png"
+    logo:"team-logos/dyl-pickle-six.png",
+    page:"dyl-pickle-six.html"
   }
 
 ];
@@ -659,9 +694,7 @@ async function loadStandings() {
 
 
       if (!user) {
-
         return;
-
       }
 
 
@@ -751,16 +784,8 @@ async function loadStandings() {
           : index + 1;
 
 
-      const logo =
-        team.logo
-          ? `<img src="${team.logo}" alt="${team.name}">`
-          : "";
-
-
-      const teamName =
-        team.page
-          ? `<a href="${team.page}">${team.name}</a>`
-          : team.name;
+      const profileLink =
+        team.page || "teams.html";
 
 
       row.innerHTML = `
@@ -771,14 +796,22 @@ async function loadStandings() {
 
         <td class="team-cell">
 
-          <div class="team-info">
+          <a class="team-link" href="${profileLink}">
 
-            ${logo}
+            <div class="team-info">
+
+              ${
+                team.logo
+                  ? `<img src="${team.logo}" alt="${team.name}">`
+                  : ""
+              }
+
+            </div>
 
             <div>
 
               <div class="team-name">
-                ${teamName}
+                ${team.name}
               </div>
 
               <div class="owner">
@@ -787,7 +820,7 @@ async function loadStandings() {
 
             </div>
 
-          </div>
+          </a>
 
         </td>
 
