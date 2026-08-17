@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>History | FFFFL</title>
+
+<style>
+
+:root {
+  --dark:#03180f;
+  --dark2:#06150f;
+  --green:#0d3d25;
+  --orange:#e86614;
+  --cream:#fff0cf;
+  --gold:#d4b45a;
+  --white:#ffffff;
+  --muted:#a99573;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  font-family:Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top,rgba(30,100,60,.12),transparent 35%),
+    linear-gradient(180deg,#06150f,#020806);
+  color:var(--cream);
+  min-height:100vh;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.site-header {
+  background:rgba(2,18,11,.98);
+  border-bottom:1px solid rgba(232,102,20,.35);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.nav-wrap {
+  max-width:1250px;
+  margin:auto;
+  min-height:74px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+}
+
+.brand img {
+  width:54px;
+  height:54px;
+  object-fit:contain;
+}
+
+.brand-text span:first-child {
+  display:block;
+  font-size:1.05rem;
+}
+
+.brand-text span:last-child {
+  display:block;
+  color:var(--orange);
+  font-size:.8rem;
+  margin-top:4px;
+  letter-spacing:1.2px;
+}
+
+nav {
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+nav a {
+  font-size:.87rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+}
+
+nav a:hover,
+nav a.active {
+  color:var(--orange);
+}
+
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+  text-align:center;
+  padding:70px 20px 55px;
+  border-bottom:1px solid rgba(212,180,90,.25);
+  background:
+    radial-gradient(circle at center,rgba(232,102,20,.08),transparent 40%);
+}
+
+.eyebrow {
+  color:var(--orange);
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-size:.85rem;
+  margin-bottom:12px;
+}
+
+.hero h1 {
+  color:white;
+  font-size:clamp(3.2rem,8vw,6rem);
+  line-height:.95;
+  text-transform:uppercase;
+  font-weight:1000;
+}
+
+.hero p {
+  max-width:760px;
+  margin:18px auto 0;
+  color:#d9c8a8;
+  line-height:1.7;
+}
+
+.hero-badge {
+  display:inline-block;
+  margin-top:22px;
+  padding:8px 14px;
+  border:1px solid var(--gold);
+  border-radius:5px;
+  color:var(--gold);
+  font-size:.72rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+
+/* =========================
+   PAGE
+   ========================= */
+
+.page {
+  max-width:1100px;
+  margin:auto;
+  padding:42px 20px 75px;
+}
+
+
+/* =========================
+   EARLY YEARS
+   ========================= */
+
+.story-card {
+  background:
+    linear-gradient(180deg,rgba(8,55,34,.97),rgba(3,25,15,.98));
+  border:1px solid rgba(212,180,90,.45);
+  border-radius:10px;
+  padding:28px;
+  margin-bottom:48px;
+}
+
+.story-card h2 {
+  color:white;
+  text-transform:uppercase;
+  font-size:1.55rem;
+}
+
+.story-card p {
+  margin-top:13px;
+  color:#d0bea0;
+  line-height:1.75;
+}
+
+.story-note {
+  margin-top:18px;
+  padding:15px 17px;
+  border-left:3px solid var(--orange);
+  background:rgba(0,0,0,.18);
+  color:#bfae91;
+  line-height:1.65;
+  font-size:.86rem;
+}
+
+
+/* =========================
+   TIMELINE
+   ========================= */
+
+.timeline-heading {
+  margin-bottom:26px;
+}
+
+.timeline-heading h2 {
+  color:white;
+  text-transform:uppercase;
+  font-size:1.8rem;
+}
+
+.timeline-heading p {
+  color:var(--muted);
+  margin-top:5px;
+  font-size:.82rem;
+}
+
+.timeline {
+  position:relative;
+  margin-left:22px;
+  padding-left:35px;
+}
+
+.timeline:before {
+  content:"";
+  position:absolute;
+  left:7px;
+  top:6px;
+  bottom:6px;
+  width:2px;
+  background:
+    linear-gradient(
+      180deg,
+      var(--orange),
+      var(--gold),
+      rgba(212,180,90,.15)
+    );
+}
+
+.timeline-item {
+  position:relative;
+  margin-bottom:28px;
+}
+
+.timeline-item:before {
+  content:"";
+  position:absolute;
+  left:-35px;
+  top:7px;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:var(--orange);
+  border:3px solid #06150f;
+  box-shadow:0 0 0 2px rgba(232,102,20,.35);
+}
+
+.year {
+  color:var(--gold);
+  font-size:1.45rem;
+  font-weight:1000;
+  margin-bottom:7px;
+}
+
+.timeline-card {
+  background:
+    linear-gradient(180deg,rgba(8,55,34,.96),rgba(3,25,15,.97));
+  border:1px solid rgba(212,180,90,.38);
+  border-radius:9px;
+  padding:19px 20px;
+}
+
+.timeline-card h3 {
+  color:white;
+  font-size:1.05rem;
+  text-transform:uppercase;
+  margin-bottom:7px;
+}
+
+.timeline-card p {
+  color:#cbb99a;
+  line-height:1.7;
+  font-size:.9rem;
+}
+
+.champion {
+  display:inline-block;
+  margin-top:12px;
+  padding:6px 10px;
+  color:var(--orange);
+  border:1px solid rgba(232,102,20,.4);
+  border-radius:4px;
+  font-size:.68rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+
+.milestone {
+  border-color:rgba(232,102,20,.55);
+  background:
+    linear-gradient(180deg,rgba(12,67,40,.98),rgba(4,29,18,.98));
+}
+
+
+/* =========================
+   CHAMPIONS INDEX
+   ========================= */
+
+.champions-index {
+  margin-top:55px;
+}
+
+.section-heading {
+  margin-bottom:18px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(232,102,20,.35);
+}
+
+.section-heading h2 {
+  color:white;
+  text-transform:uppercase;
+  font-size:1.7rem;
+}
+
+.section-heading p {
+  color:var(--muted);
+  font-size:.8rem;
+  margin-top:5px;
+}
+
+.champion-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.champion-card {
+  padding:18px 13px;
+  text-align:center;
+  border:1px solid rgba(212,180,90,.4);
+  border-radius:8px;
+  background:
+    linear-gradient(180deg,rgba(8,55,34,.96),rgba(3,25,15,.97));
+}
+
+.champion-year {
+  color:var(--gold);
+  font-size:1.25rem;
+  font-weight:1000;
+}
+
+.champion-name {
+  color:white;
+  font-size:.8rem;
+  font-weight:900;
+  text-transform:uppercase;
+  line-height:1.25;
+  margin-top:7px;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+  border-top:1px solid rgba(232,102,20,.25);
+  background:#02100a;
+  text-align:center;
+  color:var(--muted);
+  padding:22px;
+  font-size:.8rem;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media(max-width:850px) {
+
+  .nav-wrap {
+    flex-direction:column;
+    padding:12px 20px;
+  }
+
+  nav {
+    justify-content:center;
+  }
+
+  .champion-grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:520px) {
+
+  .timeline {
+    margin-left:8px;
+    padding-left:27px;
+  }
+
+  .timeline-item:before {
+    left:-27px;
+  }
+
+  .champion-grid {
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+<div class="nav-wrap">
+
+<a class="brand" href="index.html">
+
+<img src="FFFFL Logo.png" alt="FFFFL Logo">
+
+<div class="brand-text">
+<span>Florida's Finest</span>
+<span>Fantasy Football League</span>
+</div>
+
+</a>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="teams.html">Teams</a>
+  <a href="standings.html">Standings</a>
+  <a href="schedule.html">Schedule</a>
+  <a href="record-book.html">Record Book</a>
+  <a href="history.html" class="active">History</a>
+  <a href="mike-hunt.html">Mike Hunt</a>
+  <a href="contenders.html">Contenders</a>
+</nav>
+
+</div>
+
+</header>
+
+
+
+<section class="hero">
+
+<div class="eyebrow">
+Since 2012
+</div>
+
+<h1>
+FFFFL History
+</h1>
+
+<p>
+Fourteen completed seasons, championship runs, retirements,
+expansion, protests, terrible draft decisions and enough league
+drama to require its own historical record.
+</p>
+
+<div class="hero-badge">
+The Story of Florida's Finest
+</div>
+
+</section>
+
+
+
+<main class="page">
+
+
+<section class="story-card">
+
+<h2>
+The Early Years
+</h2>
+
+<p>
+Florida's Finest Fantasy Football League began in 2012 and has evolved
+through multiple generations of owners, franchises and platforms.
+The modern FFFFL record book preserves the statistics that remain
+reliably maintained, while the league's history extends beyond those
+numbers.
+</p>
+
+<div class="story-note">
+Former owners Tasha, Logan and Steve were part of the league during its
+earlier years, but their statistics pre-date portions of the league's
+currently maintained record books. Their time in the FFFFL remains part
+of league history even where complete statistical records no longer exist.
+</div>
+
+</section>
+
+
+
+<section>
+
+<div class="timeline-heading">
+
+<h2>
+League Timeline
+</h2>
+
+<p>
+The defining seasons, champions and moments in FFFFL history.
+</p>
+
+</div>
+
+
+<div class="timeline">
+
+
+<!-- 2012 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2012
+</div>
+
+<div class="timeline-card milestone">
+
+<h3>
+The FFFFL Begins
+</h3>
+
+<p>
+Florida's Finest Fantasy Football League begins its first season.
+Brady Gaga becomes the league's inaugural champion.
+</p>
+
+<div class="champion">
+🏆 Champion: Brady Gaga
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2013 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2013
+</div>
+
+<div class="timeline-card">
+
+<h3>
+Oreo Blizzard Takes the Throne
+</h3>
+
+<p>
+Joe's Oreo Blizzard captures the championship and begins the first
+back-to-back title run in league history.
+</p>
+
+<div class="champion">
+🏆 Champion: Oreo Blizzard
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2014 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2014
+</div>
+
+<div class="timeline-card">
+
+<h3>
+Back-to-Back — and an All-Time Draft Moment
+</h3>
+
+<p>
+Oreo Blizzard repeats as FFFFL champion. The season also produces one
+of the league's most memorable draft blunders when Marc, owner of
+Romo Wittens His Panties, drafts David Wilson after Wilson had already
+suffered the neck injury that ended his NFL career.
+</p>
+
+<div class="champion">
+🏆 Champion: Oreo Blizzard
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2015 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2015
+</div>
+
+<div class="timeline-card">
+
+<h3>
+Knightmare Breaks Through
+</h3>
+
+<p>
+Knightmare wins its first FFFFL championship.
+</p>
+
+<div class="champion">
+🏆 Champion: Knightmare
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2016 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2016
+</div>
+
+<div class="timeline-card">
+
+<h3>
+Dawg Pound Wins It All
+</h3>
+
+<p>
+James and Dawg Pound capture the FFFFL championship.
+</p>
+
+<div class="champion">
+🏆 Champion: Dawg Pound
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2017 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2017
+</div>
+
+<div class="timeline-card milestone">
+
+<h3>
+A Championship and an Unexpected Exit
+</h3>
+
+<p>
+Show Me Your TDs wins the FFFFL championship. Justin, owner of
+America's Fantasy Team, retires from the league following the evacuation
+caused by Hurricane Irma.
+</p>
+
+<div class="champion">
+🏆 Champion: Show Me Your TDs
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2018 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2018
+</div>
+
+<div class="timeline-card milestone">
+
+<h3>
+New Ownership and Romo's First Title
+</h3>
+
+<p>
+Tasha is removed from the league after failing to maintain her roster,
+and Kevin enters the FFFFL with Bacc Field. Romo Wittens His Panties
+wins its first championship.
+</p>
+
+<div class="champion">
+🏆 Champion: Romo Wittens His Panties
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2019 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2019
+</div>
+
+<div class="timeline-card milestone">
+
+<h3>
+Go Luck Yourself Wins — The Caucasians Protest Begins
+</h3>
+
+<p>
+Go Luck Yourself captures its first championship. Josh, owner of the
+Caucasians, begins a three-season protest of the league following
+Tasha's removal.
+</p>
+
+<div class="champion">
+🏆 Champion: Go Luck Yourself
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2020 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2020
+</div>
+
+<div class="timeline-card milestone">
+
+<h3>
+The Sleeper Era Begins
+</h3>
+
+<p>
+The FFFFL leaves ESPN and moves to Sleeper for the 2020 season.
+Romo Wittens His Panties wins its second championship.
+</p>
+
+<div class="champion">
+🏆 Champion: Romo Wittens His Panties
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2021 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2021
+</div>
+
+<div class="timeline-card">
+
+<h3>
+Bacc Field Wins the Championship
+</h3>
+
+<p>
+Kevin and Bacc Field capture the FFFFL title. This is also the final
+season in which Just Bobby is co-owned by Thomas and Jerry before
+Jerry takes over as sole owner.
+</p>
+
+<div class="champion">
+🏆 Champion: Bacc Field
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2022 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2022
+</div>
+
+<div class="timeline-card milestone">
+
+<h3>
+Diggs Island Wins — Marc Retires
+</h3>
+
+<p>
+Diggs Island captures the championship. Following the season,
+Marc retires Romo Wittens His Panties from the FFFFL and
+Dyl Pickle Six enters the league.
+</p>
+
+<div class="champion">
+🏆 Champion: Diggs Island
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2023 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2023
+</div>
+
+<div class="timeline-card milestone">
+
+<h3>
+Go Luck Yourself Wins Again — Two Veterans Depart
+</h3>
+
+<p>
+Go Luck Yourself wins its second championship. Following the season,
+Joe's Oreo Blizzard and James' Dawg Pound retire from the league.
+Njigbas In Paris and Prison Jeff enter the FFFFL.
+</p>
+
+<div class="champion">
+🏆 Champion: Go Luck Yourself
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2024 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2024
+</div>
+
+<div class="timeline-card milestone">
+
+<h3>
+Caucasians Champion — The Champions Dinner Begins
+</h3>
+
+<p>
+The Caucasians win the 2024 FFFFL championship. Following the season,
+the league holds its first Champions Dinner, beginning a new league
+tradition. Justin retires America's Fantasy Team for the second time,
+and Tommy Gunz enters the league.
+</p>
+
+<div class="champion">
+🏆 Champion: Caucasians
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2025 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2025
+</div>
+
+<div class="timeline-card">
+
+<h3>
+Knightmare Returns to the Top
+</h3>
+
+<p>
+Knightmare captures its second FFFFL championship, ten seasons after
+winning its first.
+</p>
+
+<div class="champion">
+🏆 Champion: Knightmare
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 2026 -->
+
+<div class="timeline-item">
+
+<div class="year">
+2026
+</div>
+
+<div class="timeline-card milestone">
+
+<h3>
+The Contenders Era
+</h3>
+
+<p>
+The Florida's Finest Contenders League launches as an eight-team
+companion league to the FFFFL. The new league brings several familiar
+franchises back into the Florida's Finest universe, including
+America's Fantasy Team, Romo Wittens His Panties and Dawg Pound.
+</p>
+
+<div class="champion">
+FFCL Begins
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- CHAMPIONSHIP INDEX -->
+
+<section class="champions-index">
+
+<div class="section-heading">
+
+<h2>
+Champions by Year
+</h2>
+
+<p>
+The complete FFFFL championship lineage through 2025.
+</p>
+
+</div>
+
+
+<div class="champion-grid">
+
+<div class="champion-card">
+<div class="champion-year">2012</div>
+<div class="champion-name">Brady Gaga</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2013</div>
+<div class="champion-name">Oreo Blizzard</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2014</div>
+<div class="champion-name">Oreo Blizzard</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2015</div>
+<div class="champion-name">Knightmare</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2016</div>
+<div class="champion-name">Dawg Pound</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2017</div>
+<div class="champion-name">Show Me Your TDs</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2018</div>
+<div class="champion-name">Romo Wittens His Panties</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2019</div>
+<div class="champion-name">Go Luck Yourself</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2020</div>
+<div class="champion-name">Romo Wittens His Panties</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2021</div>
+<div class="champion-name">Bacc Field</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2022</div>
+<div class="champion-name">Diggs Island</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2023</div>
+<div class="champion-name">Go Luck Yourself</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2024</div>
+<div class="champion-name">Caucasians</div>
+</div>
+
+<div class="champion-card">
+<div class="champion-year">2025</div>
+<div class="champion-name">Knightmare</div>
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+© 2012–2026 Florida's Finest Fantasy Football League
+
+</footer>
+
+
+</body>
+</html>
