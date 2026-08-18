@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>The Yocum | FFFFL</title>
+
+<style>
+
+:root {
+
+  --dark:#03180f;
+  --dark2:#06150f;
+  --green:#0d3d25;
+  --green-light:#155a36;
+  --orange:#e86614;
+  --cream:#fff0cf;
+  --gold:#d4b45a;
+  --white:#ffffff;
+  --muted:#a99573;
+
+}
+
+* {
+
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+
+}
+
+body {
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(30,100,60,.13),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #06150f,
+      #020806
+    );
+
+  color:var(--cream);
+
+  min-height:100vh;
+
+}
+
+a {
+
+  color:inherit;
+  text-decoration:none;
+
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.site-header {
+
+  background:
+    rgba(2,18,11,.98);
+
+  border-bottom:
+    1px solid rgba(232,102,20,.35);
+
+  position:sticky;
+  top:0;
+
+  z-index:1000;
+
+}
+
+.nav-wrap {
+
+  max-width:1250px;
+
+  margin:auto;
+
+  min-height:74px;
+
+  padding:0 20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:25px;
+
+}
+
+.brand {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  font-weight:900;
+
+}
+
+.brand img {
+
+  width:54px;
+  height:54px;
+
+  object-fit:contain;
+
+}
+
+.brand-text span:first-child {
+
+  display:block;
+
+  font-size:1.05rem;
+
+}
+
+.brand-text span:last-child {
+
+  display:block;
+
+  color:var(--orange);
+
+  font-size:.8rem;
+
+  margin-top:4px;
+
+  letter-spacing:1.2px;
+
+}
+
+nav {
+
+  display:flex;
+
+  gap:20px;
+
+  flex-wrap:wrap;
+
+}
+
+nav a {
+
+  font-size:.87rem;
+
+  font-weight:800;
+
+  text-transform:uppercase;
+
+  letter-spacing:.6px;
+
+}
+
+nav a:hover,
+nav a.active {
+
+  color:var(--orange);
+
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.hero {
+
+  text-align:center;
+
+  padding:68px 20px 52px;
+
+  border-bottom:
+    1px solid rgba(212,180,90,.25);
+
+  background:
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(212,180,90,.12),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 50% 70%,
+      rgba(232,102,20,.07),
+      transparent 36%
+    );
+
+}
+
+.eyebrow {
+
+  color:var(--orange);
+
+  font-size:.82rem;
+
+  font-weight:900;
+
+  letter-spacing:3px;
+
+  text-transform:uppercase;
+
+  margin-bottom:13px;
+
+}
+
+.hero h1 {
+
+  color:white;
+
+  font-size:
+    clamp(
+      4rem,
+      10vw,
+      7.5rem
+    );
+
+  line-height:.88;
+
+  text-transform:uppercase;
+
+  font-weight:1000;
+
+  letter-spacing:-2px;
+
+}
+
+.hero-subtitle {
+
+  margin-top:18px;
+
+  color:var(--gold);
+
+  font-size:
+    clamp(
+      .95rem,
+      2vw,
+      1.25rem
+    );
+
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  letter-spacing:2px;
+
+}
+
+.hero-rule {
+
+  width:90px;
+
+  height:3px;
+
+  margin:25px auto 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--orange),
+      transparent
+    );
+
+}
+
+
+/* =====================================================
+   PAGE
+   ===================================================== */
+
+.page {
+
+  max-width:1120px;
+
+  margin:auto;
+
+  padding:45px 20px 75px;
+
+}
+
+
+/* =====================================================
+   TROPHY SHOWCASE
+   ===================================================== */
+
+.trophy-showcase {
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(320px,.9fr)
+    minmax(0,1.1fr);
+
+  gap:42px;
+
+  align-items:center;
+
+  margin-bottom:65px;
+
+}
+
+.trophy-photo-wrap {
+
+  position:relative;
+
+  padding:15px;
+
+  border-radius:12px;
+
+  border:
+    1px solid rgba(212,180,90,.55);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8,55,34,.96),
+      rgba(3,25,15,.98)
+    );
+
+  box-shadow:
+    0 22px 45px rgba(0,0,0,.35);
+
+}
+
+.trophy-photo {
+
+  width:100%;
+
+  display:block;
+
+  border-radius:7px;
+
+}
+
+.trophy-copy {
+
+  padding:10px 0;
+
+}
+
+.trophy-copy .small-label {
+
+  color:var(--orange);
+
+  text-transform:uppercase;
+
+  font-size:.73rem;
+
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  margin-bottom:10px;
+
+}
+
+.trophy-copy h2 {
+
+  color:white;
+
+  text-transform:uppercase;
+
+  font-size:
+    clamp(
+      2rem,
+      4vw,
+      3.4rem
+    );
+
+  line-height:1;
+
+}
+
+.trophy-copy p {
+
+  margin-top:18px;
+
+  color:#d4c2a2;
+
+  line-height:1.75;
+
+  font-size:1rem;
+
+}
+
+.trophy-quote {
+
+  margin-top:25px;
+
+  padding:17px 19px;
+
+  border-left:
+    4px solid var(--gold);
+
+  background:
+    rgba(212,180,90,.07);
+
+  color:var(--cream);
+
+  line-height:1.6;
+
+  font-weight:800;
+
+  font-style:italic;
+
+}
+
+
+/* =====================================================
+   LEGEND
+   ===================================================== */
+
+.legend-section {
+
+  margin-bottom:65px;
+
+}
+
+.section-heading {
+
+  margin-bottom:20px;
+
+  padding-bottom:11px;
+
+  border-bottom:
+    1px solid rgba(232,102,20,.35);
+
+}
+
+.section-heading .small-label {
+
+  color:var(--orange);
+
+  font-size:.7rem;
+
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  margin-bottom:7px;
+
+}
+
+.section-heading h2 {
+
+  color:white;
+
+  text-transform:uppercase;
+
+  font-size:
+    clamp(
+      1.8rem,
+      4vw,
+      2.7rem
+    );
+
+}
+
+.legend-card {
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8,55,34,.96),
+      rgba(3,25,15,.98)
+    );
+
+  border:
+    1px solid rgba(212,180,90,.45);
+
+  border-radius:10px;
+
+  padding:
+    clamp(
+      24px,
+      5vw,
+      42px
+    );
+
+  box-shadow:
+    0 16px 35px rgba(0,0,0,.22);
+
+}
+
+.legend-card p {
+
+  color:#d4c3a4;
+
+  font-size:1rem;
+
+  line-height:1.85;
+
+  margin-bottom:22px;
+
+}
+
+.legend-card p:last-child {
+
+  margin-bottom:0;
+
+}
+
+.yocum-name {
+
+  text-align:center;
+
+  color:var(--gold);
+
+  font-size:
+    clamp(
+      2.3rem,
+      7vw,
+      4.8rem
+    );
+
+  font-weight:1000;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  margin:
+    28px 0;
+
+  text-shadow:
+    0 6px 20px rgba(0,0,0,.45);
+
+}
+
+
+/* =====================================================
+   CHAMPIONS
+   ===================================================== */
+
+.champions-section {
+
+  margin-bottom:55px;
+
+}
+
+.champions-grid {
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:12px;
+
+}
+
+.champion-row {
+
+  display:grid;
+
+  grid-template-columns:
+    75px 1fr;
+
+  align-items:center;
+
+  gap:15px;
+
+  padding:15px 17px;
+
+  border:
+    1px solid rgba(212,180,90,.34);
+
+  border-radius:8px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8,55,34,.96),
+      rgba(3,25,15,.97)
+    );
+
+}
+
+.champion-row:hover {
+
+  border-color:
+    rgba(232,102,20,.65);
+
+}
+
+.champion-year {
+
+  color:var(--gold);
+
+  font-size:1.2rem;
+
+  font-weight:1000;
+
+  text-align:center;
+
+}
+
+.champion-team {
+
+  color:white;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  font-size:.9rem;
+
+}
+
+.champion-owner {
+
+  color:var(--orange);
+
+  font-size:.7rem;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  margin-top:3px;
+
+}
+
+
+/* =====================================================
+   CLOSING
+   ===================================================== */
+
+.closing {
+
+  padding:40px 25px;
+
+  text-align:center;
+
+  border:
+    1px solid rgba(212,180,90,.5);
+
+  border-radius:10px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(232,102,20,.1),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8,55,34,.97),
+      rgba(3,25,15,.98)
+    );
+
+}
+
+.closing small {
+
+  color:var(--orange);
+
+  font-size:.7rem;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  letter-spacing:2px;
+
+}
+
+.closing h2 {
+
+  color:white;
+
+  margin-top:10px;
+
+  text-transform:uppercase;
+
+  font-size:
+    clamp(
+      1.8rem,
+      4vw,
+      3rem
+    );
+
+}
+
+.closing p {
+
+  color:var(--gold);
+
+  margin-top:10px;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+
+  border-top:
+    1px solid rgba(232,102,20,.25);
+
+  background:#02100a;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  padding:22px;
+
+  font-size:.8rem;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media(max-width:900px) {
+
+  .nav-wrap {
+
+    flex-direction:column;
+
+    padding:
+      12px 20px;
+
+  }
+
+  nav {
+
+    justify-content:center;
+
+  }
+
+  .trophy-showcase {
+
+    grid-template-columns:1fr;
+
+  }
+
+  .trophy-photo-wrap {
+
+    max-width:600px;
+
+    margin:auto;
+
+  }
+
+  .trophy-copy {
+
+    text-align:center;
+
+  }
+
+  .trophy-quote {
+
+    text-align:left;
+
+  }
+
+}
+
+
+@media(max-width:650px) {
+
+  .hero {
+
+    padding:
+      55px 18px 42px;
+
+  }
+
+  .page {
+
+    padding:
+      32px 15px 60px;
+
+  }
+
+  .brand-text {
+
+    display:none;
+
+  }
+
+  nav {
+
+    gap:
+      10px 14px;
+
+  }
+
+  nav a {
+
+    font-size:.71rem;
+
+  }
+
+  .champions-grid {
+
+    grid-template-columns:1fr;
+
+  }
+
+  .champion-row {
+
+    grid-template-columns:
+      65px 1fr;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<header class="site-header">
+
+<div class="nav-wrap">
+
+
+<a
+  class="brand"
+  href="index.html"
+>
+
+<img
+  src="FFFFL Logo.png"
+  alt="FFFFL Logo"
+>
+
+<div class="brand-text">
+
+<span>
+Florida's Finest
+</span>
+
+<span>
+Fantasy Football League
+</span>
+
+</div>
+
+</a>
+
+
+<nav>
+
+<a href="index.html">
+Home
+</a>
+
+<a href="teams.html">
+Teams
+</a>
+
+<a href="standings.html">
+Standings
+</a>
+
+<a href="schedule.html">
+Schedule
+</a>
+
+<a href="record-book.html">
+Record Book
+</a>
+
+<a href="history.html">
+History
+</a>
+
+<a href="trophy.html" class="active">
+The Yocum
+</a>
+
+<a href="mike-hunt.html">
+Mike Hunt
+</a>
+
+<a href="contenders.html">
+Contenders
+</a>
+
+</nav>
+
+
+</div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<section class="hero">
+
+<div class="eyebrow">
+The Championship Trophy of Florida's Finest
+</div>
+
+<h1>
+The Yocum
+</h1>
+
+<div class="hero-subtitle">
+Glory • Legacy • Immaturity
+</div>
+
+<div class="hero-rule">
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PAGE
+     ===================================================== -->
+
+<main class="page">
+
+
+<!-- TROPHY SHOWCASE -->
+
+<section class="trophy-showcase">
+
+
+<div class="trophy-photo-wrap">
+
+<img
+  class="trophy-photo"
+  src="the-yocum.jpg"
+  alt="The Yocum FFFFL Championship Trophy"
+>
+
+</div>
+
+
+<div class="trophy-copy">
+
+<div class="small-label">
+The Ultimate Prize
+</div>
+
+<h2>
+One Trophy.<br>
+One Champion.
+</h2>
+
+<p>
+Every FFFFL season ends with one owner earning the right to add his
+name to the most important piece of hardware in Florida's Finest.
+The Yocum permanently records each champion and carries the history
+of the league from one season to the next.
+</p>
+
+<p>
+Its dark wood, championship plates and unmistakable football throne
+have become the physical record of FFFFL supremacy.
+</p>
+
+<div class="trophy-quote">
+To hoist The Yocum is to etch your name into league folklore.
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     THE LEGEND
+     ===================================================== -->
+
+<section class="legend-section">
+
+
+<div class="section-heading">
+
+<div class="small-label">
+League Lore
+</div>
+
+<h2>
+The Legend of The Yocum
+</h2>
+
+</div>
+
+
+<div class="legend-card">
+
+
+<p>
+Long before the league knew champions, punishments, or the sting of a
+Monday night collapse, there was only chaos — grown men arguing over
+waiver claims, speaking in prophecy about breakout receivers, and
+swearing each season would finally be “their year.”
+</p>
+
+
+<p>
+As the story goes, the founders believed no ordinary trophy could govern
+such a reckless brotherhood. It needed a name with weight. A name spoken
+with equal parts admiration, mystery, and reverence.
+</p>
+
+
+<p>
+And so, after many beverages and very little wisdom, the league settled
+upon a single sacred title:
+</p>
+
+
+<div class="yocum-name">
+The Yocum
+</div>
+
+
+<p>
+Some say the name was chosen because it carried an almost mythical power
+over the league itself. Others claim it symbolized loyalty, legacy, and
+the kind of bond only lifelong friends can maintain through years of
+competition, betrayal, and terrible trades. A few historians insist the
+founders simply recognized greatness when they heard it.
+</p>
+
+
+<p>
+What is known is this: from that day forward, the towering dark-wood
+trophy, crowned in bronze and etched with the names of champions past,
+became more than a prize. The Yocum came to represent glory, jealousy,
+honor, and the kind of immaturity only lifelong friends can sustain well
+into adulthood.
+</p>
+
+
+<p>
+To hoist The Yocum is to etch your name into league folklore — celebrated
+by your brothers, resented by your rivals, and remembered long after the
+standings are forgotten.
+</p>
+
+
+<p>
+Legends fade. Champions come and go. But The Yocum remains.
+</p>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     CHAMPIONS
+     ===================================================== -->
+
+<section class="champions-section">
+
+
+<div class="section-heading">
+
+<div class="small-label">
+Etched in History
+</div>
+
+<h2>
+Champions of The Yocum
+</h2>
+
+</div>
+
+
+<div class="champions-grid">
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2012
+</div>
+
+<div>
+
+<div class="champion-team">
+Brady Gaga
+</div>
+
+<div class="champion-owner">
+Jonah McElwee
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2013
+</div>
+
+<div>
+
+<div class="champion-team">
+Oreo Blizzard
+</div>
+
+<div class="champion-owner">
+Joe McElwee
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2014
+</div>
+
+<div>
+
+<div class="champion-team">
+Oreo Blizzard
+</div>
+
+<div class="champion-owner">
+Joe McElwee
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2015
+</div>
+
+<div>
+
+<div class="champion-team">
+Knightmare
+</div>
+
+<div class="champion-owner">
+Jared McElwee
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2016
+</div>
+
+<div>
+
+<div class="champion-team">
+Dawg Pound
+</div>
+
+<div class="champion-owner">
+James Vernon
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2017
+</div>
+
+<div>
+
+<div class="champion-team">
+Show Me Your TDs
+</div>
+
+<div class="champion-owner">
+Timothy Smith
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2018
+</div>
+
+<div>
+
+<div class="champion-team">
+Romo Wittens His Panties
+</div>
+
+<div class="champion-owner">
+Marc Fratina
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2019
+</div>
+
+<div>
+
+<div class="champion-team">
+Go Luck Yourself
+</div>
+
+<div class="champion-owner">
+Zack Muir
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2020
+</div>
+
+<div>
+
+<div class="champion-team">
+Romo Wittens His Panties
+</div>
+
+<div class="champion-owner">
+Marc Fratina
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2021
+</div>
+
+<div>
+
+<div class="champion-team">
+Bacc Field
+</div>
+
+<div class="champion-owner">
+Kevin Bacchus
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2022
+</div>
+
+<div>
+
+<div class="champion-team">
+Diggs Island
+</div>
+
+<div class="champion-owner">
+Jordan Raffone
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2023
+</div>
+
+<div>
+
+<div class="champion-team">
+Go Luck Yourself
+</div>
+
+<div class="champion-owner">
+Zack Muir
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2024
+</div>
+
+<div>
+
+<div class="champion-team">
+Caucasians
+</div>
+
+<div class="champion-owner">
+Josh McElwee
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="champion-row">
+
+<div class="champion-year">
+2025
+</div>
+
+<div>
+
+<div class="champion-team">
+Knightmare
+</div>
+
+<div class="champion-owner">
+Jared McElwee
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     CLOSING
+     ===================================================== -->
+
+<section class="closing">
+
+<small>
+The Goal Every August
+</small>
+
+<h2>
+Win the League.<br>
+Earn the Plate.
+</h2>
+
+<p>
+Join the Legend.
+</p>
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+© 2012–2026 Florida's Finest Fantasy Football League
+
+</footer>
+
+
+</body>
+
+</html>
