@@ -1084,21 +1084,25 @@ nav a.active {
 
   min-height:210px;
 
+  height:300px;
+
   border-radius:7px;
 
   display:flex;
 
-  align-items:center;
+  align-items:flex-end;
 
   justify-content:center;
 
-  flex-direction:column;
+  position:relative;
+
+  overflow:hidden;
 
   background:
     radial-gradient(
-      circle,
-      rgba(232,102,20,.2),
-      transparent 35%
+      circle at 50% 40%,
+      rgba(232,102,20,.18),
+      transparent 45%
     ),
     linear-gradient(
       135deg,
@@ -1114,24 +1118,24 @@ nav a.active {
 }
 
 
-.feature-image .mic {
+.feature-image img {
 
-  font-size:4rem;
+  width:auto;
 
-}
+  height:100%;
 
+  max-width:100%;
 
-.feature-image .media-name {
+  object-fit:contain;
 
-  margin-top:8px;
+  object-position:center bottom;
 
-  color:var(--orange);
+  display:block;
 
-  font-size:1.3rem;
-
-  font-weight:1000;
-
-  text-transform:uppercase;
+  filter:
+    drop-shadow(
+      0 14px 24px rgba(0,0,0,.5)
+    );
 
 }
 
@@ -2092,17 +2096,10 @@ Mike Hunt
 
 <div class="feature-image">
 
-<div class="mic">
-
-🎙️
-
-</div>
-
-<div class="media-name">
-
-Mike Hunt
-
-</div>
+<img
+  src="mike-hunt.png"
+  alt="Mike Hunt"
+>
 
 </div>
 
