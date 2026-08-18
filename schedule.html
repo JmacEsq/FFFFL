@@ -48,7 +48,7 @@ a {
 }
 
 .nav-wrap {
-  max-width:1250px;
+  max-width:1450px;
   margin:auto;
   min-height:74px;
   padding:0 20px;
@@ -86,15 +86,19 @@ a {
 
 nav {
   display:flex;
-  gap:20px;
-  flex-wrap:wrap;
+  align-items:center;
+  justify-content:flex-end;
+  gap:14px;
+  flex-wrap:nowrap;
+  min-width:0;
 }
 
 nav a {
-  font-size:.87rem;
+  font-size:.78rem;
   font-weight:800;
   text-transform:uppercase;
-  letter-spacing:.6px;
+  letter-spacing:.35px;
+  white-space:nowrap;
 }
 
 nav a:hover,
@@ -328,15 +332,22 @@ footer {
   font-size:.8rem;
 }
 
-@media(max-width:850px) {
+@media(max-width:1100px) {
 
   .nav-wrap {
     flex-direction:column;
-    padding:12px 20px;
+    padding:12px 20px 14px;
+    gap:10px;
   }
 
   nav {
     justify-content:center;
+    flex-wrap:wrap;
+    gap:11px 15px;
+  }
+
+  nav a {
+    font-size:.74rem;
   }
 
   .matchups-grid {
