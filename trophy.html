@@ -90,7 +90,7 @@ a {
 
 .nav-wrap {
 
-  max-width:1250px;
+  max-width:1450px;
 
   margin:auto;
 
@@ -155,21 +155,29 @@ nav {
 
   display:flex;
 
-  gap:20px;
+  align-items:center;
 
-  flex-wrap:wrap;
+  justify-content:flex-end;
+
+  gap:14px;
+
+  flex-wrap:nowrap;
+
+  min-width:0;
 
 }
 
 nav a {
 
-  font-size:.87rem;
+  font-size:.78rem;
 
   font-weight:800;
 
   text-transform:uppercase;
 
-  letter-spacing:.6px;
+  letter-spacing:.35px;
+
+  white-space:nowrap;
 
 }
 
@@ -746,20 +754,32 @@ footer {
    RESPONSIVE
    ===================================================== */
 
-@media(max-width:900px) {
+@media(max-width:1100px) {
 
   .nav-wrap {
 
     flex-direction:column;
 
     padding:
-      12px 20px;
+      12px 20px 14px;
+
+    gap:10px;
 
   }
 
   nav {
 
     justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:11px 15px;
+
+  }
+
+  nav a {
+
+    font-size:.74rem;
 
   }
 
