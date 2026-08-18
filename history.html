@@ -40,30 +40,89 @@ a {
 }
 
 
-@media(max-width:1050px) {
+/* =====================================================
+   HEADER
+   ===================================================== */
 
-  .nav-wrap {
-    flex-direction:column;
-    padding:12px 20px;
-  }
-
-  nav {
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:12px 16px;
-  }
-
-  nav a {
-    font-size:.74rem;
-  }
-
-  .champion-grid {
-    grid-template-columns:repeat(2,1fr);
-  }
-
+.site-header {
+  background:rgba(2,18,11,.98);
+  border-bottom:1px solid rgba(232,102,20,.35);
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
-/* HERO */
+.nav-wrap {
+  max-width:1450px;
+  margin:auto;
+  min-height:74px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  flex:0 0 auto;
+}
+
+.brand img {
+  width:54px;
+  height:54px;
+  object-fit:contain;
+  flex:0 0 54px;
+}
+
+.brand-text {
+  flex:0 0 auto;
+}
+
+.brand-text span:first-child {
+  display:block;
+  font-size:1.05rem;
+  white-space:nowrap;
+}
+
+.brand-text span:last-child {
+  display:block;
+  color:var(--orange);
+  font-size:.8rem;
+  margin-top:4px;
+  letter-spacing:1.2px;
+  white-space:nowrap;
+}
+
+nav {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:14px;
+  flex-wrap:nowrap;
+  min-width:0;
+}
+
+nav a {
+  font-size:.78rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.35px;
+  white-space:nowrap;
+}
+
+nav a:hover,
+nav a.active {
+  color:var(--orange);
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
 
 .hero {
   text-align:center;
@@ -111,7 +170,9 @@ a {
 }
 
 
-/* PAGE */
+/* =====================================================
+   PAGE
+   ===================================================== */
 
 .page {
   max-width:1100px;
@@ -120,7 +181,9 @@ a {
 }
 
 
-/* EARLY YEARS */
+/* =====================================================
+   EARLY YEARS
+   ===================================================== */
 
 .story-card {
   background:
@@ -154,7 +217,9 @@ a {
 }
 
 
-/* ARCHIVE NOTES */
+/* =====================================================
+   ARCHIVE NOTES
+   ===================================================== */
 
 .artifact-note {
   margin-top:16px;
@@ -180,7 +245,9 @@ a {
 }
 
 
-/* TIMELINE */
+/* =====================================================
+   TIMELINE
+   ===================================================== */
 
 .timeline-heading {
   margin-bottom:26px;
@@ -286,7 +353,9 @@ a {
 }
 
 
-/* CHAMPIONS INDEX */
+/* =====================================================
+   CHAMPIONS INDEX
+   ===================================================== */
 
 .champions-index {
   margin-top:55px;
@@ -341,7 +410,9 @@ a {
 }
 
 
-/* FOOTER */
+/* =====================================================
+   FOOTER
+   ===================================================== */
 
 footer {
   border-top:1px solid rgba(232,102,20,.25);
@@ -353,17 +424,26 @@ footer {
 }
 
 
-/* RESPONSIVE */
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
 
-@media(max-width:850px) {
+@media(max-width:1100px) {
 
   .nav-wrap {
     flex-direction:column;
-    padding:12px 20px;
+    padding:12px 20px 14px;
+    gap:10px;
   }
 
   nav {
     justify-content:center;
+    flex-wrap:wrap;
+    gap:11px 15px;
+  }
+
+  nav a {
+    font-size:.74rem;
   }
 
   .champion-grid {
@@ -373,6 +453,18 @@ footer {
 }
 
 @media(max-width:520px) {
+
+  .brand-text {
+    display:none;
+  }
+
+  nav {
+    gap:9px 13px;
+  }
+
+  nav a {
+    font-size:.68rem;
+  }
 
   .timeline {
     margin-left:8px;
@@ -389,12 +481,21 @@ footer {
 
 }
 
+
+/* =====================================================
+   END STYLES
+   ===================================================== */
+
 </style>
 </head>
 
 
 <body>
 
+
+<!-- ===================================================
+     HEADER
+     =================================================== -->
 
 <header class="site-header">
 
@@ -411,23 +512,60 @@ footer {
 
 </a>
 
+
 <nav>
-  <a href="index.html">Home</a>
-  <a href="teams.html">Teams</a>
-  <a href="standings.html">Standings</a>
-  <a href="schedule.html">Schedule</a>
-  <a href="record-book.html">Record Book</a>
-  <a href="history.html" class="active">History</a>
-  <a href="trophy.html">The Yocum</a>
-  <a href="mike-hunt.html">Mike Hunt</a>
-  <a href="contenders.html">Contenders</a>
+
+<a href="index.html">
+Home
+</a>
+
+<a href="teams.html">
+Teams
+</a>
+
+<a href="standings.html">
+Standings
+</a>
+
+<a href="schedule.html">
+Schedule
+</a>
+
+<a href="record-book.html">
+Record Book
+</a>
+
+<a
+  href="history.html"
+  class="active"
+>
+History
+</a>
+
+<a href="trophy.html">
+The Yocum
+</a>
+
+<a href="mike-hunt.html">
+Mike Hunt
+</a>
+
+<a href="contenders.html">
+Contenders
+</a>
+
 </nav>
+
 
 </div>
 
 </header>
 
 
+
+<!-- ===================================================
+     HERO
+     =================================================== -->
 
 <section class="hero">
 
@@ -453,8 +591,16 @@ The Story of Florida's Finest
 
 
 
+<!-- ===================================================
+     MAIN
+     =================================================== -->
+
 <main class="page">
 
+
+<!-- ===================================================
+     EARLY YEARS
+     =================================================== -->
 
 <section class="story-card">
 
@@ -465,7 +611,7 @@ The Early Years
 <p>
 Florida's Finest Fantasy Football League began in 2012 and has evolved
 through multiple generations of owners, franchises and platforms.
-The modern FFFFL record book preserves the statistics that remain
+The modern FFFL record book preserves the statistics that remain
 reliably maintained, while the league's history extends beyond those
 numbers.
 </p>
@@ -473,13 +619,17 @@ numbers.
 <div class="story-note">
 Former owners Tasha, Logan, Steve, Joe C and Pete were part of the league
 during its earlier years, but their statistics pre-date portions of the
-league's currently maintained record books. Their time in the FFFFL remains
+league's currently maintained record books. Their time in the FFFL remains
 part of league history even where complete statistical records no longer exist.
 </div>
 
 </section>
 
 
+
+<!-- ===================================================
+     LEAGUE TIMELINE
+     =================================================== -->
 
 <section>
 
@@ -490,7 +640,7 @@ League Timeline
 </h2>
 
 <p>
-The defining seasons, champions and moments in FFFFL history.
+The defining seasons, champions and moments in FFFL history.
 </p>
 
 </div>
@@ -499,7 +649,9 @@ The defining seasons, champions and moments in FFFFL history.
 <div class="timeline">
 
 
-<!-- 2012 -->
+<!-- ===================================================
+     2012
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -510,13 +662,14 @@ The defining seasons, champions and moments in FFFFL history.
 <div class="timeline-card milestone">
 
 <h3>
-The FFFFL Begins
+The FFFL Begins
 </h3>
 
 <p>
 Florida's Finest Fantasy Football League begins its first season.
 Brady Gaga becomes the league's inaugural champion.
 </p>
+
 
 <div class="artifact-note">
 
@@ -527,10 +680,11 @@ From the Archives
 <p>
 A surviving draft report card from the championship season gave Brady Gaga
 a B grade. Jonah proceeded to turn the middle-of-the-pack preseason evaluation
-into the first championship in FFFFL history.
+into the first championship in FFFL history.
 </p>
 
 </div>
+
 
 <div class="champion">
 🏆 Champion: Brady Gaga
@@ -542,7 +696,9 @@ into the first championship in FFFFL history.
 
 
 
-<!-- 2013 -->
+<!-- ===================================================
+     2013
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -561,6 +717,7 @@ Joe's Oreo Blizzard captures the championship and begins the first
 back-to-back title run in league history.
 </p>
 
+
 <div class="artifact-note">
 
 <div class="artifact-label">
@@ -570,10 +727,11 @@ From the Archives
 <p>
 The surviving 2013 Draft Report Card gave Oreo Blizzard the highest grade
 in the league. Joe backed up the preseason expectations by going on to win
-the FFFFL championship that season.
+the FFFL championship that season.
 </p>
 
 </div>
+
 
 <div class="champion">
 🏆 Champion: Oreo Blizzard
@@ -585,7 +743,9 @@ the FFFFL championship that season.
 
 
 
-<!-- 2014 -->
+<!-- ===================================================
+     2014
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -600,7 +760,7 @@ Back-to-Back — and an All-Time Draft Blunder
 </h3>
 
 <p>
-Oreo Blizzard repeats as FFFFL champion. The season also produces one
+Oreo Blizzard repeats as FFFL champion. The season also produces one
 of the league's most memorable draft mistakes when Marc, owner of
 Romo Wittens His Panties, drafts David Wilson after Wilson had already
 suffered the neck injury that ended his NFL career.
@@ -616,7 +776,9 @@ suffered the neck injury that ended his NFL career.
 
 
 
-<!-- 2015 -->
+<!-- ===================================================
+     2015
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -631,7 +793,7 @@ Knightmare Breaks Through
 </h3>
 
 <p>
-Knightmare wins its first FFFFL championship.
+Knightmare wins its first FFFL championship.
 </p>
 
 <div class="champion">
@@ -644,7 +806,9 @@ Knightmare wins its first FFFFL championship.
 
 
 
-<!-- 2016 -->
+<!-- ===================================================
+     2016
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -659,8 +823,9 @@ Dawg Pound Wins It All
 </h3>
 
 <p>
-James and Dawg Pound capture the FFFFL championship.
+James and Dawg Pound capture the FFFL championship.
 </p>
+
 
 <div class="artifact-note">
 
@@ -670,11 +835,12 @@ From the Archives
 
 <p>
 A surviving photograph of the 2016 physical draft board preserves a snapshot
-of the FFFFL's pre-Sleeper era, with a custom draft board featuring 
+of the FFFL's pre-Sleeper era, with a custom draft board featuring
 Knightmare's Jared in a photo shoot with The Yocum.
 </p>
 
 </div>
+
 
 <div class="champion">
 🏆 Champion: Dawg Pound
@@ -686,7 +852,9 @@ Knightmare's Jared in a photo shoot with The Yocum.
 
 
 
-<!-- 2017 -->
+<!-- ===================================================
+     2017
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -701,10 +869,10 @@ An Inaugural-Season Championship
 </h3>
 
 <p>
-Show Me Your TDs enters the FFFFL and immediately wins the championship
+Show Me Your TDs enters the FFFL and immediately wins the championship
 in its inaugural season. Tim's title run is powered in part by a huge
 rookie season from Alvin Kamara, helping turn a first-year franchise into
-an instant FFFFL champion. The season also sees Justin, owner of America's
+an instant FFFL champion. The season also sees Justin, owner of America's
 Fantasy Team, retire from the league following the evacuation caused by
 Hurricane Irma.
 </p>
@@ -719,7 +887,9 @@ Hurricane Irma.
 
 
 
-<!-- 2018 -->
+<!-- ===================================================
+     2018
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -734,7 +904,7 @@ Romo Wittens His Panties Breaks Through
 </h3>
 
 <p>
-Marc and Romo Wittens His Panties capture their first FFFFL championship.
+Marc and Romo Wittens His Panties capture their first FFFL championship.
 </p>
 
 <div class="champion">
@@ -747,7 +917,9 @@ Marc and Romo Wittens His Panties capture their first FFFFL championship.
 
 
 
-<!-- 2019 -->
+<!-- ===================================================
+     2019
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -767,7 +939,7 @@ when Tasha selects Andrew Luck, only for Luck to announce his retirement
 roughly 30 minutes later. Kevin takes over Tasha's franchise for the 2019
 season, establishing Bacc Field. The ownership change kick-starts Josh's
 three-season Caucasians protest of the league. On the field, Go Luck Yourself
-captures its first FFFFL championship.
+captures its first FFFL championship.
 </p>
 
 <div class="champion">
@@ -780,7 +952,9 @@ captures its first FFFFL championship.
 
 
 
-<!-- 2020 -->
+<!-- ===================================================
+     2020
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -795,7 +969,7 @@ The Sleeper Era Begins
 </h3>
 
 <p>
-The FFFFL leaves ESPN and moves to Sleeper for the 2020 season.
+The FFFL leaves ESPN and moves to Sleeper for the 2020 season.
 Josh's Caucasians protest continues into its second year, while
 Romo Wittens His Panties captures its second championship in three seasons.
 </p>
@@ -810,7 +984,9 @@ Romo Wittens His Panties captures its second championship in three seasons.
 
 
 
-<!-- 2021 -->
+<!-- ===================================================
+     2021
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -829,7 +1005,7 @@ The 2021 draft delivers two memorable moments. Justin trades up from the
 seventh pick to the third pick to select rookie running back Najee Harris.
 Later in the draft, Kevin selects J.K. Dobbins shortly after it had been
 announced that Dobbins had torn his ACL and would miss the entire season.
-Despite the mistake, Kevin and Bacc Field go on to win the FFFFL championship.
+Despite the mistake, Kevin and Bacc Field go on to win the FFFL championship.
 The season is also the final year in which Just Bobby is co-owned by Thomas
 and Jerry before Jerry assumes sole ownership, and it marks the third and
 final season of Josh's Caucasians protest.
@@ -845,7 +1021,9 @@ final season of Josh's Caucasians protest.
 
 
 
-<!-- 2022 -->
+<!-- ===================================================
+     2022
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -861,7 +1039,7 @@ Diggs Island Wins — Marc Retires
 
 <p>
 Diggs Island captures the championship. Following the season,
-Marc retires Romo Wittens His Panties from the FFFFL and
+Marc retires Romo Wittens His Panties from the FFFL and
 Dyl Pickle Six enters the league.
 </p>
 
@@ -875,7 +1053,9 @@ Dyl Pickle Six enters the league.
 
 
 
-<!-- 2023 -->
+<!-- ===================================================
+     2023
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -892,7 +1072,7 @@ Go Luck Yourself Wins Again — Two Veterans Depart
 <p>
 Go Luck Yourself wins its second championship. Following the season,
 Joe's Oreo Blizzard and James' Dawg Pound retire from the league.
-Njigbas In Paris and Prison Jeff enter the FFFFL.
+Njigbas In Paris and Prison Jeff enter the FFFL.
 </p>
 
 <div class="champion">
@@ -905,7 +1085,9 @@ Njigbas In Paris and Prison Jeff enter the FFFFL.
 
 
 
-<!-- 2024 -->
+<!-- ===================================================
+     2024
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -920,7 +1102,7 @@ Caucasians Champion — The Champions Dinner Begins
 </h3>
 
 <p>
-The Caucasians win the 2024 FFFFL championship. Following the season,
+The Caucasians win the 2024 FFFL championship. Following the season,
 the league holds its first Champions Dinner, beginning a new league
 tradition. Justin retires America's Fantasy Team for the second time,
 and Tommy Gunz enters the league.
@@ -936,7 +1118,9 @@ and Tommy Gunz enters the league.
 
 
 
-<!-- 2025 -->
+<!-- ===================================================
+     2025
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -951,7 +1135,7 @@ Knightmare Returns to the Top
 </h3>
 
 <p>
-Knightmare captures its second FFFFL championship, ten seasons after
+Knightmare captures its second FFFL championship, ten seasons after
 winning its first.
 </p>
 
@@ -965,7 +1149,9 @@ winning its first.
 
 
 
-<!-- 2026 -->
+<!-- ===================================================
+     2026
+     =================================================== -->
 
 <div class="timeline-item">
 
@@ -981,7 +1167,7 @@ The Contenders Era
 
 <p>
 The Florida's Finest Contenders League launches as an eight-team
-companion league to the FFFFL. The new league brings several familiar
+companion league to the FFFL. The new league brings several familiar
 franchises back into the Florida's Finest universe, including
 America's Fantasy Team, Romo Wittens His Panties and Dawg Pound.
 </p>
@@ -1001,6 +1187,10 @@ FFCL Begins
 
 
 
+<!-- ===================================================
+     CHAMPIONS BY YEAR
+     =================================================== -->
+
 <section class="champions-index">
 
 <div class="section-heading">
@@ -1010,7 +1200,7 @@ Champions by Year
 </h2>
 
 <p>
-The complete FFFFL championship lineage through 2025.
+The complete FFFL championship lineage through 2025.
 </p>
 
 </div>
@@ -1018,75 +1208,90 @@ The complete FFFFL championship lineage through 2025.
 
 <div class="champion-grid">
 
+
 <div class="champion-card">
 <div class="champion-year">2012</div>
 <div class="champion-name">Brady Gaga</div>
 </div>
+
 
 <div class="champion-card">
 <div class="champion-year">2013</div>
 <div class="champion-name">Oreo Blizzard</div>
 </div>
 
+
 <div class="champion-card">
 <div class="champion-year">2014</div>
 <div class="champion-name">Oreo Blizzard</div>
 </div>
+
 
 <div class="champion-card">
 <div class="champion-year">2015</div>
 <div class="champion-name">Knightmare</div>
 </div>
 
+
 <div class="champion-card">
 <div class="champion-year">2016</div>
 <div class="champion-name">Dawg Pound</div>
 </div>
+
 
 <div class="champion-card">
 <div class="champion-year">2017</div>
 <div class="champion-name">Show Me Your TDs</div>
 </div>
 
+
 <div class="champion-card">
 <div class="champion-year">2018</div>
 <div class="champion-name">Romo Wittens His Panties</div>
 </div>
+
 
 <div class="champion-card">
 <div class="champion-year">2019</div>
 <div class="champion-name">Go Luck Yourself</div>
 </div>
 
+
 <div class="champion-card">
 <div class="champion-year">2020</div>
 <div class="champion-name">Romo Wittens His Panties</div>
 </div>
+
 
 <div class="champion-card">
 <div class="champion-year">2021</div>
 <div class="champion-name">Bacc Field</div>
 </div>
 
+
 <div class="champion-card">
 <div class="champion-year">2022</div>
 <div class="champion-name">Diggs Island</div>
 </div>
+
 
 <div class="champion-card">
 <div class="champion-year">2023</div>
 <div class="champion-name">Go Luck Yourself</div>
 </div>
 
+
 <div class="champion-card">
 <div class="champion-year">2024</div>
 <div class="champion-name">Caucasians</div>
 </div>
 
+
 <div class="champion-card">
 <div class="champion-year">2025</div>
 <div class="champion-name">Knightmare</div>
 </div>
+
 
 </div>
 
@@ -1096,6 +1301,10 @@ The complete FFFFL championship lineage through 2025.
 </main>
 
 
+
+<!-- ===================================================
+     FOOTER
+     =================================================== -->
 
 <footer>
 
