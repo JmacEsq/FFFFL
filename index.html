@@ -504,8 +504,12 @@ nav a.active {
   will-change:transform;
 }
 
-.ticker-window:hover .ticker-track {
-  animation-play-state:paused;
+@media (hover:hover) and (pointer:fine) {
+
+  .ticker-window:hover .ticker-track {
+    animation-play-state:paused;
+  }
+
 }
 
 .ticker-item {
@@ -3550,8 +3554,31 @@ function renderTicker(
     storyHTML +
     storyHTML;
 
+  restartTickerAnimation();
+
 }
 
+
+function restartTickerAnimation() {
+
+  const ticker =
+    document.getElementById(
+      "tickerTrack"
+    );
+
+  if (!ticker) {
+
+    return;
+
+  }
+
+  ticker.style.animation = "none";
+
+  void ticker.offsetWidth;
+
+  ticker.style.animation = "";
+
+}
 
 
 async function loadLeagueTicker() {
@@ -3896,6 +3923,43 @@ async function loadLeagueTicker() {
   }
 
 }
+
+window.addEventListener(
+  "pageshow",
+  function() {
+
+    restartTickerAnimation();
+
+  }
+);
+
+
+document.addEventListener(
+  "visibilitychange",
+  function() {
+
+    if (
+      document.visibilityState ===
+      "visible"
+    ) {
+
+      restartTickerAnimation();
+
+    }
+
+  }
+);
+
+
+window.addEventListener(
+  "focus",
+  function() {
+
+    restartTickerAnimation();
+
+  }
+);
+
 
 loadStandings();
 loadLeagueTicker();
