@@ -40,71 +40,28 @@ a {
 }
 
 
-/* HEADER */
+@media(max-width:1050px) {
 
-.site-header {
-  background:rgba(2,18,11,.98);
-  border-bottom:1px solid rgba(232,102,20,.35);
-  position:sticky;
-  top:0;
-  z-index:1000;
+  .nav-wrap {
+    flex-direction:column;
+    padding:12px 20px;
+  }
+
+  nav {
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px 16px;
+  }
+
+  nav a {
+    font-size:.74rem;
+  }
+
+  .champion-grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+
 }
-
-.nav-wrap {
-  max-width:1250px;
-  margin:auto;
-  min-height:74px;
-  padding:0 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:25px;
-}
-
-.brand {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:900;
-}
-
-.brand img {
-  width:54px;
-  height:54px;
-  object-fit:contain;
-}
-
-.brand-text span:first-child {
-  display:block;
-  font-size:1.05rem;
-}
-
-.brand-text span:last-child {
-  display:block;
-  color:var(--orange);
-  font-size:.8rem;
-  margin-top:4px;
-  letter-spacing:1.2px;
-}
-
-nav {
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-nav a {
-  font-size:.87rem;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.6px;
-}
-
-nav a:hover,
-nav a.active {
-  color:var(--orange);
-}
-
 
 /* HERO */
 
